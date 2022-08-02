@@ -1,4 +1,4 @@
-# `<name of application here>`
+# AirBnB API Project
 
 ## Database Schema Design
 
