@@ -1,2 +1,2 @@
 # 'AirBnB API Project'
-[API Documentation](https://github.com/gmerida92/AirBnB.wiki.git)
+[API Documentation](https://github.com/gmerida92/AirBnB/wiki/AirBnB-API-Documentation)
