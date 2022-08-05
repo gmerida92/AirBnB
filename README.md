@@ -52,7 +52,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: '/account'
+  * URL: '/user/:userId'
   * Body: none
 
 * Successful Response
@@ -79,7 +79,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: '/account?credential=john.smith@gmail.com&password=secret_password'
+  * URL: '/user/login'
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -145,8 +145,8 @@ user's information.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: PUT
+  * URL: '/user/signup'
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -237,8 +237,8 @@ Returns all the spots.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: GET
+  * URL: '/spot'
   * Body: none
 
 * Successful Response

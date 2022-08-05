@@ -1,0 +1,58 @@
+# Potential Tables
+
+% Login/Credentials
+%     credentials
+%     password
+
+User
+    id,
+    firstName,
+    lastName,
+    email,
+    username
+    password
+
+
+Spots
+    id,
+    ownerId,
+    address,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+    createdAt
+    updatedAt
+    avgRating
+    previewImage
+
+Reviews
+    id
+    userId,
+    spotId,
+    review,
+    stars
+    createdAt
+    updatedAt
+
+Bookings
+    id,
+    spotId,
+    userId,
+    startDate,
+    endDate
+    createdAt,
+    updatedAt
+
+Images
+    id,
+    imageableId,
+    url
+
+
+All the users can have spots and all can do bookings so there are no difference between users
+we dont need an extra column for host or regular user
