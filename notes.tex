@@ -54,5 +54,37 @@ Images
     url
 
 
+
+Possible Extra Features Ideas
+    Dynamic Search Bar
+    Google Maps to show location of spots
+    Dynamic Updating Average ratings
+    Randomize and then reccomment location to book
+    Group certain locations and user click button to return all locations in same category
+
+
+
+
 All the users can have spots and all can do bookings so there are no difference between users
 we dont need an extra column for host or regular user
+
+
+
+
+
+images has a relationship to spots and reviews
+
+
+
+
+/spots
+/spots/search
+/spots/filter
+
+
+
+choose put or patch
+put if modifying join table, in this case images table
+patch for other tables becuase only updating certain pieces of data/attributes in the data
+
+What is happening in the "Get all reviews of the current User"? Looks like reviews are an array of objecs thats that include users and spot, and images that has an array of objects
