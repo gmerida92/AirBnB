@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-<img src="https://github.com/gmerida92/AirBnB/blob/main/admin/airbnbschema.png" width="300"  height="300" />
+<img src="https://github.com/gmerida92/AirBnB/blob/main/admin/airbnbschema.png" width="500"  height="500" />
 
 <!-- ![AirBnb Database Schema](https://github.com/gmerida92/AirBnB/blob/main/airbnbschema.png) -->
 <!-- ![AirBnb Database Schema](/admin/airbnbschema.png) -->
