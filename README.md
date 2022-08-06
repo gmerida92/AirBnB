@@ -2,7 +2,14 @@
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+<!-- ![AirBnb Database Schema](https://github.com/gmerida92/AirBnB/blob/main/airbnbschema.png) -->
+![AirBnb Database Schema](/airbnbschema.png)
+<!-- ![AirBnb Database Schema](<img src="/airbnbschema.png" width="100" height="50"/>) -->
+
+
+url: https://github.com/gmerida92/AirBnB/blob/main/airbnbschema.png
+
+
 
 ## API Documentation
 
@@ -52,7 +59,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: '/users/:id'
+  * URL: /api/users/:id
   * Body: none
 
 * Successful Response
@@ -79,7 +86,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: '/users/login'
+  * URL: /api/users/login
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -146,7 +153,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: '/users/signup'
+  * URL: /api/users/signup
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -238,7 +245,7 @@ Returns all the spots.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: '/spots'
+  * URL: /api/spots
   * Body: none
 
 * Successful Response
@@ -278,7 +285,7 @@ Returns all the spots owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: '/users/:id/spots'
+  * URL: /api/users/:id/spots
   * Body: none
 
 * Successful Response
@@ -318,7 +325,7 @@ Returns the details of a spot specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: '/spots/:id'
+  * URL: /api/spots/:id
   * Body: none
 
 * Successful Response
@@ -379,7 +386,7 @@ Creates and returns a new spot.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: '/spots'
+  * URL: /api/spots
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -454,7 +461,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: POST
-  * URL: '/spots/:id/images'
+  * URL: /api/spots/:id/images
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -500,7 +507,7 @@ Updates and returns an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: PUT
-  * URL: '/spots/:id'
+  * URL: /api/spots/:id
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -588,7 +595,7 @@ Deletes an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: '/spots/:id'
+  * URL: /api/spots/:id
   * Body: none
 
 * Successful Response
@@ -626,7 +633,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: 'users/:id/reviews'
+  * URL: /api/users/:id/reviews
   * Body: none
 
 * Successful Response
@@ -682,7 +689,7 @@ Returns all the reviews that belong to a spot specified by id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: '/spots/:id/reviews'
+  * URL: /api/spots/:id/reviews
   * Body: none
 
 * Successful Response
@@ -739,7 +746,7 @@ Create and return a new review for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: '/spots/:id/reviews'
+  * URL: /api/spots/:id/reviews
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -820,7 +827,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: POST
-  * URL: /reviews/:id/images
+  * URL: /api/reviews/:id/images
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -880,7 +887,7 @@ Update and return an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: PUT
-  * URL: '/reviews/:id'
+  * URL: /api/reviews/:id
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -948,7 +955,7 @@ Delete an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: DELETE
-  * URL: '/reviews/:id'
+  * URL: /api/reviews/:id
   * Body: none
 
 * Successful Response
@@ -986,7 +993,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: '/users/:id/bookings'
+  * URL: /api/users/:id/bookings
   * Body: none
 
 * Successful Response
@@ -1031,7 +1038,7 @@ Return all the bookings for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: '/spots/:id/bookings'
+  * URL: /api/spots/:id/bookings
   * Body: none
 
 * Successful Response: If you ARE NOT the owner of the spot.
@@ -1100,7 +1107,7 @@ Create and return a new booking from a spot specified by id.
 * Require proper authorization: Spot must NOT belong to the current user
 * Request
   * Method: POST
-  * URL: '/spots/:id/bookings'
+  * URL: /api/spots/:id/bookings
   * Body:
 
     ```json
@@ -1182,7 +1189,7 @@ Update and return an existing booking.
 * Require proper authorization: Booking must belong to the current user
 * Request
   * Method: PUT
-  * URL: '/bookings/:id'
+  * URL: /api/bookings/:id
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1280,7 +1287,7 @@ Delete an existing booking.
   Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: '/bookings/:id'
+  * URL: /api/bookings/:id
   * Body: none
 
 * Successful Response
@@ -1332,7 +1339,7 @@ Delete an existing image.
 * Require proper authorization: Image must belong to the current user
 * Request
   * Method: DELETE
-  * URL: '/images/:id'
+  * URL: /api/images/:id
   * Body: none
 
 * Successful Response
@@ -1368,7 +1375,7 @@ Return spots filtered by query parameters.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: '/spots'
+  * URL: /api/spots
   * Query Parameters
     * page: integer, minimum: 0, maximum: 10, default: 0
     * size: integer, minimum: 0, maximum: 20, default: 20
