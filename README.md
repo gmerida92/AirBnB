@@ -499,7 +499,7 @@ Updates and returns an existing spot.
 * Require Authentication: true
 * Require proper authorization: Spot must belong to the current user
 * Request
-  * Method: PATCH/PUT
+  * Method: PUT
   * URL: '/spots/:id'
   * Headers:
     * Content-Type: application/json
@@ -879,7 +879,7 @@ Update and return an existing review.
 * Require Authentication: true
 * Require proper authorization: Review must belong to the current user
 * Request
-  * Method: PUT/PATCH
+  * Method: PUT
   * URL: '/reviews/:id'
   * Headers:
     * Content-Type: application/json
@@ -1181,7 +1181,7 @@ Update and return an existing booking.
 * Require Authentication: true
 * Require proper authorization: Booking must belong to the current user
 * Request
-  * Method: PUT/PATCH
+  * Method: PUT
   * URL: '/bookings/:id'
   * Headers:
     * Content-Type: application/json
@@ -1368,7 +1368,7 @@ Return spots filtered by query parameters.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: '/spots
+  * URL: '/spots'
   * Query Parameters
     * page: integer, minimum: 0, maximum: 10, default: 0
     * size: integer, minimum: 0, maximum: 20, default: 20
