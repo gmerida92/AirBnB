@@ -8,7 +8,7 @@
 <!-- ![AirBnb Database Schema](<img src="/airbnbschema.png" width="100" height="50"/>) -->
 
 
-url: https://github.com/gmerida92/AirBnB/blob/main/airbnbschema.png
+url: https://github.com/gmerida92/AirBnB/blob/main/admin/airbnbdatabaseschema.png
 
 
 
