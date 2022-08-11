@@ -286,7 +286,7 @@ Returns all the spots owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/users/:id/spots
+  * URL: /api/users/myaccount/spots
   * Body: none
 
 * Successful Response
@@ -634,7 +634,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/users/:id/reviews
+  * URL: /api/users/myaccount/reviews
   * Body: none
 
 * Successful Response
@@ -994,7 +994,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/users/:id/bookings
+  * URL: /api/users/myaccount/bookings
   * Body: none
 
 * Successful Response
