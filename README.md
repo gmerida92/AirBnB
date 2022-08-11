@@ -60,7 +60,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/users/:id
+  * URL: /api/users/myaccount
   * Body: none
 
 * Successful Response
