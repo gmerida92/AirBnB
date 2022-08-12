@@ -8,11 +8,11 @@ module.exports = (sequelize, DataTypes) => {
 
     toSafeObject() {
       const { id, username, email } = this; // context will be the User Instance
-      return { id, username, email };
+      return { id, username, email }; ///Will potentially change for project-20220811
     }
 
     validatePassword(password) {
-      return bcrypt.compareSync(password, this.hashedPassword.toString());
+      return bcrypt.compareSync(password, this.password.toString());
     }
 
     static getCurrentUserById(id) {
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
           [Op.or]: {
             username: credential,
             email: credential
-          }
+          } ///Will potentially change for project-20220811
         }
       });
       if (user && user.validatePassword(password)) {
@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         email,
         hashedPassword
       });
-      return await User.scope('currentUser').findByPk(user.id)
+      return await User.scope('currentUser').findByPk(user.id) ///Will potentially change for project-20220811
     }
 
     static associate(models) {
