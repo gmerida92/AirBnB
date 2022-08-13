@@ -29,6 +29,13 @@ router.post('/login', async (req, res, next) => {
     }); // Will change, edit, or add to match API DOC-20220813
 });
 
+// Log Out
+router.delete('/logout', async (req, res, next) => {
+    res.clearCookie('token');
+    return res.json({
+        message: 'Logout Successful'
+    });
+});
 
 
 module.exports = router;
