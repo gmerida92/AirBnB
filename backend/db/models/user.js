@@ -1,6 +1,6 @@
 'use strict';
 const { Model, Validator } = require('sequelize');
-const bscrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
 
@@ -24,10 +24,11 @@ module.exports = (sequelize, DataTypes) => {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
         where: {
-          [Op.or]: {
-            username: credential,
-            email: credential
-          } ///Will potentially change for project-20220811
+          email: credential // Changed to this on 20220813
+          // [Op.or]: {
+          //   username: credential,
+          //   email: credential
+          // } ///Will potentially change for project-20220811
         }
       });
       if (user && user.validatePassword(password)) {

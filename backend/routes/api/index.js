@@ -1,12 +1,22 @@
 // backend/routes/api/index.js
 const router = require('express').Router();
-const { setTokenCookie } = require('../../utils/auth.js');
-const { restoreUser } = require('../../utils/auth.js');
-const { requireAuth } = require('../../utils/auth.js');
+
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth.js');
+
 const { User } = require('../../db/models');
+
+const usersRouter = require('./users.js');
 
 router.use(restoreUser);
 
+router.use('/users', usersRouter)
+
+
+router.post('/test', function (req, res) {
+    res.json({ requestBody: req.body });
+});
+
+module.exports = router;
 
 // TESTING ROUTES FOR UTILS MIDDLEWARE-AUTH.JS
 // // GET /api/set-token-cookie
@@ -38,10 +48,3 @@ router.use(restoreUser);
 //         return res.json(req.user);
 //     }
 // );
-
-
-router.post('/test', function (req, res) {
-    res.json({ requestBody: req.body });
-});
-
-module.exports = router;
