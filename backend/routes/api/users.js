@@ -7,12 +7,43 @@ const { User } = require('../../db/models');
 
 const router = express.Router();
 
+
 //SESSION ROUTES
+
+// Sign Up
+router.post('/signup', async (req, res, next) => {
+    const { firstName, lastName, email, username, password } = req.body;
+    const user = await User.signup({
+        firstName,
+        lastName,
+        email,
+        username,
+        password
+    });
+
+    await setTokenCookie(res, user);
+    return res.json({
+        user
+    }); // Will change, edit, or add to match API Doc-20220813
+});
+
+// Get Current User
+router.get('/myaccount', restoreUser, async (req, res) => {
+    const { user } = req;
+    if (user) {
+        return res.json({
+            user: user.toSafeObject()
+        });
+    }
+    else {
+        return res.json({});
+    };
+});
 
 // Log In
 router.post('/login', async (req, res, next) => {
-    const {credential, password} = req.body;
-    const user = await User.login({credential, password});
+    const { credential, password } = req.body;
+    const user = await User.login({ credential, password });
 
     if (!user) {
         const err = new Error('Login failed');
@@ -26,7 +57,7 @@ router.post('/login', async (req, res, next) => {
 
     return res.json({
         user
-    }); // Will change, edit, or add to match API DOC-20220813
+    }); // Will change, edit, or add to match API Doc-20220813
 });
 
 // Log Out

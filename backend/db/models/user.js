@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
 
     toSafeObject() {
-      const { id, username, email } = this; // context will be the User Instance
-      return { id, username, email }; ///Will potentially change for project-20220811
+      const { id, firstName, lastName, email, username } = this; // context will be the User Instance
+      return { id, firstName, lastName, email, username }; ///Will potentially change for project-20220811
     }
 
     validatePassword(password) {
@@ -37,12 +37,14 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     // Sign up method
-    static async signup({ username, email, password }) {
-      const hashedPassword = bscrypt.hashSync(password);
+    static async signup({ firstName, lastName, email, username, password }) {
+      const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
-        username,
+        firstName,
+        lastName,
         email,
-        hashedPassword
+        username,
+        password: hashedPassword
       });
       return await User.scope('currentUser').findByPk(user.id) ///Will potentially change for project-20220811
     }
@@ -94,12 +96,12 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     defaultScope: {
       attributes: {
-        exclude: ["email", "password", "createdAt", "updatedAt"]
+        exclude: [ "createdAt", "updatedAt"]
       }
     },
     scopes: {
       currentUser: {
-        attributes: { exclude: ["password", "createdAt", "updatedAt"] }
+        attributes: { exclude: [ "createdAt", "updatedAt"] }
       },
       loginUser: {
         attributes: { exclude: ["createdAt", "updatedAt"] }
