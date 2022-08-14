@@ -1,11 +1,13 @@
 // backend/routes/api/users.js
 const express = require('express');
-
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth.js');
-
 const { User } = require('../../db/models');
+const { check } = require('express-validator');
+const { handleValidationErrors, validateLogin } = require('../../utils/validation.js');
 
 const router = express.Router();
+
+//SESSION VALIDATIONS
 
 
 //SESSION ROUTES
@@ -40,8 +42,8 @@ router.get('/myaccount', restoreUser, async (req, res) => {
     };
 });
 
-// Log In
-router.post('/login', async (req, res, next) => {
+// Login
+router.post('/login', validateLogin, async (req, res, next) => {
     const { credential, password } = req.body;
     const user = await User.login({ credential, password });
 
