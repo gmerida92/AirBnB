@@ -3,17 +3,15 @@ const express = require('express');
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
 const { check } = require('express-validator');
-const { handleValidationErrors, validateLogin } = require('../../utils/validation.js');
+const { handleValidationErrors, validateLogin, validateSignup } = require('../../utils/validation.js');
 
 const router = express.Router();
-
-//SESSION VALIDATIONS
 
 
 //SESSION ROUTES
 
 // Sign Up
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', validateSignup, async (req, res, next) => {
     const { firstName, lastName, email, username, password } = req.body;
     const user = await User.signup({
         firstName,
