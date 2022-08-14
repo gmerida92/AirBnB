@@ -2,8 +2,7 @@
 const express = require('express');
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
-const { check } = require('express-validator');
-const { handleValidationErrors, validateLogin, validateSignup } = require('../../utils/validation.js');
+const { validateLogin, validateSignup } = require('../../utils/validation.js');
 
 const router = express.Router();
 
