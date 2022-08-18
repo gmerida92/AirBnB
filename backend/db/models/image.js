@@ -17,6 +17,13 @@ module.exports = (sequelize, DataTypes) => {
       Image.belongsTo(
         models.User,
         {
+          foreignKey: 'userId'
+        }
+      );
+
+      Image.belongsTo(
+        models.User,
+        {
           foreignKey: 'imageableId',
           constraints: false
         }
@@ -35,13 +42,6 @@ module.exports = (sequelize, DataTypes) => {
         {
           foreignKey: 'imageableId',
           constraints: false
-        }
-      );
-
-      Image.belongsTo(
-        model.User,
-        {
-          foreignKey: 'userId'
         }
       );
     }
