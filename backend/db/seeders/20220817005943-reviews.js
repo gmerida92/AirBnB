@@ -72,7 +72,7 @@ module.exports = {
       {
         userId: 1,
         spotId: 4,
-        reviews: ".",
+        reviews: "Too expensive and not very clean. Scenic views.",
         stars: 2
       },
     ]);
