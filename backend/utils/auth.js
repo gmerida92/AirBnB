@@ -28,7 +28,7 @@ const setTokenCookie = (res, user) => {
     return token;
 };
 
-
+//Capturing a current user that is still logged in
 const restoreUser = (req, res, next) => {
     // token parsed from cookies
     const { token } = req.cookies;
@@ -54,13 +54,15 @@ const restoreUser = (req, res, next) => {
 };
 
 
+// Authentication: Making sure proper user is logged in based off of restorUser
 // If there is no current user, return an error
 const requireAuth = function (req, _res, next) {
     if (req.user) return next();
 
-    const err = new Error('Unauthorized');
-    err.title = 'Unauthorized';
-    err.errors = ['Unauthorized'];
+    const err = new Error('Authentication');
+    // err.title = 'Unauthorized';
+    // err.errors = ['Unauthorized'];
+    err.message = 'Authentication Required';
     err.status = 401;
     return next(err);
 }

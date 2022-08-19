@@ -9,6 +9,34 @@ const router = express.Router();
 
 //SESSION ROUTES
 
+// Get Current User
+router.get('/myaccount', [restoreUser, requireAuth], async (req, res) => {
+    const { user } = req;
+    if (user) {
+        return res.json(user.toSafeObject());
+    }
+    else {
+        return res.json({});
+    };
+});
+
+// Login
+router.post('/login', [validateLogin], async (req, res, next) => {
+    const { credential, password } = req.body;
+    const user = await User.login({ credential, password });
+
+    if (!user) {
+        const err = new Error('Invalid credentials');
+        err.message = 'Invalid credential';
+        err.status = 401;
+        next(err)
+    }
+
+    user.dataValues.token = await setTokenCookie(res, user);
+
+    return res.json(user);
+});
+
 // Sign Up
 router.post('/signup', validateSignup, async (req, res, next) => {
     const { firstName, lastName, email, username, password } = req.body;
@@ -20,44 +48,11 @@ router.post('/signup', validateSignup, async (req, res, next) => {
         password
     });
 
-    await setTokenCookie(res, user);
-    return res.json({
-        user
-    }); // Will change, edit, or add to match API Doc-20220813
+    user.dataValues.token = await setTokenCookie(res, user);
+    return res.json(user); // Will change, edit, or add to match API Doc-20220813
 });
 
-// Get Current User
-router.get('/myaccount', restoreUser, async (req, res) => {
-    const { user } = req;
-    if (user) {
-        return res.json({
-            user: user.toSafeObject()
-        });
-    }
-    else {
-        return res.json({});
-    };
-});
 
-// Login
-router.post('/login', validateLogin, async (req, res, next) => {
-    const { credential, password } = req.body;
-    const user = await User.login({ credential, password });
-
-    if (!user) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login Failure';
-        err.errors = ['Ther provided credentials were invalid.'];
-        return next(err);
-    }
-
-    await setTokenCookie(res, user);
-
-    return res.json({
-        user
-    }); // Will change, edit, or add to match API Doc-20220813
-});
 
 // Log Out
 router.delete('/logout', async (req, res, next) => {

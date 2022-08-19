@@ -7,29 +7,37 @@ const handleValidationErrors = (req, res, next) => {
     const validationErrors = validationResult(req);
 
     if (!validationErrors.isEmpty()) {
-        const errors = validationErrors
-            .array()
-            .map((error) => `${error.msg}`);
 
-        const err = Error('Bad request.');
-        err.errors = errors;
+        const errors = new Object();
+        validationErrors
+        .array()
+        .forEach((errObjDet) => {
+            let errValidKey = errObjDet.param;
+            if(!errors[errValidKey]){
+                errors[errValidKey] = errObjDet.msg;
+            }
+        });
+
+        const err = Error('Validation Error');
+        err.message = 'Validation Error';
+        err.errors = errors
         err.status = 400;
-        err.title = 'Bad request.';
+        // err.title = 'Bad request.';
         next(err);
     }
+    
     next();
 };
 
 
 // Validate Login Body
 const validateLogin = [
-    check('credential')
+    check('credential', 'Email or username is required')
         .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage('Please provide a valid email or username.'),
-    check('password')
-        .exists({ checkFalsy: true })
-        .withMessage('Please provide a password.'),
+        .isEmail()
+        .notEmpty(),
+    check('password', 'Password is required')
+        .exists({ checkFalsy: true }),
     handleValidationErrors
 ];
 

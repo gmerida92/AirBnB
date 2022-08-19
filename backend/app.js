@@ -31,16 +31,16 @@ app.use(
     })
 );
 
-// Set the _csrf token and create req.csrfToken method
-app.use(
-    csurf({
-        cookie: {
-            secure: isProduction,
-            sameSite: isProduction && "Lax",
-            httpOnly: true
-        }
-    })
-);
+// // Set the _csrf token and create req.csrfToken method
+// app.use(
+//     csurf({
+//         cookie: {
+//             secure: isProduction,
+//             sameSite: isProduction && "Lax",
+//             httpOnly: true
+//         }
+//     })
+// );
 
 // backend/app.js
 const routes = require('./routes');
@@ -49,7 +49,7 @@ app.use(routes); // Connect all the routes
 
 // backend/app.js
 // Catch unhandled requests and forward to error handler.
-app.use((_req, _res, next) => {
+app.use((req, res, next) => {
     const err = new Error("The requested resource couldn't be found.");
     err.title = "Resource Not Found";
     err.errors = ["The requested resource couldn't be found."];
@@ -61,10 +61,10 @@ app.use((_req, _res, next) => {
 const { ValidationError } = require('sequelize');
 
 // Process sequelize errors
-app.use((err, _req, _res, next) => {
+app.use((err, req, res, next) => {
     // check if error is a Sequelize error:
     if (err instanceof ValidationError) {
-        err.errors = err.errors.map((e) => e.message);
+        err.errors = err.errors.map((ele) => {ele.message});
         err.title = 'Validation error';
     }
     next(err);
@@ -72,16 +72,16 @@ app.use((err, _req, _res, next) => {
 
 // backend/app.js
 // Error formatter
-app.use((err, _req, res, _next) => {
+app.use((err, req, res, next) => {
     res.status(err.status || 500);
-    console.error(err);
     res.json({
-      title: err.title || 'Server Error',
-      message: err.message,
-      errors: err.errors,
-      stack: isProduction ? null : err.stack
+        // title: err.title || 'Server Error',
+        message: err.message,
+        statusCode: err.status,
+        errors: err.errors,
+        // stack: isProduction ? null : err.stack
     });
-  });
+});
 
 // backend/app.js
 module.exports = app;
