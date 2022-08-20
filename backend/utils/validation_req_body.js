@@ -3,7 +3,7 @@ const { check, validationResult } = require('express-validator');
 
 // middleware for formatting errors from express-validator middleware
 // (to customize, see express-validator's documentation)
-const handleValidationErrors = (req, res, next) => {
+const handleReqBodyValidationErrors = (req, res, next) => {
     const validationErrors = validationResult(req);
 
     if (!validationErrors.isEmpty()) {
@@ -38,7 +38,7 @@ const validateLogin = [
         .notEmpty(),
     check('password', 'Password is required')
         .exists({ checkFalsy: true }),
-    handleValidationErrors
+    handleReqBodyValidationErrors
 ];
 
 // Validate Signup Body
@@ -73,11 +73,11 @@ const validateSignup = [
         .exists({ checkFalsy: true })
         .isLength({ min: 6 })
         .withMessage('Password must be 6 characters or more.'),
-    handleValidationErrors
+        handleReqBodyValidationErrors
 ];
 
 module.exports = {
-    handleValidationErrors,
+    handleReqBodyValidationErrors,
     validateLogin,
     validateSignup
 };

@@ -44,6 +44,7 @@ app.use(
 
 // backend/app.js
 const routes = require('./routes');
+const { sequelize } = require('./db/models');
 
 app.use(routes); // Connect all the routes
 
@@ -58,17 +59,32 @@ app.use((req, res, next) => {
 });
 
 // backend/app.js
-const { ValidationError } = require('sequelize');
+const { sequelizeErrorHandler,
+    checkUser} = require('./utils/validation_db');
 
 // Process sequelize errors
-app.use((err, req, res, next) => {
+app.use([
+    sequelizeErrorHandler,
+    checkUser
+], (err, req, res, next) => {
     // check if error is a Sequelize error:
-    if (err instanceof ValidationError) {
-        err.errors = err.errors.map((ele) => {ele.message});
-        err.title = 'Validation error';
-    }
+    // if (err instanceof ValidationError) {
+
+    //     const errors = new Object();
+
+    //     err.errors.forEach((validationErrorItem) => {
+    //         errors[validationErrorItem] = validationErrorItem;
+    //     });
+    // //     err.message = "Sequelize Validation Error";
+    // //     err.status = 403;
+    //     err.errors = errors;
+    // }
     next(err);
 });
+
+// const {sequelizeErrorHandler} = require('./utils/validation_db');
+
+// app.use(sequelizeErrorHandler);
 
 // backend/app.js
 // Error formatter
