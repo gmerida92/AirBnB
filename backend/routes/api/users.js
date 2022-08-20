@@ -1,9 +1,8 @@
 // backend/routes/api/users.js
 const express = require('express');
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth.js');
-const { User } = require('../../db/models');
+const { User, Spot } = require('../../db/models');
 const { validateLogin, validateSignup } = require('../../utils/validation_req_body.js');
-const { checkUserEmail } = require('../../utils/validation_db');
 const router = express.Router();
 
 
@@ -19,6 +18,7 @@ router.get('/myaccount', [restoreUser, requireAuth], async (req, res) => {
         return res.json({});
     };
 });
+
 
 // Login
 router.post('/login', [validateLogin], async (req, res, next) => {
@@ -36,6 +36,7 @@ router.post('/login', [validateLogin], async (req, res, next) => {
 
     return res.json(user);
 });
+
 
 // Sign Up
 router.post('/signup', [validateSignup], async (req, res, next) => {
@@ -60,6 +61,20 @@ router.delete('/logout', async (req, res, next) => {
     return res.json({
         message: 'Logout Successful'
     });
+});
+
+
+//USER ROUTES
+
+router.get("/myaccount/spots", [restoreUser, requireAuth], async (req, res) => {
+    const user = req.user;
+    const spots = await Spot.findAll({
+        where: { ownerId: user.id },
+        
+    });
+    // const reviews = spots.getReview();
+    // console.log(reviews);
+    res.json({ Spots: spots });
 });
 
 
