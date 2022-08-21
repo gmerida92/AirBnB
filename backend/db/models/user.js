@@ -93,7 +93,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(
         models.Image,
         {
-          foreignKey: 'ownerId',
+          foreignKey: 'userId',
           onDelete: 'CASCADE',
           hooks: true
         }

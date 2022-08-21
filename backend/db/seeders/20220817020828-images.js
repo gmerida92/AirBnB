@@ -29,13 +29,13 @@ module.exports = {
       },
       {
         userId: 1,
-        imageableId: 1,
+        imageableId: 2,
         imageableType: "Review",
         url:"https://assets.site-static.com/userFiles/1718/image/uploads/agent-1/make-your-backyard-an-oasis.jpg"
       },
       {
         userId: 2,
-        imageableId: 2,
+        imageableId: 1,
         imageableType: "Review",
         url:"https://st2.depositphotos.com/1041088/5400/i/950/depositphotos_54005815-stock-photo-backyard-decoration-idea.jpg"
       },

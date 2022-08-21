@@ -48,6 +48,7 @@ const { sequelize } = require('./db/models');
 
 app.use(routes); // Connect all the routes
 
+
 // backend/app.js
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {
@@ -81,10 +82,6 @@ app.use([
     // }
     next(err);
 });
-
-// const {sequelizeErrorHandler} = require('./utils/validation_db');
-
-// app.use(sequelizeErrorHandler);
 
 // backend/app.js
 // Error formatter

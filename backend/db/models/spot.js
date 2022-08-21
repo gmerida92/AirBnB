@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       Spot.belongsTo(
         models.User,
         {
-          foreignKey: 'ownerId'
+          foreignKey: 'ownerId', as: 'Owner'
         }
       )
     }
@@ -107,6 +107,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Spot',
+    // defaultScope: {
+    //   attributes: {
+    //     exclude: ["previewImage"]
+    //   }
+    // }
   });
   return Spot;
 };
