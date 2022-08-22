@@ -124,6 +124,21 @@ const requireAuthorizationReview = async (req, res, next) => {
     return next(err);
 }
 
+const requireAuthorizationImage = async (req, res, next) => {
+    const user = req.user;
+    const {id} = req.params;
+    const image = await Image.findByPk(id)
+
+    if(image.userId === user.id) return next();
+
+    const err = new Error('Authorization');
+    // err.title = 'Unauthorized';
+    // err.errors = ['Unauthorized'];
+    err.message = 'Forbidden';
+    err.status = 403;
+    return next(err);
+}
+
 module.exports = {
     setTokenCookie,
     restoreUser,
@@ -131,5 +146,6 @@ module.exports = {
     requireAuthorizationSpot,
     requireAuthorizationBooking,
     requireAuthorizationReview,
-    requireAuthorizationUserBooking
+    requireAuthorizationUserBooking,
+    requireAuthorizationImage
 };
