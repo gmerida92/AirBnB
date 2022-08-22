@@ -187,7 +187,7 @@ const validateQueryParameters = [
             return true
         }),
     handleReqBodyValidationErrors
-]
+];
 
 
 

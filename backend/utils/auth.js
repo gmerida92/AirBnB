@@ -95,10 +95,41 @@ const requireAuthorizationBooking = async (req, res, next) => {
     return next(err);
 }
 
+const requireAuthorizationUserBooking = async (req, res, next) => {
+    const user = req.user
+    const booking = await Booking.findByPk(req.params.id)
+
+    if (booking.userId === user.id) return next()
+
+    const err = new Error('Authorization');
+    // err.title = 'Unauthorized';
+    // err.errors = ['Unauthorized'];
+    err.message = 'Forbidden';
+    err.status = 403;
+    return next(err);
+}
+
+const requireAuthorizationReview = async (req, res, next) => {
+    const user = req.user;
+    const {id} = req.params;
+    const review = await Review.findByPk(id)
+
+    if(review.userId === user.id) return next();
+
+    const err = new Error('Authorization');
+    // err.title = 'Unauthorized';
+    // err.errors = ['Unauthorized'];
+    err.message = 'Forbidden';
+    err.status = 403;
+    return next(err);
+}
+
 module.exports = {
     setTokenCookie,
     restoreUser,
     requireAuthentication,
     requireAuthorizationSpot,
-    requireAuthorizationBooking
+    requireAuthorizationBooking,
+    requireAuthorizationReview,
+    requireAuthorizationUserBooking
 };
