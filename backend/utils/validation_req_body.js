@@ -133,23 +133,59 @@ const validateQueryParameters = [
         .optional()
         .isInt({ min: 0 }),
     check('maxLat', "Maximum latitude is invalid")
+        .optional()
         .isDecimal()
-        .optional(),
+        .custom((value) => {
+            if (value % 1 === 0) {
+                return false
+            }
+            return true
+        }),
     check('minLat', "Minimum latitude is invalid")
         .optional()
-        .isDecimal(),
+        .isDecimal()
+        .custom((value) => {
+            if (value % 1 === 0) {
+                return false
+            }
+            return true
+        }),
     check('maxLng', "Maximum longitude is invalid")
         .optional()
-        .isDecimal(),
+        .isDecimal()
+        .custom((value) => {
+            if (value % 1 === 0) {
+                return false
+            }
+            return true
+        }),
     check('minLng', "Minimum longitude is invalid")
         .optional()
-        .isDecimal(),
+        .isDecimal()
+        .custom((value) => {
+            if (value % 1 === 0) {
+                return false
+            }
+            return true
+        }),
     check('minPrice', "Maximum price must be greater than or equal to 0")
         .optional()
-        .isDecimal({ min: 0 }),
+        .isDecimal({ min: 0 })
+        .custom((value) => {
+            if (value < 0) {
+                return false
+            }
+            return true
+        }),
     check('maxPrice', "Minumum price must be greater than or equal to 0")
         .optional()
-        .isDecimal({ min: 0 }),
+        .isDecimal({ min: 0 })
+        .custom((value) => {
+            if (value < 0) {
+                return false
+            }
+            return true
+        }),
     handleReqBodyValidationErrors
 ]
 

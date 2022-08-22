@@ -41,11 +41,12 @@ router.get('/', [validateQueryParameters], async (req, res) => {
     if (maxLng) { where.lng = { [Op.lte]: maxLng } };
     if (minLng && maxLng) { where.lng = { [Op.between]: [minLng, maxLng] } }
 
-    if (minPrice) { where.lat = { [Op.gte]: minPrice } };
-    if (maxPrice) { where.lat = { [Op.lte]: maxPrice } };
-    if (minPrice && maxPrice) { where.lat = { [Op.between]: [minPrice, maxPrice] } }
+    console.log(maxPrice, "here");
+    if (minPrice || minPrice === 0) { where.price = { [Op.gte]: minPrice } };
+    if (maxPrice || maxPrice === 0) { where.price = { [Op.lte]: maxPrice } };
+    if (minPrice && maxPrice) { where.price = { [Op.between]: [minPrice, maxPrice] } }
 
-    console.log(Object.keys(where).length)
+    
     if (Object.keys(where).length > 0) {
         const spots = await Spot.findAll({
             where,
@@ -390,8 +391,6 @@ router.post('/:id/bookings', [restoreUser, requireAuthentication, requireAuthori
     res.json(newBooking);
 });
 
-
-// 
 
 
 module.exports = router;
