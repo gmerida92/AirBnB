@@ -128,6 +128,13 @@ const requireAuthorizationReview = async (req, res, next) => {
     const {id} = req.params;
     const review = await Review.findByPk(id)
 
+    if(!review) {
+        const err = new Error("Review couldn't be found");
+        err.message = "Review couldn't be found";
+        err.status = 404;
+        return next(err)
+    }
+
     if(review.userId === user.id) return next();
 
     const err = new Error('Authorization');

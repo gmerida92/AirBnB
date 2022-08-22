@@ -8,27 +8,31 @@ const { validateSpot, validateReview, validateEndDate, validateQueryParameters }
 const router = express.Router();
 
 // Add an Image to a Review based on the Review's id
-router.post('/:id/images', [restoreUser, requireAuthentication, requireAuthorizationReview], async (req, res) => {
+router.post('/:id/images', [restoreUser, requireAuthentication, requireAuthorizationReview], async (req, res, next) => {
     const user = req.user;
     const { id } = req.params;
     const { url } = req.body;
 
     const review = await Review.findByPk(id);
-    // const images = await review.getImages();
-    // if(images <= 10) { } //create image otherwise throw error
 
-    // console.log(review, "mark1")
+    const imagesInReview = await review.getImages();
 
-    const newImage = await review.createImage({
-        userId: user.id,
-        url
-    })
-
-    const image = await Image.findByPk(newImage.id, {
-        attributes: ['id', 'imageableId', 'imageableType', 'url']
-    })
-
-    res.json(image)
+    if(imagesInReview.length <= 10) {
+        const newImage = await review.createImage({
+            userId: user.id,
+            url
+        })
+    
+        const image = await Image.findByPk(newImage.id, {
+            attributes: ['id', 'imageableId', 'imageableType', 'url']
+        })
+    
+        res.json(image)
+     } else {
+        const err = new Error("Maximum number of images for this resource was reached");
+        err.status = 403;
+        return next(err);
+     }
 });
 
 
