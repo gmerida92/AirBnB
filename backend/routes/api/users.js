@@ -1,6 +1,6 @@
 // backend/routes/api/users.js
 const express = require('express');
-const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth.js');
+const { setTokenCookie, restoreUser, requireAuthentication } = require('../../utils/auth.js');
 const { User, Spot, Review, Booking, Image, sequelize, } = require('../../db/models');
 const { validateLogin, validateSignup } = require('../../utils/validation_req_body.js');
 const router = express.Router();
@@ -9,7 +9,7 @@ const router = express.Router();
 //SESSION ROUTES
 
 // Get Current User
-router.get('/myaccount', [restoreUser, requireAuth], async (req, res) => {
+router.get('/myaccount', [restoreUser, requireAuthentication], async (req, res) => {
     const { user } = req;
     if (user) {
         return res.json(user.toSafeObject());
@@ -67,7 +67,7 @@ router.delete('/logout', async (req, res, next) => {
 //USER ROUTES
 
 //Get all Spots owned by the Current User
-router.get("/myaccount/spots", [restoreUser, requireAuth], async (req, res) => {
+router.get("/myaccount/spots", [restoreUser, requireAuthentication], async (req, res) => {
     const user = req.user; // id = 1
 
     // const reviews = await Review.findAll({
@@ -162,7 +162,7 @@ router.get("/myaccount/spots", [restoreUser, requireAuth], async (req, res) => {
 
 
 // Get all Reviews of the Current User
-router.get('/myaccount/reviews', [restoreUser, requireAuth], async (req, res) => {
+router.get('/myaccount/reviews', [restoreUser, requireAuthentication], async (req, res) => {
     const user = req.user;
 
     const reviews = await Review.findAll({
@@ -250,7 +250,7 @@ router.get('/myaccount/reviews', [restoreUser, requireAuth], async (req, res) =>
 
 
 // Get all of the Current User's Bookings
-router.get('/myaccount/bookings', [restoreUser, requireAuth], async (req, res) => {
+router.get('/myaccount/bookings', [restoreUser, requireAuthentication], async (req, res) => {
     const user = req.user;
 
     const bookings = await Booking.findAll({

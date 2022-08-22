@@ -1,7 +1,7 @@
 // backend/utils/auth.js
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User } = require('../db/models');
+const { User, Spot, Review, Booking, Image, sequelize, } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -56,7 +56,7 @@ const restoreUser = (req, res, next) => {
 
 // Authentication: Making sure proper user is logged in based off of restorUser
 // If there is no current user, return an error
-const requireAuth = function (req, _res, next) {
+const requireAuthentication = function (req, res, next) {
     if (req.user) return next();
 
     const err = new Error('Authentication');
@@ -67,4 +67,38 @@ const requireAuth = function (req, _res, next) {
     return next(err);
 }
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+const requireAuthorizationSpot = async (req, res, next) => {
+    const user = req.user
+    const spot = await Spot.findByPk(req.params.id)
+
+    if (spot.ownerId == user.id) return next()
+
+    const err = new Error('Authorization');
+    // err.title = 'Unauthorized';
+    // err.errors = ['Unauthorized'];
+    err.message = 'Forbidden';
+    err.status = 403;
+    return next(err);
+}
+
+const requireAuthorizationBooking = async (req, res, next) => {
+    const user = req.user
+    const spot = await Spot.findByPk(req.params.id)
+
+    if (spot.ownerId !== user.id) return next()
+
+    const err = new Error('Authorization');
+    // err.title = 'Unauthorized';
+    // err.errors = ['Unauthorized'];
+    err.message = 'Forbidden';
+    err.status = 403;
+    return next(err);
+}
+
+module.exports = {
+    setTokenCookie,
+    restoreUser,
+    requireAuthentication,
+    requireAuthorizationSpot,
+    requireAuthorizationBooking
+};

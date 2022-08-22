@@ -1,21 +1,5 @@
-const { ValidationError } = require('sequelize');
+const { User, Spot, Review, Booking, Image, sequelize, } = require('../db/models');
 
-const sequelizeErrorHandler = async (err, req, res, next) => {
-    // check if error is a Sequelize error:
-    if (err instanceof ValidationError) {
-
-        const errors = new Object();
-
-        err.errors.forEach((validationErrorItem) => {
-            errors[validationErrorItem.path] = validationErrorItem.message;
-        });
-        err.message = "Sequilize Validation Error";
-        err.status = 403;
-        err.errors = errors;
-        next(err);
-    }
-    next()
-}
 
 const checkUser = async (err, req, res, next) => {
     err.message = "User already exists"
@@ -31,8 +15,18 @@ const checkUser = async (err, req, res, next) => {
     next(err);
 };
 
+const checkSpot = async (err, req, res, next) => {
+    const spot = await Spot.findByPk(req.params.id)
+    if(!spot) {
+        const err = new Error("Spot not found");
+        err.message = "Spot couldn't be found";
+        err.status = 404;
+        return next(err)
+    }
+};
+
 
 module.exports = {
-    sequelizeErrorHandler,
-    checkUser
+    checkUser,
+    checkSpot
 };

@@ -59,29 +59,44 @@ app.use((req, res, next) => {
     next(err);
 });
 
-// backend/app.js
-const { sequelizeErrorHandler,
-    checkUser} = require('./utils/validation_db');
+
+// // backend/app.js
+// const {
+//     // sequelizeErrorHandler,
+//     checkUser,
+//     checkSpot
+// } = require('./utils/validation_db');
 
 // Process sequelize errors
-app.use([
-    sequelizeErrorHandler,
-    checkUser
-], (err, req, res, next) => {
+// [
+//     sequelizeErrorHandler,
+//     checkUser,
+//     checkSpot
+// ]
+
+const { ValidationError } = require('sequelize');
+app.use((err, req, res, next) => {
     // check if error is a Sequelize error:
-    // if (err instanceof ValidationError) {
+    if (err instanceof ValidationError) {
 
-    //     const errors = new Object();
+        const errors = new Object();
 
-    //     err.errors.forEach((validationErrorItem) => {
-    //         errors[validationErrorItem] = validationErrorItem;
-    //     });
-    // //     err.message = "Sequelize Validation Error";
-    // //     err.status = 403;
-    //     err.errors = errors;
-    // }
+        err.errors.forEach((validationErrorItem) => {
+            errors[validationErrorItem] = validationErrorItem;
+        });
+        err.message = "Sequelize Validation Error";
+        err.status = 403;
+        err.errors = errors;
+    }
     next(err);
 });
+
+// app.use([
+//     checkUser,
+//     checkSpot
+// ], (err, req, res, next) => {
+//     next(err)
+// });
 
 // backend/app.js
 // Error formatter

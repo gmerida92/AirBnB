@@ -65,7 +65,7 @@ module.exports = {
       },
       previewImage: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       }
     });
   },
