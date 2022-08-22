@@ -71,6 +71,13 @@ const requireAuthorizationSpot = async (req, res, next) => {
     const user = req.user
     const spot = await Spot.findByPk(req.params.id)
 
+    if(!spot) {
+        const err = new Error("Spot not found");
+        err.message = "Spot couldn't be found";
+        err.status = 404;
+        return next(err)
+    }
+
     if (spot.ownerId == user.id) return next()
 
     const err = new Error('Authorization');
@@ -84,6 +91,13 @@ const requireAuthorizationSpot = async (req, res, next) => {
 const requireAuthorizationBooking = async (req, res, next) => {
     const user = req.user
     const spot = await Spot.findByPk(req.params.id)
+
+    if(!spot) {
+        const err = new Error("Spot not found");
+        err.message = "Spot couldn't be found";
+        err.status = 404;
+        return next(err)
+    }
 
     if (spot.ownerId !== user.id) return next()
 

@@ -44,36 +44,20 @@ const validateLogin = [
 
 // Validate Signup Body
 const validateSignup = [
-    check('firstName')
+    check('firstName', 'First Name is required')
+        .exists({ checkFalsy: true }),
+    check('lastName', "Last Name is required")
+        .exists({ checkFalsy: true }),
+    check('email', 'Invalid email')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a valid first name.'),
-    check('firstName')
-        .not()
-        .isEmail()
-        .withMessage('First name cannot be an email.'),
-    check('lastName')
-        .exists({ checkFalsy: true })
-        .withMessage('Please provide a valid last name.'),
-    check('lastName')
-        .not()
-        .isEmail()
-        .withMessage('Last name cannot be an email.'),
-    check('email')
-        .exists({ checkFalsy: true })
-        .isEmail()
-        .withMessage('Please provide a valid email.'),
-    check('username')
-        .exists({ checkFalsy: true })
-        .isLength({ min: 4 })
-        .withMessage('Please provide a username with at least 4 characters.'),
+        .isEmail(),
+    check('username', 'Username is required')
+        .exists({ checkFalsy: true }),
     check('username')
         .not()
-        .isEmail()
-        .withMessage('Username cannot be an email.'),
-    check('password')
-        .exists({ checkFalsy: true })
-        .isLength({ min: 6 })
-        .withMessage('Password must be 6 characters or more.'),
+        .isEmail(),
+    check('password', 'Password is required')
+        .exists({ checkFalsy: true }),
     handleReqBodyValidationErrors
 ];
 
@@ -81,9 +65,11 @@ const validateSignup = [
 const validateSpot = [
     check('address', 'Street address is required')
         .exists({ checkFalsy: true }),
-    check('state', 'City is required')
+    check('city', 'City is required')
         .exists({ checkFalsy: true }),
-    check('country', 'State is required')
+    check('state', 'State is required')
+        .exists({ checkFalsy: true }),
+    check('country', 'Country is required')
         .exists({ checkFalsy: true }),
     check('lat', 'Latitude is not valid')
         .exists({ checkFalsy: true }),

@@ -41,6 +41,31 @@ router.post('/login', [validateLogin], async (req, res, next) => {
 // Sign Up
 router.post('/signup', [validateSignup], async (req, res, next) => {
     const { firstName, lastName, email, username, password } = req.body;
+
+    const checkUserByEmail = await User.findOne({
+        where: { email: email }
+    })
+
+    const checkUserByUsername = await User.findOne({
+        where: { username: username }
+    })
+
+    if (checkUserByEmail) { 
+        const err = new Error('User already exists');
+        err.message = 'User already exists';
+        err.status = 403;
+        err.errors = {email: "User with that email already exists"}
+        next(err)
+    };
+
+    if (checkUserByUsername) { 
+        const err = new Error('User already exists');
+        err.message = 'User already exists';
+        err.status = 403;
+        err.errors = {username: "User with that username already exists"}
+        next(err)
+    }
+
     const user = await User.signup({
         firstName,
         lastName,
@@ -178,7 +203,7 @@ router.get('/myaccount/reviews', [restoreUser, requireAuthentication], async (re
             },
             {
                 model: Image,
-                attributes: {exclude:['userId', 'imageableType', 'createdAt', 'updatedAt']}
+                attributes: { exclude: ['userId', 'imageableType', 'createdAt', 'updatedAt'] }
             }
         ]
     });
@@ -254,11 +279,11 @@ router.get('/myaccount/bookings', [restoreUser, requireAuthentication], async (r
     const user = req.user;
 
     const bookings = await Booking.findAll({
-        where: {userId: user.id},
-        include:[
+        where: { userId: user.id },
+        include: [
             {
                 model: Spot,
-                attributes: {exclude: ['description', 'createdAt', "updatedAt"]}
+                attributes: { exclude: ['description', 'createdAt', "updatedAt"] }
             }
         ],
         // attributes: [
