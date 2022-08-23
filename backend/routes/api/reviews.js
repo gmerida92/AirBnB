@@ -7,6 +7,8 @@ const { Op } = require("sequelize");
 const { validateSpot, validateReview, validateEndDate, validateQueryParameters } = require('../../utils/validation_req_body.js');
 const router = express.Router();
 
+// REVIEW ROUTES
+
 // Add an Image to a Review based on the Review's id
 router.post('/:id/images', [restoreUser, requireAuthentication, requireAuthorizationReview], async (req, res, next) => {
     const user = req.user;
@@ -44,8 +46,6 @@ router.put('/:id', [restoreUser, requireAuthentication, requireAuthorizationRevi
     const { review, stars } = req.body;
 
     const reviewDetails = await Review.findByPk(id);
-
-    // console.log(reviewDetails);
 
     await reviewDetails.update({
         review: review,

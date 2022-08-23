@@ -6,6 +6,8 @@ const { Op } = require("sequelize");
 const { validateSpot, validateReview, validateEndDate, validateQueryParameters } = require('../../utils/validation_req_body.js');
 const router = express.Router();
 
+// IMAGE ROUTES
+
 // Delete an existing image
 router.delete('/:id', [restoreUser, requireAuthentication, requireAuthorizationImage], async (req, res) => {
     const user = req.user;

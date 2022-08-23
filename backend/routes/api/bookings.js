@@ -6,6 +6,8 @@ const { Op } = require("sequelize");
 const { validateSpot, validateReview, validateEndDate, validateQueryParameters } = require('../../utils/validation_req_body.js');
 const router = express.Router();
 
+// BOOKING ROUTES
+
 // Edit a Booking
 router.put('/:id', [restoreUser, requireAuthentication, requireAuthorizationUserBooking, validateEndDate], async (req, res, next) => {
     const user = req.user;

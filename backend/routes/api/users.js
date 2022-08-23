@@ -93,74 +93,7 @@ router.delete('/logout', async (req, res, next) => {
 
 //Get all Spots owned by the Current User
 router.get("/myaccount/spots", [restoreUser, requireAuthentication], async (req, res) => {
-    const user = req.user; // id = 1
-
-    // const reviews = await Review.findAll({
-    // })
-
-    // const spots = await Spot.findAll({
-    //     where: { ownerId: user.id }, // user.id = 1
-
-    // include: [{
-    //     model: Review, 
-    //     attributes: [
-    //         [sequelize.fn('AVG', sequelize.col('stars')), 'avgRating']
-    //     ]
-
-    // }]
-
-
-    // attributes: {
-    //     include: Review
-    // }
-
-
-    // include: {
-    //     model: Review,
-    //     attributes: [],
-    // },
-    // attributes: {
-    //     // [
-    //     //     sequelize.fn("AVG", sequelize.col("Reviews.stars")), 'avgRating'
-    //     // ]
-    //     include: [
-    //         [
-    //             sequelize.fn("AVG", sequelize.col("Reviews.stars")), 'avgRating'
-    //         ]
-    //     ]
-    // }
-
-
-    // })
-
-    // const spots = await Spot.findAll({
-    //     attributes: [
-    //         'id',
-    //         'ownerId',
-    //         'address',
-    //         "city",
-    //         "state",
-    //         "country",
-    //         "lat",
-    //         "lng",
-    //         "name",
-    //         "price",
-    //         "description",
-    //         "createdAt",
-    //         "updatedAt",
-    //         [sequelize.fn("AVG",sequelize.col('Reviews.star')), 'avgRating'],
-    //         'previewImage'
-    //     ],
-    //     where: { ownerId: user.id },
-    // });
-
-    // const spotsObject = {
-
-    // };
-
-
-
-    // console.log(spots)
+    const user = req.user; 
 
     const spots = await Spot.findAll({
         where: { ownerId: user.id }
@@ -208,16 +141,6 @@ router.get('/myaccount/reviews', [restoreUser, requireAuthentication], async (re
         ]
     });
 
-    // try {
-    //     const images = await Image.findAll({
-    //         where: {userId: user.id}
-    //     })
-    // }
-    // catch (e) {
-    //     console.log(user.id)
-    //     console.log(e)
-    // }
-
     res.json({
         Reviews: reviews
     })
@@ -236,19 +159,7 @@ router.get('/myaccount/bookings', [restoreUser, requireAuthentication], async (r
                 attributes: { exclude: ['description', 'createdAt', "updatedAt"] }
             }
         ],
-        // attributes: [
-        //     'userId',
-        //     'startDate',
-        //     'endDate',
-        //     'createdAt',
-        //     'updatedAt'
-        // ],
-        // order: [
-        //     [{model: Spot, as: 'Spot'}]
-        // ]
     })
-
-    // console.log(bookings)
 
     res.json({
         Bookings: bookings

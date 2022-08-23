@@ -8,7 +8,7 @@ const { validateSpot, validateReview, validateEndDate, validateQueryParameters }
 const { checkSpot } = require('../../utils/validation_db');
 const router = express.Router();
 
-// SPOTS ROUTES
+// SPOT ROUTES
 
 // Get all Spots
 router.get('/', [validateQueryParameters], async (req, res) => {
@@ -110,27 +110,6 @@ router.get('/:id', async (req, res, next) => {
         next(err)
     }
 
-    // try {
-    //     const spot = await Spot.findByPk(id,
-    //     //      {
-    //     //     include: [
-    //     //         {
-    //     //             model: Image,
-    //     //             attributes: { exclude: ['userId', 'imageableType', 'createdAt', 'updatedAt'] }
-    //     //         },
-    //     //         {
-    //     //             model: User,
-    //     //             as: 'Owner',
-    //     //             attributes: { include: ['id', 'firstName', 'lastName'] }
-    //     //         },
-    //     //     ]
-    //     // }
-    //     )
-    // }
-    // catch (e) {
-    //     console.log(e)
-    // }
-
     const countReviews = await Review.count({
         where: { spotId: spot.dataValues.id }
     })
@@ -143,20 +122,6 @@ router.get('/:id', async (req, res, next) => {
     spot.dataValues.numReviews = countReviews;
     spot.dataValues.avgRating = avgStarRating;
 
-    // for (i = 0; i < spot.length; i++) {
-
-    //     const numReviews = await Review.count({
-    //         where: { spotId: spot[i].dataValues.id }
-    //     })
-
-    //     const sumStars = await Review.sum("stars", {
-    //         where: { spotId: spot[i].dataValues.id }
-    //     });
-
-    //     const avgStarRating = sumStars / numReviews;
-    //     spot[i].dataValues.avgRating = avgStarRating;
-    // };
-
     res.json(spot);
 });
 
@@ -165,29 +130,6 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', [restoreUser, requireAuthentication, validateSpot], async (req, res) => {
     const user = req.user
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
-
-    // console.log(user)
-    // console.log(address)
-
-    // try{
-    //     const newSpot = await Spot.create({
-    //         ownerId: user.id,
-    //         address,
-    //         city,
-    //         state,
-    //         country,
-    //         lat,
-    //         lng,
-    //         name,
-    //         description,
-    //         price,
-    //     })
-
-    // }
-    // catch(e) {
-    //     console.log(e)
-    // }
-
 
     const newSpot = await Spot.create({
         ownerId: user.id,
@@ -215,15 +157,6 @@ router.post('/:id/images', [restoreUser, requireAuthentication, requireAuthoriza
     const { url } = req.body;
 
     const spot = await Spot.findByPk(id);
-
-    console.log
-
-    // if(!spot) {
-    //     const err = new Error("Spot not found");
-    //     err.message = "Spot couldn't be found";
-    //     err.status = 404;
-    //     next(err)
-    // }
 
     const newImage = await spot.createImage({
         userId: user.id,
@@ -310,31 +243,6 @@ router.get('/:id/reviews', async (req, res, next) => {
     res.json({
         Reviews: reviews
     })
-
-    // try {
-    //     const spot = await Spot.findByPk(id);
-    //     const reviews = await spot.getReviews({
-    //         include: [
-    //             {
-    //                 model: User,
-    //                 attributes: { exclude: ['email', 'password', 'username', 'createdAt', 'updatedAt'] }
-    //             },
-    //             {
-    //                 model: Image,
-    //                 attributes: { exclude: ['userId', 'imageableType', 'createdAt', 'updatedAt'] }
-    //             },
-    //         ]
-    //     });
-    //     console.log(reviews)
-
-    //     res.json({
-    //         Reviews: reviews
-    //     })
-
-    // }
-    // catch (e) {
-    //     console.log(e)
-    // }
 });
 
 
@@ -366,7 +274,6 @@ router.post('/:id/reviews', [restoreUser, requireAuthentication, validateReview]
 
     const newReview = await spot.createReview({
         userId: user.id,
-        // spotId: spot.id,
         review: review,
         stars: stars
     });
@@ -456,11 +363,8 @@ router.post('/:id/bookings', [restoreUser, requireAuthentication, requireAuthori
         }
     }
 
-
-
     const newBooking = await spot.createBooking({
         userId: user.id,
-        // spotId: spot.id,
         startDate,
         endDate
     })
