@@ -60,19 +60,6 @@ app.use((req, res, next) => {
 });
 
 
-// // backend/app.js
-// const {
-//     // sequelizeErrorHandler,
-//     checkUser,
-//     checkSpot
-// } = require('./utils/validation_db');
-
-// Process sequelize errors
-// [
-//     sequelizeErrorHandler,
-//     checkUser,
-//     checkSpot
-// ]
 
 const { ValidationError } = require('sequelize');
 app.use((err, req, res, next) => {
@@ -91,12 +78,6 @@ app.use((err, req, res, next) => {
     next(err);
 });
 
-// app.use([
-//     checkUser,
-//     checkSpot
-// ], (err, req, res, next) => {
-//     next(err)
-// });
 
 // backend/app.js
 // Error formatter
