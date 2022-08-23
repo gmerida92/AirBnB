@@ -88,7 +88,7 @@ router.get('/:id', async (req, res, next) => {
 
     const spot = await Spot.findByPk(id,
         {
-            // attributes: ['id','ownerId', 'address', 'city','state','country', 'lat', 'lng', 'name', 'description','price', 'createdAt', 'updatedAt'],
+            attributes: ['id','ownerId', 'address', 'city','state','country', 'lat', 'lng', 'name', 'description','price', 'createdAt', 'updatedAt'],
             include: [
                 {
                     model: Image,
@@ -354,7 +354,7 @@ router.post('/:id/reviews', [restoreUser, requireAuthentication, validateReview]
     }
 
     const checkReview = await Review.findOne({
-        where: { userId: req.user.id, spotId: id },
+        where: { userId: user.id, spotId: id },
     });
 
     if (checkReview) {
@@ -367,7 +367,7 @@ router.post('/:id/reviews', [restoreUser, requireAuthentication, validateReview]
     const newReview = await spot.createReview({
         userId: user.id,
         // spotId: spot.id,
-        reviews: review,
+        review: review,
         stars: stars
     });
 

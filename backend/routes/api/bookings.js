@@ -6,7 +6,7 @@ const { Op } = require("sequelize");
 const { validateSpot, validateReview, validateEndDate, validateQueryParameters } = require('../../utils/validation_req_body.js');
 const router = express.Router();
 
-// Update and return existing booking
+// Edit a Booking
 router.put('/:id', [restoreUser, requireAuthentication, requireAuthorizationUserBooking, validateEndDate], async (req, res, next) => {
     const user = req.user;
     const { id } = req.params;
@@ -24,7 +24,7 @@ router.put('/:id', [restoreUser, requireAuthentication, requireAuthorizationUser
     let newEndDate = new Date(endDate);
     let todayDate = Date.now();
 
-    if ((todayDate >= currentBookedEndDate.getTime()) ||
+    if ((todayDate >= currentBookedEndDate.getTime()) || (todayDate >= newEndDate.getTime()) ||
         (todayDate >= currentBookedStartDate.getTime() && todayDate <= currentBookedEndDate.getTime())) {
 
         const err = new Error("Past bookings can't be modified");

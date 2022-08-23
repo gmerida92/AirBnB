@@ -199,7 +199,7 @@ router.get('/myaccount/reviews', [restoreUser, requireAuthentication], async (re
             },
             {
                 model: Spot,
-                attributes: { exclude: ['previewImage', 'description', 'createdAt', 'updatedAt'] }
+                attributes: { exclude: [ 'description', 'createdAt', 'updatedAt'] }
             },
             {
                 model: Image,
@@ -248,7 +248,7 @@ router.get('/myaccount/bookings', [restoreUser, requireAuthentication], async (r
         // ]
     })
 
-    console.log(bookings)
+    // console.log(bookings)
 
     res.json({
         Bookings: bookings

@@ -24,7 +24,8 @@ router.post('/:id/images', [restoreUser, requireAuthentication, requireAuthoriza
         })
     
         const image = await Image.findByPk(newImage.id, {
-            attributes: ['id', 'imageableId', 'imageableType', 'url']
+            // attributes: ['id', 'imageableId', 'imageableType', 'url']
+            attributes: ['id', 'imageableId', 'url']
         })
     
         res.json(image)
@@ -44,7 +45,7 @@ router.put('/:id', [restoreUser, requireAuthentication, requireAuthorizationRevi
 
     const reviewDetails = await Review.findByPk(id);
 
-    console.log(reviewDetails);
+    // console.log(reviewDetails);
 
     await reviewDetails.update({
         review: review,
