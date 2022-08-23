@@ -1,7 +1,7 @@
 {
   "name": "heroku",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Database Schema Design",
   "main": "index.js",
   "scripts": {
     "install": "npm --prefix backend install backend",
