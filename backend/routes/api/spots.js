@@ -41,7 +41,6 @@ router.get('/', [validateQueryParameters], async (req, res) => {
     if (maxLng) { where.lng = { [Op.lte]: maxLng } };
     if (minLng && maxLng) { where.lng = { [Op.between]: [minLng, maxLng] } }
 
-    console.log(maxPrice, "here");
     if (minPrice || minPrice === 0) { where.price = { [Op.gte]: minPrice } };
     if (maxPrice || maxPrice === 0) { where.price = { [Op.lte]: maxPrice } };
     if (minPrice && maxPrice) { where.price = { [Op.between]: [minPrice, maxPrice] } }
