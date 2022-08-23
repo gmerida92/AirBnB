@@ -225,56 +225,6 @@ router.get('/myaccount/reviews', [restoreUser, requireAuthentication], async (re
 
 
 // Get all of the Current User's Bookings
-
-
-// // TODO: Returns all the reviews written by the current user
-// // returns all the reviews written by the current user
-// router.get('/reviews', [restoreUser, requireAuth], async (req, res, next) => {
-//     // get review of given user id
-//     const reviews = await Review.findAll({
-//       where: {
-//         userId: req.user.id
-//       },
-//       include: [
-//         {
-//           model: User
-//         },
-//         {
-//           model: Spot.scope('byReviews'),
-//         }
-//       ]
-//     });
-
-//     // get array of images for current review 
-//     // reviews.map(async review => {
-//     for (const review of reviews) {
-//       // for all images per review
-//       const images = await Image.findAll({ where: { imageableId: review.id } });
-
-//       // put it into review images to be placed in reviews
-//       const reviewImages = [];
-
-//       // for each image in found images
-//       images.map(image => {
-//         // push all its attribute into here
-//         const currentImage = {
-//           ...image.dataValues
-//         };
-//         reviewImages.push(currentImage);
-//       });
-
-//       review.dataValues['Images'] = reviewImages;
-//     }
-
-//     // return successful response 
-//     res.json({
-//       Reviews: reviews
-//     });
-
-//   });
-
-
-// Get all of the Current User's Bookings
 router.get('/myaccount/bookings', [restoreUser, requireAuthentication], async (req, res) => {
     const user = req.user;
 
