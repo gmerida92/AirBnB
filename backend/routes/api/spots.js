@@ -423,41 +423,36 @@ router.post('/:id/bookings', [restoreUser, requireAuthentication, requireAuthori
 
     const spot = await Spot.findByPk(id);
 
-    const checkBooking = await Booking.findAll({
+    const allSpotsBookings = await Booking.findAll({
         where: { spotId: id }
     });
 
-    // console.log(checkBooking)
+    const err = new Error("Sorry, this spot is already booked for the specified dates");
+    err.status = 403;
+    err.errors = {};
 
-    for (let i = 0; i < checkBooking.length; i++) {
-        let bookedStartDate = new Date(checkBooking[i].startDate);
-        // console.log(bookedStartDate)
-        let bookedEndDate = new Date(checkBooking[i].endDate);
+    let newStartDate = new Date(startDate);
+    let newEndDate = new Date(endDate);
 
-        let potentialStartDate = new Date(startDate);
-        // console.log(potentialStartDate)
-        let potentialEndDate = new Date(endDate);
 
-        if (checkBooking) {
-            const err = new Error("Sorry, this spot is already booked for the specified dates");
-            err.status = 403;
-            err.errors = {};
+    for (let i = 0; i < allSpotsBookings.length; i++) {
+        let bookedStartDate = new Date(allSpotsBookings[i].startDate);
+        let bookedEndDate = new Date(allSpotsBookings[i].endDate);
 
-            if ((potentialStartDate.getTime() === bookedStartDate.getTime() || potentialStartDate.getTime() === bookedEndDate.getTime()) ||
-                (potentialStartDate.getTime() > bookedStartDate.getTime() && potentialStartDate.getTime() < bookedEndDate.getTime())) {
+        if (allSpotsBookings) {
+            if (newStartDate.getTime() >= bookedStartDate.getTime() && newStartDate.getTime() <= bookedEndDate.getTime()) {
                 err.errors['startDate'] = "Start date conflicts with an existing booking"
             }
-
-            if ((potentialEndDate.getTime() === bookedStartDate.getTime() || potentialEndDate.getTime() === bookedEndDate.getTime()) ||
-                (potentialEndDate.getTime() > bookedStartDate.getTime() && potentialEndDate.getTime() < bookedEndDate.getTime())) {
+            if (newEndDate.getTime() >= bookedStartDate.getTime() && newEndDate.getTime() <= bookedEndDate.getTime()) {
                 err.errors['endDate'] = "End date conflicts with an existing booking"
             }
-
+            if (newStartDate.getTime() <= bookedStartDate.getTime() && newEndDate.getTime() >= bookedEndDate.getTime()) {
+                err.errors['startDate'] = "Start date conflicts with an existing booking"
+                err.errors['endDate'] = "End date conflicts with an existing booking"
+            }
             if (Object.keys(err.errors).length > 0) {
                 return next(err)
             }
-
-            // return next();
         }
     }
 

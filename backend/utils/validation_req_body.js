@@ -107,7 +107,7 @@ const validateEndDate = [
         .custom((date, { req }) => {
             const endDate = new Date(date);
             const startDate = new Date(req.body.startDate);
-            if (endDate === startDate || endDate < startDate) {
+            if (endDate.getTime() === startDate.getTime() || endDate.getTime() < startDate.getTime()) {
                 return false
             }
             return true

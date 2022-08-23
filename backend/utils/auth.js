@@ -113,6 +113,13 @@ const requireAuthorizationUserBooking = async (req, res, next) => {
     const user = req.user
     const booking = await Booking.findByPk(req.params.id)
 
+    if(!booking) {
+        const err = new Error("Booking couldn't be found");
+        err.message = "Booking couldn't be found";
+        err.status = 404;
+        return next(err)
+    }
+
     if (booking.userId === user.id) return next()
 
     const err = new Error('Authorization');
@@ -149,6 +156,13 @@ const requireAuthorizationImage = async (req, res, next) => {
     const user = req.user;
     const {id} = req.params;
     const image = await Image.findByPk(id)
+
+    if(!image) {
+        const err = new Error("Image couldn't be found");
+        err.message = "Image couldn't be found";
+        err.status = 404;
+        return next(err)
+    }
 
     if(image.userId === user.id) return next();
 
