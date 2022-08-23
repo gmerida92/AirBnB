@@ -60,7 +60,8 @@ app.use((req, res, next) => {
 });
 
 
-
+// backend/app.js
+// Process Sequelize errors
 const { ValidationError } = require('sequelize');
 app.use((err, req, res, next) => {
     // check if error is a Sequelize error:
