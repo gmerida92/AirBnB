@@ -1,7 +1,7 @@
 {
-  "name": "AirBnB_Portfolio_Project",
+  "name": "heroku",
   "version": "1.0.0",
-  "description": "## Database Schema Design",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "install": "npm --prefix backend install backend",
