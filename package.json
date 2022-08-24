@@ -1,9 +1,10 @@
 {
-  "name": "heroku",
+  "name": "AirBnB_Portfolio_Project",
   "version": "1.0.0",
   "description": "## Database Schema Design",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "install": "npm --prefix backend install backend",
     "dev:backend": "npm install --prefix backend start",
     "sequelize": "npm run --prefix backend sequelize",
