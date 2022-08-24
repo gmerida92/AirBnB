@@ -91,12 +91,6 @@ const validateReview = [
         .exists({ checkFalsy: true }),
     check('stars', 'Stars must be an integer from 1 to 5')
         .exists({ checkFalsy: true })
-        // .custom((value) => {
-        //     if (!value || value === undefined) {
-        //         return false
-        //     }
-        //     return true
-        // })
         .isInt({ min: 1, max: 5 }),
     handleReqBodyValidationErrors
 ];

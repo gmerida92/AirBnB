@@ -46,7 +46,7 @@ router.get('/', [validateQueryParameters], async (req, res) => {
     if (minPrice && maxPrice) { where.price = { [Op.between]: [minPrice, maxPrice] } }
 
 
-    if (Object.keys(where).length > 0) {
+    if (Object.keys(where).length > 0 || (limit || offset)) {
         const spots = await Spot.findAll({
             where,
             limit: limit,
