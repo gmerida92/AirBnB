@@ -59,7 +59,7 @@ router.get('/', [validateQueryParameters], async (req, res) => {
         })
     }
 
-    else if (limit > 0 && page < 20) {
+    else if (page > 0 && page < 20) {
         const spots = await Spot.findAll({
             where,
             limit: limit,
