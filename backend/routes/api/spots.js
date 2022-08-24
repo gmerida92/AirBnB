@@ -25,11 +25,8 @@ router.get('/', [validateQueryParameters], async (req, res) => {
     minPrice = parseFloat(minPrice);
     maxPrice = parseFloat(maxPrice);
 
-    if (!page || Number.isNaN(page) || page > 10 || page < 0) page = 0
-    if (!size || Number.isNaN(size) || size > 20 || size < 0) size = 20
-
-    // if (Number.isNaN(page) || page > 10 || page < 0) page = 0
-    // if (Number.isNaN(size) || size > 20 || size < 0) size = 20
+    if (!page || Number.isNaN(page) || page > 10) page = 0
+    if (!size || Number.isNaN(size) || size > 20) size = 20
 
 
     const where = {};
@@ -48,7 +45,6 @@ router.get('/', [validateQueryParameters], async (req, res) => {
     if (maxPrice || maxPrice === 0) { where.price = { [Op.lte]: maxPrice } };
     if (minPrice && maxPrice) { where.price = { [Op.between]: [minPrice, maxPrice] } }
 
-
     if (Object.keys(where).length > 0) {
         const spots = await Spot.findAll({
             where,
@@ -62,6 +58,21 @@ router.get('/', [validateQueryParameters], async (req, res) => {
             size: size
         })
     }
+
+    else if (limit > 0 && page < 20) {
+        const spots = await Spot.findAll({
+            where,
+            limit: limit,
+            offset: offset
+        });
+
+        res.json({
+            Spots: spots,
+            page: page,
+            size: size
+        })
+    }
+
     else {
         const spots = await Spot.findAll();
 
@@ -90,7 +101,7 @@ router.get('/:id', async (req, res, next) => {
 
     const spot = await Spot.findByPk(id,
         {
-            attributes: ['id','ownerId', 'address', 'city','state','country', 'lat', 'lng', 'name', 'description','price', 'createdAt', 'updatedAt'],
+            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt'],
             include: [
                 {
                     model: Image,
