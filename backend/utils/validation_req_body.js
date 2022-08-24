@@ -122,6 +122,9 @@ const validateQueryParameters = [
         .optional()
         .isDecimal()
         .custom((value) => {
+            if(value === 0) {
+                return true
+            }
             if (value % 1 === 0) {
                 return false
             }
@@ -131,6 +134,9 @@ const validateQueryParameters = [
         .optional()
         .isDecimal()
         .custom((value) => {
+            if(value === 0) {
+                return true
+            }
             if (value % 1 === 0) {
                 return false
             }
@@ -140,6 +146,9 @@ const validateQueryParameters = [
         .optional()
         .isDecimal()
         .custom((value) => {
+            if(value === 0) {
+                return true
+            }
             if (value % 1 === 0) {
                 return false
             }
@@ -149,6 +158,9 @@ const validateQueryParameters = [
         .optional()
         .isDecimal()
         .custom((value) => {
+            if(value === 0) {
+                return true
+            }
             if (value % 1 === 0) {
                 return false
             }
@@ -158,6 +170,9 @@ const validateQueryParameters = [
         .optional()
         .isDecimal({ min: 0 })
         .custom((value) => {
+            if(value === 0) {
+                return true
+            }
             if (value < 0) {
                 return false
             }
@@ -167,6 +182,9 @@ const validateQueryParameters = [
         .optional()
         .isDecimal({ min: 0 })
         .custom((value) => {
+            if(value === 0) {
+                return true
+            }
             if (value < 0) {
                 return false
             }
