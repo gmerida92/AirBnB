@@ -132,7 +132,7 @@ router.get('/myaccount/reviews', [restoreUser, requireAuthentication], async (re
             },
             {
                 model: Spot,
-                attributes: { exclude: [ 'description', 'createdAt', 'updatedAt'] }
+                attributes: { exclude: [ 'previewImage', 'description', 'createdAt', 'updatedAt'] }
             },
             {
                 model: Image,
