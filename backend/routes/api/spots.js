@@ -114,7 +114,7 @@ router.get('/:id', async (req, res, next) => {
                 {
                     model: User,
                     as: 'Owner',
-                    attributes: { exclude: ['password', 'username', 'createdAt', 'updatedAt'] }
+                    attributes: { exclude: ['email', 'password', 'username', 'createdAt', 'updatedAt'] }
                 },
             ]
         }
