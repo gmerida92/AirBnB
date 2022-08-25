@@ -33,17 +33,21 @@ router.get('/', [validateQueryParameters], async (req, res) => {
     const limit = size;
     const offset = page <= 0 ? 0 : size * (page - 1);
 
-    if (minLat) { where.lat = { [Op.gte]: minLat } };
-    if (maxLat) { where.lat = { [Op.lte]: maxLat } };
-    if (minLat && maxLat) { where.lat = { [Op.between]: [minLat, maxLat] } }
+    if (minLat || minLat === 0) { where.lat = { [Op.gte]: minLat } };
+    if (maxLat || maxLat === 0) { where.lat = { [Op.lte]: maxLat } };
+    if ((minLat && maxLat) && (minLat !== maxLat)) { where.lat = { [Op.between]: [minLat, maxLat] } }
+    else if ((minLat && maxLat) && (minLat === maxLat)) { where.lat = minLat };
 
-    if (minLng) { where.lng = { [Op.gte]: minLng } };
-    if (maxLng) { where.lng = { [Op.lte]: maxLng } };
-    if (minLng && maxLng) { where.lng = { [Op.between]: [minLng, maxLng] } }
+
+    if (minLng || minLng === 0) { where.lng = { [Op.gte]: minLng } };
+    if (maxLng || maxLng === 0) { where.lng = { [Op.lte]: maxLng } };
+    if ((minLng && maxLng) && (minLng !== maxLng)) { where.lng = { [Op.between]: [minLng, maxLng] } }
+    else if ((minLng && maxLng) && (minLng === maxLng)) { where.lng = minLng };
 
     if (minPrice || minPrice === 0) { where.price = { [Op.gte]: minPrice } };
     if (maxPrice || maxPrice === 0) { where.price = { [Op.lte]: maxPrice } };
-    if (minPrice && maxPrice) { where.price = { [Op.between]: [minPrice, maxPrice] } }
+    if ((minPrice && maxPrice) && (minPrice !== maxPrice)) { where.price = { [Op.between]: [minPrice, maxPrice] } }
+    else if ((minPrice && maxPrice) && (minPrice === maxPrice)) { where.price = minPrice };
 
     if (Object.keys(where).length > 0) {
         const spots = await Spot.findAll({
