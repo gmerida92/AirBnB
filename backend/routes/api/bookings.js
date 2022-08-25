@@ -80,7 +80,8 @@ router.delete('/:id', [restoreUser, requireAuthentication, requireAuthorizationU
 
     let todayDate = Date.now();
 
-    if ((todayDate >= currentBookedStartDate.getTime() && todayDate <= currentBookedEndDate.getTime())) {
+    if ((todayDate >= currentBookedStartDate.getTime() && todayDate <= currentBookedEndDate.getTime()) ||
+        (todayDate >= currentBookedEndDate.getTime())) {
         const err = new Error("Bookings that have been started can't be deleted");
         err.status = 403;
         return next(err);
