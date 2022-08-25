@@ -132,7 +132,7 @@ const validateQueryParameters = [
         }),
     check('minLat', "Minimum latitude is invalid")
         .optional()
-        // .isDecimal()
+        .isDecimal()
         .custom((value) => {
             if(value === 0) {
                 return true
