@@ -161,8 +161,12 @@ router.post('/', [restoreUser, requireAuthentication, validateSpot], async (req,
         price,
     })
 
+    const spot = await Spot.findByPk(newSpot.id, {
+        attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt']
+    })
+
     res.status(201)
-    res.json(newSpot)
+    res.json(spot)
 
 });
 
