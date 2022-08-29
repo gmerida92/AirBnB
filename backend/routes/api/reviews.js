@@ -26,7 +26,6 @@ router.post('/:id/images', [restoreUser, requireAuthentication, requireAuthoriza
         })
     
         const image = await Image.findByPk(newImage.id, {
-            // attributes: ['id', 'imageableId', 'imageableType', 'url']
             attributes: ['id', 'imageableId', 'url']
         })
     
