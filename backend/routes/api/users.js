@@ -8,7 +8,7 @@ const router = express.Router();
 
 //SESSION ROUTES
 
-// Get Current User
+// Restore Session User/Get Current User
 router.get('/myaccount', [restoreUser, requireAuthentication], async (req, res) => {
     const { user } = req;
     if (user) {
