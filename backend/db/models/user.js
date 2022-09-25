@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
           // } ///Will potentially change for project-20220811
         }
       });
+  
       if (user && user.validatePassword(password)) {
         return await User.scope('currentUser').findByPk(user.id);
       }
