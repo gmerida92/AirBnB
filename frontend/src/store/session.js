@@ -6,7 +6,6 @@ const initialState = {
 
 const SET_USER = '/api/setUser'
 const REMOVE_USER = '/api/removeUser'
-// const NEW_USER = '/api/newUser'
 
 
 //Redux action creaters
@@ -23,12 +22,6 @@ const removeUser = () => {
     }
 };
 
-// const newUser = (user) => {
-//     return {
-//         type: NEW_USER,
-//         payload: user
-//     }
-// };
 
 
 // Thunk action creators
@@ -87,7 +80,7 @@ export const signup = (user) => async (dispatch) => {
 
 
 
-export const logout = (user) => async (dispatch) => {
+export const logout = () => async (dispatch) => {
     const response = await csrfFetch('/api/users/logout', {
         method: "DELETE"
     });
@@ -106,9 +99,6 @@ const sessionReducer = (state = initialState, action) => {
             newState = { ...state };
             newState.user = action.payload;
             return newState;
-        // case NEW_USER:
-        //     newState = { ...state };
-        //     newState.user = action.payload
         case REMOVE_USER:
             newState.user = null;
             return newState;

@@ -27,6 +27,14 @@ function SignupFormPage() {
                 username,
                 password
             }))
+            .then(() => {
+                setFirstName('');
+                setLastName('');
+                setEmail('');
+                setUsername('');
+                setPassword('');
+                setConfirmPassword('');
+            })
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors)

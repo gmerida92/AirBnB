@@ -19,6 +19,10 @@ function LoginFormPage() {
         e.preventDefault();
         setErrors([]);
         return dispatch(sessionActions.login({ credential, password }))
+            .then(() => {
+                setCredential('');
+                setPassword('');
+            })
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
