@@ -32,8 +32,6 @@ router.post('/login', [validateLogin], async (req, res, next) => {
         next(err)
     }
 
-
-
     user.dataValues.token = await setTokenCookie(res, user);
 
     return res.json(user);
@@ -75,6 +73,7 @@ router.post('/signup', [validateSignup], async (req, res, next) => {
         username,
         password
     });
+
 
     user.dataValues.token = await setTokenCookie(res, user);
     return res.json(user); // Will change, edit, or add to match API Doc-20220813

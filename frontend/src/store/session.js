@@ -1,4 +1,4 @@
-import {csrfFetch} from './csrf';
+import { csrfFetch } from './csrf';
 
 const initialState = {
     user: null
@@ -6,6 +6,7 @@ const initialState = {
 
 const SET_USER = '/api/setUser'
 const REMOVE_USER = '/api/removeUser'
+// const NEW_USER = '/api/newUser'
 
 
 //Redux action creaters
@@ -22,10 +23,17 @@ const removeUser = () => {
     }
 };
 
+// const newUser = (user) => {
+//     return {
+//         type: NEW_USER,
+//         payload: user
+//     }
+// };
+
 
 // Thunk action creators
 export const login = (user) => async (dispatch) => {
-    const {credential, password} = user;
+    const { credential, password } = user;
 
     const response = await csrfFetch('/api/users/login', {
         method: 'POST',
@@ -43,12 +51,41 @@ export const login = (user) => async (dispatch) => {
     return response;
 }
 
+
+
 export const restoreUser = () => async (dispatch) => {
     const response = await csrfFetch("/api/users/myaccount");
+
     const data = await response.json();
     dispatch(setUser(data));
     return response;
 }
+
+
+
+export const signup = (user) => async (dispatch) => {
+    const { firstName, lastName, email, username, password } = user;
+
+    const response = await csrfFetch('/api/users/signup', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            username,
+            password
+        })
+    });
+
+    const data = response.json();
+    dispatch(setUser(data));
+    return response;
+}
+
+
 
 export const logout = (user) => async (dispatch) => {
     const response = await csrfFetch('/api/users/logout', {
@@ -60,14 +97,18 @@ export const logout = (user) => async (dispatch) => {
 }
 
 
+
 //Redux reducer
 const sessionReducer = (state = initialState, action) => {
     let newState;
-    switch(action.type) {
+    switch (action.type) {
         case SET_USER:
-            newState = {...state};
+            newState = { ...state };
             newState.user = action.payload;
             return newState;
+        // case NEW_USER:
+        //     newState = { ...state };
+        //     newState.user = action.payload
         case REMOVE_USER:
             newState.user = null;
             return newState;
