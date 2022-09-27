@@ -8,7 +8,7 @@ const router = express.Router();
 
 //SESSION ROUTES
 
-// Get Current User
+// Restore Session User/Get Current User
 router.get('/myaccount', [restoreUser, requireAuthentication], async (req, res) => {
     const { user } = req;
     if (user) {
@@ -73,6 +73,7 @@ router.post('/signup', [validateSignup], async (req, res, next) => {
         username,
         password
     });
+
 
     user.dataValues.token = await setTokenCookie(res, user);
     return res.json(user); // Will change, edit, or add to match API Doc-20220813
