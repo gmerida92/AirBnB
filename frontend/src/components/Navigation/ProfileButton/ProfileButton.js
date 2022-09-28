@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect, NavLink } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../../store/session';
 import LoginFormModal from '../../LoginFormModal';
@@ -9,6 +9,7 @@ import DemoLogin from '../../DemoLogin/DemoLogin';
 function ProfileButton({ user, isLoaded }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
+
 
     let sessionLinks;
 
