@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect, NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import * as sessionActions from '../../store/session';
-import LoginFormModal from '../LoginFormModal';
-import SignupFormModal from '../SignupFormModal';
-import DemoLogin from '../DemoLogin/DemoLogin';
+import * as sessionActions from '../../../store/session';
+import LoginFormModal from '../../LoginFormModal';
+import SignupFormModal from '../../SignupFormModal';
+import DemoLogin from '../../DemoLogin/DemoLogin';
 
 function ProfileButton({ user, isLoaded }) {
     const dispatch = useDispatch();
@@ -58,7 +58,8 @@ function ProfileButton({ user, isLoaded }) {
     return (
         <>
             <button onClick={openMenu}>
-                <i className="fas fa-user-circle" />
+                <i className="fa-solid fa-bars"></i>
+                <i className="fa-solid fa-circle-user"></i>
             </button>
             {showMenu && sessionLinks}
         </>

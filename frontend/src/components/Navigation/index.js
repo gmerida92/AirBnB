@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
+import ProfileButton from './ProfileButton/ProfileButton';
 import './Navigation.css';
 
 
@@ -13,7 +13,10 @@ function Navigation({ isLoaded }) {
     return (
         <div className='header'>
             <div className='header_home'>
-                <NavLink exact to="/">Home</NavLink>
+                <NavLink exact to="/">
+                    <i className="fa-brands fa-airbnb"></i>
+                    airbnb
+                </NavLink>
             </div>
             <div className='header_user'>
                 <ProfileButton user={sessionUser} isLoaded={isLoaded} />
