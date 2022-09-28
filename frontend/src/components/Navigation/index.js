@@ -2,43 +2,23 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-// import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
 
 function Navigation({ isLoaded }) {
 
     const sessionUser = useSelector((state) => state.session.user);
-    // let sessionLinks;
 
-    // if (sessionUser) {
-    //     sessionLinks = (
-    //         <ProfileButton user={sessionUser} />
-    //     );
-    // } else {
-    //     sessionLinks = (
-    //         <>
-    //             <LoginFormModal />
-    //             <NavLink to='/api/users/signup'>Sign-up</NavLink>
-    //         </>
-    //     );
-    // }
 
     return (
-        <div>
-            <div>
+        <div className='header'>
+            <div className='header_home'>
                 <NavLink exact to="/">Home</NavLink>
             </div>
-            <div>
+            <div className='header_user'>
                 <ProfileButton user={sessionUser} isLoaded={isLoaded} />
             </div>
         </div>
-        // <ul>
-        //     <li>
-        //         <NavLink exact to="/">Home</NavLink>
-        //         {isLoaded && sessionLinks}
-        //     </li>
-        // </ul>
     );
 };
 

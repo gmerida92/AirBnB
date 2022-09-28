@@ -3,6 +3,7 @@ import { Link, Redirect, NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormModal';
 
 function ProfileButton({ user, isLoaded }) {
     const dispatch = useDispatch();
@@ -45,12 +46,8 @@ function ProfileButton({ user, isLoaded }) {
         sessionLinks = (
             <div onClick={(e) => e.stopPropagation()}>
                 <LoginFormModal />
-                <NavLink to='/api/users/signup'>Sign-up</NavLink>
+                <SignupFormModal />
             </div>
-            // <div>
-            //     <Link>Demo user</Link>
-            //     <Link>Sign up</Link>
-            // </div>
         );
     }
 
@@ -61,17 +58,7 @@ function ProfileButton({ user, isLoaded }) {
             <button onClick={openMenu}>
                 <i className="fas fa-user-circle" />
             </button>
-            {showMenu && sessionLinks
-                // (
-                //     <ul className="profile-dropdown">
-                //         <li>{user.username}</li>
-                //         <li>{user.email}</li>
-                //         <li>
-                //             <button onClick={logout}>Log Out</button>
-                //         </li>
-                //     </ul>
-                // )
-            }
+            {showMenu && sessionLinks}
         </>
     );
 }
