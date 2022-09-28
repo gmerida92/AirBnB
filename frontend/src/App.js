@@ -7,7 +7,7 @@ import Navigation from './components/Navigation'
 
 function App() {
   const dispatch = useDispatch();
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser())
@@ -18,6 +18,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      
       {/* {isLoaded && (
         <Switch>
           <Route path='/api/users/signup'>

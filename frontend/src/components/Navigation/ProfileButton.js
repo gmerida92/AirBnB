@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import DemoLogin from '../DemoLogin/DemoLogin';
 
 function ProfileButton({ user, isLoaded }) {
     const dispatch = useDispatch();
@@ -45,6 +46,7 @@ function ProfileButton({ user, isLoaded }) {
     } else {
         sessionLinks = (
             <div onClick={(e) => e.stopPropagation()}>
+                <DemoLogin />
                 <LoginFormModal />
                 <SignupFormModal />
             </div>
