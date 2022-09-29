@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton/ProfileButton';
+import AddListingFormModal from '../Spots/Listings/ModifyButtons/AddListingModal';
 import './Navigation.css';
 
 
@@ -18,6 +19,7 @@ function Navigation({ isLoaded }) {
                     airbnb
                 </NavLink>
             </div>
+            {sessionUser && <div> <AddListingFormModal /> </div>}
             <div className='header_user'>
                 <ProfileButton user={sessionUser} isLoaded={isLoaded} />
             </div>
