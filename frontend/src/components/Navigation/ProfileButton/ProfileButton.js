@@ -40,7 +40,7 @@ function ProfileButton({ user, isLoaded }) {
         sessionLinks = (
             <div>
                 <Link to="/">Trips</Link>
-                <Link to="/">Hosting</Link>
+                <Link to="/api/users/myaccount/spots">Listings</Link>
                 <Link to="/" onClick={logout}>Log Out</Link>
             </div>
         );
