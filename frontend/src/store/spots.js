@@ -15,12 +15,12 @@ const loadSpots = (spots) => {
     }
 }
 
-const loadASpot = (spots) => {
-    return {
-        type: LOAD_A_SPOT,
-        payload: spots
-    }
-}
+// const loadASpot = (spots) => {
+//     return {
+//         type: LOAD_A_SPOT,
+//         payload: spots
+//     }
+// }
 
 
 // Thunk action creators
@@ -37,13 +37,27 @@ export const loadAllSpots = () => async (dispatch) => {
     return response;
 };
 
-export const loadSpotById = (id) => async (dispatch) => { 
-    const response = await csrfFetch(`/api/spots/${id}`);
-    const spot = await response.json()
+// export const loadSpotById = (id) => async (dispatch) => { 
+//     const response = await csrfFetch(`/api/spots/${id}`);
+//     const spot = await response.json()
 
-    dispatch(loadASpot(spot));
-    return response
-};
+//     dispatch(loadASpot(spot));
+//     return response
+// };
+
+export const loadAllUserSpots = () => async (dispatch) => {
+    const response = await csrfFetch('/api/users/spots')
+    const spots = await response.json();
+
+    let userSpots = {};
+    spots.Spots.forEach((spot) => {
+        userSpots[spot.id] = spot
+    }
+    );
+
+    dispatch(loadSpots(userSpots));
+    return response;
+}
 
 
 //Redux reducer
@@ -55,7 +69,7 @@ const spotReducer = (state = initialState, action) => {
             newState.spot = action.payload;
             return newState;
         case LOAD_A_SPOT:
-            newState = {...state};
+            newState = { ...state };
             newState.spot = action.payload;
             return newState;
         default:

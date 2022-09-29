@@ -13,34 +13,36 @@ function Spots() {
         dispatch(spotActions?.loadAllSpots());
     }, [dispatch]);
 
-    let loadSpots = useSelector((state) => state.spots?.spot) || ''
+    let loadSpots = useSelector((state) => state?.spots?.spot) || ''
 
-    return (
-        <div className='spot-container'>
-            {Object.keys(loadSpots)?.map((spotId) => {
-                return (
-                    <NavLink key={spotId} to={`/api/spots/${loadSpots[spotId]?.id}`}>
-                        <div>
+    // if (loadSpots) {
+    // }
+        return (
+            <div className='spot-container'>
+                {Object?.keys(loadSpots)?.map((spotId) => {
+                    return (
+                        <NavLink key={spotId} to={`/api/spots/${loadSpots[spotId]?.id}`}>
                             <div>
-                                <img
-                                    className='spot-image'
-                                    src={loadSpots[spotId]?.previewImage}
-                                    alt={loadSpots[spotId]?.name}
-                                />
+                                <div>
+                                    <img
+                                        className='spot-image'
+                                        src={loadSpots[spotId]?.previewImage}
+                                        alt={loadSpots[spotId]?.name}
+                                    />
+                                </div>
+                                <div>
+                                    <p>{`${loadSpots[spotId]?.city}, ${loadSpots[spotId]?.state}`}</p>
+                                    <p>{`${loadSpots[spotId]?.avgRating}`}</p>
+                                </div>
+                                <div>
+                                    {`${loadSpots[spotId]?.price} night`}
+                                </div>
                             </div>
-                            <div>
-                                <p>{`${loadSpots[spotId]?.city}, ${loadSpots[spotId]?.state}`}</p>
-                                <p>{`${loadSpots[spotId]?.avgRating}`}</p>
-                            </div>
-                            <div>
-                                {`${loadSpots[spotId]?.price} night`}
-                            </div>
-                        </div>
-                    </NavLink>
-                )
-            })}
-        </div>
-    )
+                        </NavLink>
+                    )
+                })}
+            </div>
+        )
 };
 
 export default Spots;
