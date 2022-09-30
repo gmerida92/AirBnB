@@ -6,6 +6,7 @@ const initialState = {
 
 const LOAD_A_SPOT = "/api/getSpotById"
 
+
 // Redux action creators
 const loadASpot = (spots) => {
     return {

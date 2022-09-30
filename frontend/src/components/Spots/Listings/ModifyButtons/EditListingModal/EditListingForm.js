@@ -5,28 +5,28 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 
 
-function AddListingForm() {
+function EditListingForm({ userSpotId }) {
     const dispatch = useDispatch();
-    // const sessionUser = useSelector(state => state?.session?.user)
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [country, setCountry] = useState('');
-    const [lat, setLatitude] = useState('');
-    const [lng, setLongitude] = useState('');
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [price, setPrice] = useState('');
-    const [previewImage, setPreviewImage] = useState('');
+    const currentSpot = useSelector(state => state?.spots?.spot[userSpotId]) || ''
+    const [address, setAddress] = useState(currentSpot.address);
+    const [city, setCity] = useState(currentSpot.city);
+    const [state, setState] = useState(currentSpot.state);
+    const [country, setCountry] = useState(currentSpot.country);
+    const [lat, setLatitude] = useState(currentSpot.lat);
+    const [lng, setLongitude] = useState(currentSpot.lng);
+    const [name, setName] = useState(currentSpot.name);
+    const [description, setDescription] = useState(currentSpot.description);
+    const [price, setPrice] = useState(currentSpot.price);
+    const [previewImage, setPreviewImage] = useState(currentSpot.previewImage);
     // const [errors, setErrors] = useState([]);
 
     // if (sessionUser) return <Redirect to='/' />;
 
-    
-    
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        let newSpot = {
+        let spotEdit = {
             address,
             city,
             state,
@@ -38,9 +38,9 @@ function AddListingForm() {
             price,
             previewImage
         }
-        console.log(newSpot)
+
         // setErrors([]);
-        return dispatch(spotActions.createSpot(newSpot))
+        return dispatch(spotActions.editASpot(spotEdit, userSpotId))
             .then(() => {
                 setAddress('');
                 setCity('');
@@ -53,10 +53,10 @@ function AddListingForm() {
                 setPrice('');
                 setPreviewImage('');
             })
-            // .catch(async (res) => {
-            //     const data = await res.json();
-            //     if (data && data.errors) setErrors(data.errors);
-            // });
+        // .catch(async (res) => {
+        //     const data = await res.json();
+        //     if (data && data.errors) setErrors(data.errors);
+        // });
     };
 
     return (
@@ -72,6 +72,7 @@ function AddListingForm() {
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
+                    placeholder={currentSpot.address}
                     required
                 />
             </label>
@@ -81,6 +82,7 @@ function AddListingForm() {
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
+                    placeholder={currentSpot.city}
                     required
                 />
             </label>
@@ -90,6 +92,7 @@ function AddListingForm() {
                     type="text"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
+                    placeholder={currentSpot.state}
                     required
                 />
             </label>
@@ -99,6 +102,7 @@ function AddListingForm() {
                     type="text"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
+                    placeholder={currentSpot.country}
                     required
                 />
             </label>
@@ -108,6 +112,7 @@ function AddListingForm() {
                     type="text"
                     value={lat}
                     onChange={(e) => setLatitude(e.target.value)}
+                    placeholder={currentSpot.lat}
                     required
                 />
             </label>
@@ -117,6 +122,7 @@ function AddListingForm() {
                     type="text"
                     value={lng}
                     onChange={(e) => setLongitude(e.target.value)}
+                    placeholder={currentSpot.lng}
                     required
                 />
             </label>
@@ -126,6 +132,7 @@ function AddListingForm() {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    placeholder={currentSpot.name}
                     required
                 />
             </label>
@@ -135,6 +142,7 @@ function AddListingForm() {
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
+                    placeholder={currentSpot.description}
                     required
                 />
             </label>
@@ -144,6 +152,7 @@ function AddListingForm() {
                     type="text"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
+                    placeholder={currentSpot.price}
                     required
                 />
             </label>
@@ -153,12 +162,13 @@ function AddListingForm() {
                     type="text"
                     value={previewImage}
                     onChange={(e) => setPreviewImage(e.target.value)}
+                    placeholder={currentSpot.previewImage}
                     required
                 />
             </label>
-            <button type="submit">Create Listing</button>
+            <button type="submit">Update Listing</button>
         </form>
     );
 }
 
-export default AddListingForm;
+export default EditListingForm;
