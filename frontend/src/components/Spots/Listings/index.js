@@ -4,15 +4,16 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import * as spotActions from '../../../store/spots'
 import EditListingFormModal from "./ModifyButtons/EditListingModal";
+import DeleteListing from "./ModifyButtons/DeleteButton";
 
 function Listings() {
     const dispatch = useDispatch();
+    let userSpots = useSelector((state) => state?.spots?.spot) || ''
 
     useEffect(() => {
         dispatch(spotActions?.loadAllUserSpots());
     }, [dispatch]);
 
-    let userSpots = useSelector((state) => state?.spots?.spot) || ''
 
     return (
         <div>
@@ -37,8 +38,8 @@ function Listings() {
                                 </div>
                             </div>
                         </NavLink>
-                        <EditListingFormModal userSpotId={userSpots[spotId]?.id}/>
-                        <button>Remove</button>
+                        <EditListingFormModal key={userSpots[spotId]?.name} userSpotId={userSpots[spotId]?.id}/>
+                        <DeleteListing userSpotId={userSpots[spotId]?.id}/>
                     </div>
                 )
             })}

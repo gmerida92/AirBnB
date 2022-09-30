@@ -7,6 +7,7 @@ const initialState = {
 const LOAD_SPOTS = "/api/getSpots";
 const CREATE_SPOT = "/api/createSpot"
 const UPDATE_SPOT = "/api/updateSpot"
+const DELETE_SPOT = "/api/deleteSpot"
 
 
 // Redux action creators
@@ -24,12 +25,19 @@ const createASpot = (newSpot) => {
     }
 };
 
-const updateASpot = (editSpot) => {
+const updateASpot = (spotEdits) => {
     return {
         type: UPDATE_SPOT,
-        payload: editSpot
+        payload: spotEdits
     }
 };
+
+const deleteASpot = (spotId) => {
+    return {
+        type: DELETE_SPOT,
+        payload: spotId
+    }
+}
 
 
 
@@ -86,13 +94,21 @@ export const editASpot = (spot, id) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${id}`, {
         method: "PUT",
         header: {
-            "Content-Type" : "application/json"
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(spot)
     });
     const data = await response.json();
 
     dispatch(updateASpot(data));
+    return response;
+};
+
+export const deleteSpot = (id) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${id}`, {
+        method: "DELETE"
+    });
+    dispatch(deleteASpot(id));
     return response;
 };
 
@@ -109,8 +125,12 @@ const spotReducer = (state = initialState, action) => {
             newState.spot[action.payload.id] = action.payload;
             return newState;
         case UPDATE_SPOT:
-            newState = {...state};
+            newState = { ...state };
             newState.spot[action.payload.id] = action.payload;
+            return newState;
+        case DELETE_SPOT:
+            newState = { ...state };
+            delete newState.spot[action.payload];
             return newState;
         default:
             return state

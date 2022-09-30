@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function EditListingForm({ userSpotId }) {
     const dispatch = useDispatch();
-    const currentSpot = useSelector(state => state?.spots?.spot[userSpotId]) || ''
+    const currentSpot = useSelector((state) => state?.spots?.spot[userSpotId]) || ''
     const [address, setAddress] = useState(currentSpot.address);
     const [city, setCity] = useState(currentSpot.city);
     const [state, setState] = useState(currentSpot.state);
