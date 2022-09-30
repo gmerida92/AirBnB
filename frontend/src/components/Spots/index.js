@@ -35,7 +35,7 @@ function Spots() {
                                     <p>{`${loadSpots[spotId]?.avgRating}`}</p>
                                 </div>
                                 <div>
-                                    {`${loadSpots[spotId]?.price} night`}
+                                    {`$${loadSpots[spotId]?.price} night`}
                                 </div>
                             </div>
                         </NavLink>
