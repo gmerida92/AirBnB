@@ -2,12 +2,14 @@ import { csrfFetch } from "./csrf";
 
 const initialState = {
     spot: null
-}
+};
 
+
+//Type Key String Literals
 const LOAD_SPOTS = "/api/getSpots";
-const CREATE_SPOT = "/api/createSpot"
-const UPDATE_SPOT = "/api/updateSpot"
-const DELETE_SPOT = "/api/deleteSpot"
+const CREATE_SPOT = "/api/createSpot";
+const UPDATE_SPOT = "/api/updateSpot";
+const DELETE_SPOT = "/api/deleteSpot";
 
 
 // Redux action creators
@@ -64,8 +66,7 @@ export const loadAllUserSpots = () => async (dispatch) => {
     let userSpots = {};
     spots.Spots.forEach((spot) => {
         userSpots[spot.id] = spot
-    }
-    );
+    });
 
     dispatch(loadSpots(userSpots));
     return response;

@@ -12,6 +12,7 @@ import { ModalProvider } from './context/Modal';
 import * as sessionActions from './store/session';
 import * as spotActions from './store/spots';
 import * as singleSpotActions from './store/singlespot';
+import * as reviewActions from './store/reviews'
 import './index.css';
 
 const store = configureStore();
@@ -21,9 +22,11 @@ if (process.env.NODE_ENV !== 'production') {
 
   window.csrfFetch = csrfFetch;
   window.store = store;
+
   window.sessionActions = sessionActions;
   window.spotActions = spotActions;
   window.singleSpotActions = singleSpotActions;
+  window.reviewActions = reviewActions;
 }
 
 function Root() {
