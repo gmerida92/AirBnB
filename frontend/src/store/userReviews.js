@@ -7,6 +7,7 @@ const initialState = {
 //Type String Literals
 const LOAD_USER_REVIEWS = "/api/getReviewsOfCurrentUser";
 const UPDATE_USER_REVIEW = "/api/updateReview"
+const DELETE_USER_REVIEW = "/api/deleteReview"
 
 
 //Redux action creators
@@ -22,7 +23,14 @@ const updateAReview = (reviewEdits) => {
         type: UPDATE_USER_REVIEW,
         payload: reviewEdits
     }
-}
+};
+
+const deleteAReview = (reviewId) => {
+    return {
+        type: DELETE_USER_REVIEW,
+        payload: reviewId
+    }
+};
 
 
 
@@ -57,6 +65,16 @@ export const editReview = (reviewId, reviewEdits) => async (dispatch) => {
 };
 
 
+export const deleteReview = (reviewId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: "DELETE"
+    })
+
+    dispatch(deleteAReview(reviewId))
+    return response;
+};
+
+
 
 
 const userReviewReducer = (state = initialState, action) => {
@@ -69,6 +87,10 @@ const userReviewReducer = (state = initialState, action) => {
         case UPDATE_USER_REVIEW:
             newState = { ...state };
             newState.userReview[action.payload.id] = action.payload;
+            return newState;
+        case DELETE_USER_REVIEW:
+            newState = {...state};
+            delete newState.userReview[action.payload];
             return newState;
         default:
             return state;

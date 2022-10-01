@@ -39,7 +39,7 @@ const deleteASpot = (spotId) => {
         type: DELETE_SPOT,
         payload: spotId
     }
-}
+};
 
 
 

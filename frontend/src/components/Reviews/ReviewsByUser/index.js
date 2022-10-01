@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import * as userReviewActions from '../../../store/userReviews'
 import EditReviewFormModal from "./ModifyingButtons/EditReviewModal";
-// import DeleteListing from "./ModifyButtons/DeleteButton";
+import DeleteReview from './ModifyingButtons/DeleteReview';
 
 function ReviewsByUser() {
     const dispatch = useDispatch();
@@ -39,7 +39,7 @@ function ReviewsByUser() {
                             <p>{`${userReviews[reviewId]?.review}`}</p>
                         </div>
                         <EditReviewFormModal key={userReviews[reviewId]?.name} userReviewId={userReviews[reviewId]?.id}/>
-                        <button>Remove</button>
+                        <DeleteReview userReviewId={userReviews[reviewId]?.id}/>
                         {/* <EditReviewFormModal key={userSpots[spotId]?.name} userSpotId={userSpots[spotId]?.id}/>
                         <DeleteListing userSpotId={userSpots[spotId]?.id}/> */}
                     </div>
