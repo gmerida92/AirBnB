@@ -1,25 +1,28 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
+// import { Redirect } from "react-router-dom";
 import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import * as spotActions from '../../../store/spots'
 import EditListingFormModal from "./ModifyButtons/EditListingModal";
 import DeleteListing from "./ModifyButtons/DeleteButton";
 
 function Listings({ sessionUser }) {
-    const history = useHistory();
+    // const history = useHistory();
     const dispatch = useDispatch();
     let userSpots = useSelector((state) => state?.spots?.spot) || ''
 
-    useEffect(() => {
-        if(!sessionUser) history.push("/")
-     }, [sessionUser, history])
+
+    // useEffect(() => {
+    //     if(!sessionUser) history.push("/")
+    //  }, [sessionUser, history])
 
     useEffect(() => {
         dispatch(spotActions?.loadAllUserSpots());
     }, [dispatch]);
 
+    // if (!sessionUser) { return <Redirect to="/" /> }
 
     return (
         <div>

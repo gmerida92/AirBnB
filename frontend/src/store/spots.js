@@ -1,8 +1,5 @@
 import { csrfFetch } from "./csrf";
 
-const initialState = {
-    spot: null
-};
 
 
 //Type Key String Literals
@@ -48,12 +45,12 @@ const deleteASpot = (spotId) => {
 export const loadAllSpots = () => async (dispatch) => {
     const response = await csrfFetch('/api/spots');
     const spots = await response.json();
-
+    
     let allSpots = {};
     spots.Spots.forEach(spot => {
         allSpots[spot.id] = spot;
     });
-
+    
     dispatch(loadSpots(allSpots));
     return response;
 };
@@ -62,12 +59,12 @@ export const loadAllSpots = () => async (dispatch) => {
 export const loadAllUserSpots = () => async (dispatch) => {
     const response = await csrfFetch('/api/users/myaccount/spots')
     const spots = await response.json();
-
+    
     let userSpots = {};
     spots.Spots.forEach((spot) => {
         userSpots[spot.id] = spot
     });
-
+    
     dispatch(loadSpots(userSpots));
     return response;
 };
@@ -82,8 +79,8 @@ export const createSpot = (spot) => async (dispatch) => {
         body: JSON.stringify(spot)
     })
     const data = await response.json();
-
-
+    
+    
     dispatch(createASpot(data));
     return response;
 };
@@ -98,7 +95,7 @@ export const editASpot = (spot, id) => async (dispatch) => {
         body: JSON.stringify(spot)
     });
     const data = await response.json();
-
+    
     dispatch(updateASpot(data));
     return response;
 };
@@ -114,25 +111,45 @@ export const deleteSpot = (id) => async (dispatch) => {
 
 
 
+const initialState = {
+    spot: null
+};
 
 //Redux reducer
 const spotReducer = (state = initialState, action) => {
-    let newState;
+    let newState; ///update-need to updated the nested states
     switch (action.type) {
         case LOAD_SPOTS:
-            newState = { ...state };
-            newState.spot = action.payload;
+            newState = {
+                ...state,
+                spot: action.payload
+            }
             return newState;
         case CREATE_SPOT:
-            newState = { ...state };
-            newState.spot[action.payload.id] = action.payload;
+            newState = {
+                ...state,
+                spot: {
+                    ...state.spot,
+                    [action.payload.id]: action.payload
+                }
+            };
             return newState;
         case UPDATE_SPOT:
-            newState = { ...state };
-            newState.spot[action.payload.id] = action.payload;
+            newState = {
+                ...state,
+                spot: {
+                    ...state.spot,
+                    [action.payload.id]: action.payload
+                }
+            };
             return newState;
         case DELETE_SPOT:
-            newState = { ...state };
+            newState = {
+                ...state,
+                spot: {
+                    ...state.spot
+                }
+            }
             delete newState.spot[action.payload];
             return newState;
         default:

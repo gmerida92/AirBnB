@@ -11,6 +11,7 @@ function Spots() {
 
     useEffect(() => {
         dispatch(spotActions?.loadAllSpots());
+        // dispatch(spotActions?.loadAllUserSpots());
     }, [dispatch]);
 
     let loadSpots = useSelector((state) => state?.spots?.spot) || ''

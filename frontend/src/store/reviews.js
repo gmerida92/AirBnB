@@ -1,8 +1,5 @@
 import { csrfFetch } from "./csrf";
 
-const initialState = {
-    review: null
-};
 
 //Type String Literals
 const LOAD_SPOT_REVIEWS = "/api/getReviewsBySpotId";
@@ -57,19 +54,28 @@ export const createReview = (spotId, review) => async (dispatch) => {
 };
 
 
-
+const initialState = {
+    review: null
+};
 
 //Review Reducer
 const reviewReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_SPOT_REVIEWS:
-            newState = { ...state };
-            newState.review = action.payload;
+            newState = {
+                ...state,
+                review: action.payload
+            }
             return newState;
         case CREATE_SPOT_REVIEW:
-            newState = { ...state };
-            newState.review[action.payload.id] = action.payload;
+            newState = {
+                ...state,
+                review: {
+                    ...state.review,
+                    [action.payload.id]: action.payload
+                }
+            }
             return newState;
         default:
             return state;

@@ -29,17 +29,17 @@ function App() {
       <Navigation isLoaded={isLoaded} />
 
       <Switch>
+        <Route exact path={'/api/users/myaccount'}>
+          <Profile sessionUser={sessionUser} />
+        </Route>
+        <Route exact path={'/api/users/myaccount/spots'}>
+          <Listings sessionUser={sessionUser}/>
+        </Route>
         <Route exact path='/'>
           <Spots />
         </Route>
-        <Route path={'/api/spots/:id'}>
+        <Route exact path={'/api/spots/:id'}>
           <SingleSpot sessionUser={sessionUser} />
-        </Route>
-        <Route path={'/api/users/myaccount/spots'}>
-          <Listings sessionUser={sessionUser}/>
-        </Route>
-        <Route path={'/api/users/myaccount'}>
-          <Profile sessionUser={sessionUser} />
         </Route>
       </Switch>
     </div>

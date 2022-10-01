@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import * as sessionActions from '../../../../../store/session';
 import * as spotActions from '../../../../../store/spots';
 import { useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 

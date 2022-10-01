@@ -1,9 +1,5 @@
 import { csrfFetch } from "./csrf";
 
-const initialState = {
-    userReview: null
-};
-
 //Type String Literals
 const LOAD_USER_REVIEWS = "/api/getReviewsOfCurrentUser";
 const UPDATE_USER_REVIEW = "/api/updateReview"
@@ -75,21 +71,35 @@ export const deleteReview = (reviewId) => async (dispatch) => {
 };
 
 
-
+const initialState = {
+    userReview: null
+};
 
 const userReviewReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_USER_REVIEWS:
-            newState = { ...state };
-            newState.userReview = action.payload;
+            newState = {
+                ...state,
+                userReview: action.payload
+            };
             return newState;
         case UPDATE_USER_REVIEW:
-            newState = { ...state };
-            newState.userReview[action.payload.id] = action.payload;
+            newState = {
+                ...state,
+                userReview: {
+                    ...state.userReview,
+                    [action.payload.id]: action.payload
+                }
+            };
             return newState;
         case DELETE_USER_REVIEW:
-            newState = {...state};
+            newState = { 
+                ...state,
+                userReview: {
+                    ...state.userReview
+                } 
+            };
             delete newState.userReview[action.payload];
             return newState;
         default:
