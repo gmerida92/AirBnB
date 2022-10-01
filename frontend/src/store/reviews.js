@@ -6,6 +6,7 @@ const initialState = {
 
 //Type String Literals
 const LOAD_SPOT_REVIEWS = "/api/getReviewsById";
+const CREATE_SPOT_REVIEW = "/api/createReview"
 
 //Redux action creators
 const loadReviewsForASpot = (allReviewBySpotId) => {
@@ -14,6 +15,14 @@ const loadReviewsForASpot = (allReviewBySpotId) => {
         payload: allReviewBySpotId
     }
 };
+
+const createAReview = (newReview) => {
+    return {
+        type: CREATE_SPOT_REVIEW,
+        payload: newReview
+    }
+};
+
 
 
 
@@ -32,6 +41,20 @@ export const loadReviewsBySpotId = (id) => async (dispatch) => {
 };
 
 
+export const createReview = (spotId, review) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+        method: "POST",
+        header: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(review)
+    });
+    const data = await response.json();
+
+    dispatch(createAReview(data));
+    return response;
+};
+
 
 //Review Reducer
 const reviewReducer = (state = initialState, action) => {
@@ -40,6 +63,10 @@ const reviewReducer = (state = initialState, action) => {
         case LOAD_SPOT_REVIEWS:
             newState = { ...state };
             newState.review = action.payload;
+            return newState;
+        case CREATE_SPOT_REVIEW:
+            newState = {...state};
+            newState.review[action.payload.id] = action.payload;
             return newState;
         default:
             return state;

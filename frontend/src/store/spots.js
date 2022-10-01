@@ -43,6 +43,7 @@ const deleteASpot = (spotId) => {
 
 
 
+
 // Thunk action creators
 export const loadAllSpots = () => async (dispatch) => {
     const response = await csrfFetch('/api/spots');
@@ -58,7 +59,6 @@ export const loadAllSpots = () => async (dispatch) => {
 };
 
 
-
 export const loadAllUserSpots = () => async (dispatch) => {
     const response = await csrfFetch('/api/users/myaccount/spots')
     const spots = await response.json();
@@ -71,7 +71,6 @@ export const loadAllUserSpots = () => async (dispatch) => {
     dispatch(loadSpots(userSpots));
     return response;
 };
-
 
 
 export const createSpot = (spot) => async (dispatch) => {
@@ -90,7 +89,6 @@ export const createSpot = (spot) => async (dispatch) => {
 };
 
 
-
 export const editASpot = (spot, id) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${id}`, {
         method: "PUT",
@@ -105,6 +103,7 @@ export const editASpot = (spot, id) => async (dispatch) => {
     return response;
 };
 
+
 export const deleteSpot = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${id}`, {
         method: "DELETE"
@@ -112,6 +111,9 @@ export const deleteSpot = (id) => async (dispatch) => {
     dispatch(deleteASpot(id));
     return response;
 };
+
+
+
 
 //Redux reducer
 const spotReducer = (state = initialState, action) => {

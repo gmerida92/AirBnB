@@ -4,13 +4,13 @@ import React from 'react';
 import UserReviews from '../Reviews/ReviewsByUser';
 
 
-function Profile({ user }) {
+function Profile({ sessionUser }) {
     return (
         <div>
             <div>
-                <h2>{`Hi, I'm ${user?.firstName} ${user?.lastName.slice(0, 1)}.`}</h2>
-                <h4>{`${user?.username}`}</h4>
-                <h4>{`${user?.email}`}</h4>
+                <h2>{`Hi, I'm ${sessionUser?.firstName} ${sessionUser?.lastName.slice(0, 1)}.`}</h2>
+                <h4>{`${sessionUser?.username}`}</h4>
+                <h4>{`${sessionUser?.email}`}</h4>
             </div>
             <div>Review</div>
             <UserReviews />

@@ -32,13 +32,13 @@ function App() {
           <Spot />
         </Route>
         <Route path={'/api/spots/:id'}>
-          <SingleSpot />
+          <SingleSpot sessionUser={sessionUser} />
         </Route>
         <Route path={'/api/users/myaccount/spots'}>
           <Listings />
         </Route>
         <Route path={'/api/users/myaccount'}>
-          <Profile user={sessionUser}/>
+          <Profile sessionUser={sessionUser} />
         </Route>
       </Switch>
     </div>

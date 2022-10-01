@@ -39,7 +39,6 @@ function AddListingForm() {
             price,
             previewImage
         }
-        console.log(newSpot)
         // setErrors([]);
         return dispatch(spotActions.createSpot(newSpot))
             .then(() => {

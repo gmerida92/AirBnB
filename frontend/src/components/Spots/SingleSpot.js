@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import * as singleSpotActions from '../../store/singlespot';
 import ReviewsForSpot from '../Reviews/ReviewsForSpot';
+import AddReviewFormModal from '../Reviews/ReviewsByUser/ModifyingButtons/AddReviewModal';
 
 import "./spots.css"
 
-function SingleSpot() {
+function SingleSpot({ sessionUser }) {
     const { id } = useParams();
     const dispatch = useDispatch();
 
@@ -48,7 +49,7 @@ function SingleSpot() {
             <div>
                 <p>
                     Reviews
-                    {/* sessionUser && <div> <AddReviewFormModal> </div>*/}
+                    {sessionUser && <div> <AddReviewFormModal loadSpotId={id} /> </div>}
                 </p>
                 <div>
                     <p><i className="fa-sharp fa-solid fa-star"></i>
