@@ -5,8 +5,9 @@ const initialState = {
 };
 
 //Type String Literals
-const LOAD_SPOT_REVIEWS = "/api/getReviewsById";
+const LOAD_SPOT_REVIEWS = "/api/getReviewsBySpotId";
 const CREATE_SPOT_REVIEW = "/api/createReview"
+
 
 //Redux action creators
 const loadReviewsForASpot = (allReviewBySpotId) => {
@@ -56,6 +57,8 @@ export const createReview = (spotId, review) => async (dispatch) => {
 };
 
 
+
+
 //Review Reducer
 const reviewReducer = (state = initialState, action) => {
     let newState;
@@ -65,7 +68,7 @@ const reviewReducer = (state = initialState, action) => {
             newState.review = action.payload;
             return newState;
         case CREATE_SPOT_REVIEW:
-            newState = {...state};
+            newState = { ...state };
             newState.review[action.payload.id] = action.payload;
             return newState;
         default:

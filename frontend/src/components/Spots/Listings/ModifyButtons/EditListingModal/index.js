@@ -7,7 +7,7 @@ function EditListingFormModal({ userSpotId }) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit</button>
+      <button onClick={() => setShowModal(true)}>Update</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditListingForm userSpotId={userSpotId} />

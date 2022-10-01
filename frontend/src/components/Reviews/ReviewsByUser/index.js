@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import * as userReviewActions from '../../../store/userReviews'
-// import EditListingFormModal from "./ModifyButtons/EditListingModal";
+import EditReviewFormModal from "./ModifyingButtons/EditReviewModal";
 // import DeleteListing from "./ModifyButtons/DeleteButton";
 
-function UserReviews() {
+function ReviewsByUser() {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -38,9 +38,9 @@ function UserReviews() {
                             <p>{`${userReviews[reviewId]?.stars}`}</p>
                             <p>{`${userReviews[reviewId]?.review}`}</p>
                         </div>
-                        <button>Edit</button>
+                        <EditReviewFormModal key={userReviews[reviewId]?.name} userReviewId={userReviews[reviewId]?.id}/>
                         <button>Remove</button>
-                        {/* <EditListingFormModal key={userSpots[spotId]?.name} userSpotId={userSpots[spotId]?.id}/>
+                        {/* <EditReviewFormModal key={userSpots[spotId]?.name} userSpotId={userSpots[spotId]?.id}/>
                         <DeleteListing userSpotId={userSpots[spotId]?.id}/> */}
                     </div>
                 )
@@ -48,4 +48,4 @@ function UserReviews() {
         </div >)
 }
 
-export default UserReviews;
+export default ReviewsByUser;

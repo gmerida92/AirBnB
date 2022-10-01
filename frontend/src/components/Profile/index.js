@@ -1,7 +1,7 @@
 import React from 'react';
 // import { useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux'
-import UserReviews from '../Reviews/ReviewsByUser';
+import ReviewsByUser from '../Reviews/ReviewsByUser';
 
 
 function Profile({ sessionUser }) {
@@ -13,9 +13,9 @@ function Profile({ sessionUser }) {
                 <h4>{`${sessionUser?.email}`}</h4>
             </div>
             <div>Review</div>
-            <UserReviews />
+            <ReviewsByUser />
         </div>
     )
 };
 
-export default Profile
+export default Profile;
