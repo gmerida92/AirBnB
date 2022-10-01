@@ -6,7 +6,7 @@ import * as sessionActions from "./store/session";
 
 
 import Navigation from './components/Navigation'
-import Spot from './components/Spots'
+import Spots from './components/Spots'
 import SingleSpot from './components/Spots/SingleSpot'
 import Listings from './components/Spots/Listings';
 import Profile from './components/Profile';
@@ -30,13 +30,13 @@ function App() {
 
       <Switch>
         <Route exact path='/'>
-          <Spot />
+          <Spots />
         </Route>
         <Route path={'/api/spots/:id'}>
           <SingleSpot sessionUser={sessionUser} />
         </Route>
         <Route path={'/api/users/myaccount/spots'}>
-          <Listings />
+          <Listings sessionUser={sessionUser}/>
         </Route>
         <Route path={'/api/users/myaccount'}>
           <Profile sessionUser={sessionUser} />

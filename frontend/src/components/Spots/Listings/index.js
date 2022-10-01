@@ -1,14 +1,20 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import * as spotActions from '../../../store/spots'
 import EditListingFormModal from "./ModifyButtons/EditListingModal";
 import DeleteListing from "./ModifyButtons/DeleteButton";
 
-function Listings() {
+function Listings({ sessionUser }) {
+    const history = useHistory();
     const dispatch = useDispatch();
     let userSpots = useSelector((state) => state?.spots?.spot) || ''
+
+    useEffect(() => {
+        if(!sessionUser) history.push("/")
+     }, [sessionUser, history])
 
     useEffect(() => {
         dispatch(spotActions?.loadAllUserSpots());
@@ -38,8 +44,8 @@ function Listings() {
                                 </div>
                             </div>
                         </NavLink>
-                        <EditListingFormModal key={userSpots[spotId]?.name} userSpotId={userSpots[spotId]?.id}/>
-                        <DeleteListing userSpotId={userSpots[spotId]?.id}/>
+                        <EditListingFormModal key={userSpots[spotId]?.name} userSpotId={userSpots[spotId]?.id} />
+                        <DeleteListing userSpotId={userSpots[spotId]?.id} />
                     </div>
                 )
             })}

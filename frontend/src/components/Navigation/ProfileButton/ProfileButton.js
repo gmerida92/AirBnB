@@ -6,18 +6,16 @@ import LoginFormModal from '../../LoginFormModal';
 import SignupFormModal from '../../SignupFormModal';
 import DemoLogin from '../../DemoLogin/DemoLogin';
 
-function ProfileButton({ user, isLoaded }) {
+function ProfileButton({ sessionUser }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
-
-
     let sessionLinks;
 
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
     };
-    
+
 
     useEffect(() => {
         if (!showMenu) return;
@@ -32,12 +30,13 @@ function ProfileButton({ user, isLoaded }) {
     }, [showMenu]);
 
     const logout = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         dispatch(sessionActions.logout());
         return <Redirect to="/" />
     };
 
-    if (user && isLoaded) {
+
+    if (sessionUser) {
         sessionLinks = (
             <div>
                 <Link to="/api/users/myaccount">Profile</Link>
@@ -54,7 +53,6 @@ function ProfileButton({ user, isLoaded }) {
             </div>
         );
     }
-
 
 
     return (

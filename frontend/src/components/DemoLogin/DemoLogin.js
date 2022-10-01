@@ -1,6 +1,7 @@
-// import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import * as sessionActions from '../../store/session'
+
 
 function DemoLogin() {
     const dispatch = useDispatch();
@@ -10,10 +11,10 @@ function DemoLogin() {
         password: 'password5'
     };
 
+
     const handleClick = () => {
         dispatch(sessionActions.login(user));
     };
-
 
 
     return (
