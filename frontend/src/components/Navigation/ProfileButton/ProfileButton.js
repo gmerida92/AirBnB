@@ -17,6 +17,7 @@ function ProfileButton({ user, isLoaded }) {
         if (showMenu) return;
         setShowMenu(true);
     };
+    
 
     useEffect(() => {
         if (!showMenu) return;
@@ -39,7 +40,7 @@ function ProfileButton({ user, isLoaded }) {
     if (user && isLoaded) {
         sessionLinks = (
             <div>
-                <Link to="/">Trips</Link>
+                <Link to="/api/users/myaccount">Profile</Link>
                 <Link to="/api/users/myaccount/spots">Listings</Link>
                 <Link to="/" onClick={logout}>Log Out</Link>
             </div>

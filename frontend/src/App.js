@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 import * as sessionActions from "./store/session";
@@ -9,6 +9,7 @@ import Navigation from './components/Navigation'
 import Spot from './components/Spots'
 import SingleSpot from './components/Spots/SingleSpot'
 import Listings from './components/Spots/Listings';
+import Profile from './components/Profile';
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +19,8 @@ function App() {
     dispatch(sessionActions?.restoreUser())
       .then(() => setIsLoaded(true));
   }, [dispatch]);
+
+  let sessionUser = useSelector((state) => state?.session?.user) || ''
 
 
   return (
@@ -33,6 +36,9 @@ function App() {
         </Route>
         <Route path={'/api/users/myaccount/spots'}>
           <Listings />
+        </Route>
+        <Route path={'/api/users/myaccount'}>
+          <Profile user={sessionUser}/>
         </Route>
       </Switch>
     </div>

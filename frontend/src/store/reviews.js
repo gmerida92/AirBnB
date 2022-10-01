@@ -5,12 +5,12 @@ const initialState = {
 };
 
 //Type String Literals
-const LOAD_REVIEWS = "/api/getReviewsById";
+const LOAD_SPOT_REVIEWS = "/api/getReviewsById";
 
 //Redux action creators
 const loadReviewsForASpot = (allReviewBySpotId) => {
     return {
-        type: LOAD_REVIEWS,
+        type: LOAD_SPOT_REVIEWS,
         payload: allReviewBySpotId
     }
 };
@@ -28,6 +28,7 @@ export const loadReviewsBySpotId = (id) => async (dispatch) => {
     });
 
     dispatch(loadReviewsForASpot(spotReviews));
+    return response;
 };
 
 
@@ -36,7 +37,7 @@ export const loadReviewsBySpotId = (id) => async (dispatch) => {
 const reviewReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case LOAD_REVIEWS:
+        case LOAD_SPOT_REVIEWS:
             newState = { ...state };
             newState.review = action.payload;
             return newState;

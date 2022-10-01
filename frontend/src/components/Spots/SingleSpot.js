@@ -48,7 +48,7 @@ function SingleSpot() {
             <div>
                 <p>
                     Reviews
-                    <button>Add</button>
+                    {/* sessionUser && <div> <AddReviewFormModal> </div>*/}
                 </p>
                 <div>
                     <p><i className="fa-sharp fa-solid fa-star"></i>

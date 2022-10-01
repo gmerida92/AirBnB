@@ -1,15 +1,22 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import * as sessionActions from '../../store/session'
 import ProfileButton from './ProfileButton/ProfileButton';
 import AddListingFormModal from '../Spots/Listings/ModifyButtons/AddListingModal';
 import './Navigation.css';
 
 
 function Navigation({ isLoaded }) {
+    const dispatch = useDispatch();
+    const sessionUser = useSelector((state) => state?.session?.user) || ''
 
-    const sessionUser = useSelector((state) => state?.session?.user);
-
+    useEffect(() => {
+        dispatch(sessionActions?.restoreUser())
+        //   .then(() => setIsLoaded(true));
+      }, [dispatch]);
 
     return (
         <div className='header'>
