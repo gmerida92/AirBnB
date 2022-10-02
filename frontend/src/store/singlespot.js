@@ -17,7 +17,7 @@ const loadASpot = (spots) => {
 
 
 // Thunk action creators
-export const loadSpotById = (id) => async (dispatch) => { 
+export const loadSpotById = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${id}`);
     const spot = await response.json()
 
@@ -31,8 +31,10 @@ const singleSpotReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_A_SPOT:
-            newState = {...state};
-            newState.spot = action.payload;
+            newState = {
+                ...state,
+                spot: action.payload
+            }
             return newState;
         default:
             return state
