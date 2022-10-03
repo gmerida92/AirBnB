@@ -18,6 +18,7 @@ function SingleSpot({ sessionUser }) {
         dispatch(singleSpotActions?.loadSpotById(id));
     }, [dispatch, id]);
 
+    let imageArr = loadSpot?.Images;
 
     return (
         <div>
@@ -33,11 +34,15 @@ function SingleSpot({ sessionUser }) {
                 <p>{`${loadSpot?.city}, ${loadSpot?.state}, ${loadSpot?.country}`}</p>
             </div>
             <div>
-                <img
-                    className='spot-image'
-                    src={loadSpot?.Images[0]?.url}
-                    alt={loadSpot?.name}
-                />
+                {imageArr?.map((imageDetails) => {
+                        return (
+                            <img
+                                className='spot-image'
+                                src={imageDetails?.url}
+                                alt={imageDetails?.id}
+                            />
+                        )
+                    })}
             </div>
             <div>
                 <p>{`Hosted by ${loadSpot?.Owner?.firstName} ${loadSpot?.Owner?.lastName}`}</p>
