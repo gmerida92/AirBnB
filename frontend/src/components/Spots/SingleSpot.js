@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import * as singleSpotActions from '../../store/singlespot';
+import * as reviewActions from '../../store/reviews'
 import ReviewsForSpot from '../Reviews/ReviewsForSpot';
 import AddReviewFormModal from '../Reviews/ReviewsByUser/ModifyingButtons/AddReviewModal';
 
@@ -11,15 +12,13 @@ import "./spots.css"
 function SingleSpot({ sessionUser }) {
     const { id } = useParams();
     const dispatch = useDispatch();
+    let loadSpot = useSelector((state) => state?.singleSpot?.spot) || ''
 
     useEffect(() => {
         dispatch(singleSpotActions?.loadSpotById(id));
     }, [dispatch, id]);
 
-    let loadSpot = useSelector((state) => state?.singleSpot?.spot)
 
-    // if (loadSpot) {
-    // } else { return null }
     return (
         <div>
             <div>
@@ -27,7 +26,7 @@ function SingleSpot({ sessionUser }) {
             </div>
             <div>
                 <p><i className="fa-sharp fa-solid fa-star"></i>
-                    {`${loadSpot?.avgRating}`}</p>
+                    {`${loadSpot?.avgStarRating}`}</p>
                 <p>
                     <i className="fa-sharp fa-solid fa-circle"></i>
                     {`${loadSpot?.numReviews} reviews`}</p>
@@ -53,7 +52,7 @@ function SingleSpot({ sessionUser }) {
                 </p>
                 <div>
                     <p><i className="fa-sharp fa-solid fa-star"></i>
-                        {`${loadSpot?.avgRating}`}</p>
+                        {`${loadSpot?.avgStarRating}`}</p>
                     <p>
                         <i className="fa-sharp fa-solid fa-circle"></i>
                         {`${loadSpot?.numReviews} reviews`}</p>

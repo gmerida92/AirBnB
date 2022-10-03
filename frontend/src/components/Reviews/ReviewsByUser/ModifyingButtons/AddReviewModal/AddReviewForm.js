@@ -2,12 +2,14 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import * as reviewActions from '../../../../../store/reviews'
+import * as singleSpotActions from '../../../../../store/singlespot';
 
 
 function AddReviewForm({ loadSpotId }) {
     const dispatch = useDispatch();
     const [review, setReview] = useState('');
     const [stars, setStars] = useState('');
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,6 +21,7 @@ function AddReviewForm({ loadSpotId }) {
         
         return dispatch(reviewActions.createReview(loadSpotId, newReview))
         .then(() => {
+            dispatch(singleSpotActions?.loadSpotById(loadSpotId));
             setReview('');
             setStars('');
         })

@@ -2,13 +2,15 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import * as reviewAction from '../../../store/reviews'
+import * as reviewActions from '../../../store/reviews';
+import * as singleSpotActions from '../../../store/singlespot';
 
 function ReviewsForSpot({ loadSpotId }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(reviewAction.loadReviewsBySpotId(loadSpotId))
+        dispatch(reviewActions.loadReviewsBySpotId(loadSpotId))
+        dispatch(singleSpotActions?.loadSpotById(loadSpotId));
     }, [dispatch, loadSpotId]);
 
     let loadReviews = useSelector((state) => state?.reviews?.review) || ''

@@ -135,9 +135,9 @@ router.get('/:id', async (req, res, next) => {
         where: { spotId: spot.dataValues.id }
     });
 
-    const avgStarRating = sumStars / countReviews;
+    const avgRating = sumStars / countReviews;
     spot.dataValues.numReviews = countReviews;
-    spot.dataValues.avgRating = avgStarRating;
+    spot.dataValues.avgStarRating = avgRating;
 
     res.json(spot);
 });
