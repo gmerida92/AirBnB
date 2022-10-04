@@ -135,9 +135,9 @@ router.get('/:id', async (req, res, next) => {
         where: { spotId: spot.dataValues.id }
     });
 
-    const avgStarRating = sumStars / countReviews;
+    const avgRating = sumStars / countReviews;
     spot.dataValues.numReviews = countReviews;
-    spot.dataValues.avgRating = avgStarRating;
+    spot.dataValues.avgStarRating = avgRating;
 
     res.json(spot);
 });
@@ -146,7 +146,7 @@ router.get('/:id', async (req, res, next) => {
 // Create a Spot
 router.post('/', [restoreUser, requireAuthentication, validateSpot], async (req, res) => {
     const user = req.user
-    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body;
 
     const newSpot = await Spot.create({
         ownerId: user.id,
@@ -159,10 +159,11 @@ router.post('/', [restoreUser, requireAuthentication, validateSpot], async (req,
         name,
         description,
         price,
+        previewImage
     })
 
     const spot = await Spot.findByPk(newSpot.id, {
-        attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt']
+        attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'previewImage', 'price', 'createdAt', 'updatedAt']
     })
 
     res.status(201)
@@ -196,11 +197,14 @@ router.post('/:id/images', [restoreUser, requireAuthentication, requireAuthoriza
 router.put('/:id', [restoreUser, requireAuthentication, requireAuthorizationSpot, validateSpot], async (req, res) => {
     const user = req.user;
     const { id } = req.params;
-    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body;
 
-    const spot = await Spot.findByPk(id, {
-        attributes: { exclude: ['previewImage'] }
-    });
+    // const spot = await Spot.findByPk(id, {
+    //     attributes: { exclude: ['previewImage'] }
+    // });
+
+    const spot = await Spot.findByPk(id);
+
 
     spot.update({
         address: address,
@@ -212,6 +216,7 @@ router.put('/:id', [restoreUser, requireAuthentication, requireAuthorizationSpot
         name: name,
         description: description,
         price: price,
+        previewImage: previewImage
     })
 
     res.json(spot);

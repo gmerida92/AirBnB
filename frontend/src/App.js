@@ -1,35 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-// import LoginFormPage from './components/LoginFormPage';
-import SignupFormPage from './components/SignupFormPage';
+
 import * as sessionActions from "./store/session";
+
+
 import Navigation from './components/Navigation'
+import Spots from './components/Spots'
+import SingleSpot from './components/Spots/SingleSpot'
+import Listings from './components/Spots/Listings';
+import Profile from './components/Profile';
 
 function App() {
   const dispatch = useDispatch();
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+
 
   useEffect(() => {
-    dispatch(sessionActions.restoreUser())
+    dispatch(sessionActions?.restoreUser())
       .then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  // return isLoaded && (
+  let sessionUser = useSelector((state) => state?.session?.user) || ''
+
+
   return (
-    <>
+    <div>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          {/* <Route exact path='/api/users/login'>
-            <LoginFormPage />
-          </Route> */}
-          <Route path='/api/users/signup'>
-            <SignupFormPage />
-          </Route>
-        </Switch>
-      )}
-    </>
+
+      <Switch>
+        <Route exact path={'/api/users/myaccount'}>
+          <Profile sessionUser={sessionUser} />
+        </Route>
+        <Route exact path={'/api/users/myaccount/spots'}>
+          <Listings sessionUser={sessionUser}/>
+        </Route>
+        <Route exact path='/'>
+          <Spots />
+        </Route>
+        <Route exact path={'/api/spots/:id'}>
+          <SingleSpot sessionUser={sessionUser} />
+        </Route>
+      </Switch>
+    </div>
 
   );
 }

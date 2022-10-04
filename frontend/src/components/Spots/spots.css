@@ -1,0 +1,8 @@
+.spot-container {
+    display: flex;
+}
+
+.spot-image {
+    height: 50px;
+    width: 50px;
+}

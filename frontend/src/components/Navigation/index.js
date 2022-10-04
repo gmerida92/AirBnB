@@ -1,36 +1,29 @@
 import React from 'react';
+// import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
-import LoginFormModal from '../LoginFormModal';
+import ProfileButton from './ProfileButton/ProfileButton';
+import AddListingFormModal from '../Spots/Listings/ModifyButtons/AddListingModal';
 import './Navigation.css';
 
 
-function Navigation({ isLoaded }) {
+function Navigation() {
+    const sessionUser = useSelector((state) => state?.session?.user) || ''
 
-    const sessionUser = useSelector((state) => state.session.user);
-    let sessionLinks;
-
-    if (sessionUser) {
-        sessionLinks = (
-            <ProfileButton user={sessionUser} />
-        );
-    } else {
-        sessionLinks = (
-            <>
-                <LoginFormModal />
-                <NavLink to='/api/users/signup'>Sign-up</NavLink>
-            </>
-        );
-    }
 
     return (
-        <ul>
-            <li>
-                <NavLink exact to="/">Home</NavLink>
-                {isLoaded && sessionLinks}
-            </li>
-        </ul>
+        <div className='header'>
+            <div className='header_home'>
+                <NavLink exact to="/">
+                    <i className="fa-brands fa-airbnb"></i>
+                    airbnb
+                </NavLink>
+            </div>
+            {sessionUser && <div> <AddListingFormModal /> </div>}
+            <div className='header_user'>
+                <ProfileButton sessionUser={sessionUser} />
+            </div>
+        </div>
     );
 };
 

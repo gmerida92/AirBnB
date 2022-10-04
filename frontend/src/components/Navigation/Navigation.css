@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    background-color: white;
+    z-index: 100;
+    width: 100%;
+    top: 0;
+}
+
+.header_home {
+    object-fit: contain;
+    height: 100%;
+    margin-left: 20px;
+}
