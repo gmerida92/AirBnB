@@ -20,6 +20,8 @@ function Listings({ sessionUser }) {
 
     return (
         <div>
+            {!Object?.keys(userSpots)?.length && <div>No Listings At This Moment</div>}
+            <h1>Your Listings</h1>
             {Object?.keys(userSpots)?.map((spotId) => {
                 return (
                     <div>
