@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import * as userReviewActions from '../../../../../store/userReviews'
 
 
-function EditReviewForm({ userReviewId }) {
+function EditReviewForm({ userReviewId, onSubmit }) {
     const dispatch = useDispatch();
     const currentReview = useSelector((state) => state?.userReviews?.userReview[userReviewId]) || ''
     const [review, setReview] = useState(currentReview.review);
@@ -23,6 +23,7 @@ function EditReviewForm({ userReviewId }) {
             .then(() => {
                 setReview('');
                 setStars('');
+                onSubmit();
             })
     };
 

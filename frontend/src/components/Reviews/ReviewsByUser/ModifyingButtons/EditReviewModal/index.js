@@ -10,7 +10,7 @@ function EditReviewFormModal({ userReviewId }) {
             <button onClick={() => setShowModal(true)}>Update</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <EditReviewForm userReviewId={userReviewId}/>
+                    <EditReviewForm userReviewId={userReviewId} onSubmit={() => setShowModal(false)}/>
                 </Modal>
             )}
         </>

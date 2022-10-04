@@ -5,7 +5,7 @@ import * as reviewActions from '../../../../../store/reviews'
 import * as singleSpotActions from '../../../../../store/singlespot';
 
 
-function AddReviewForm({ loadSpotId }) {
+function AddReviewForm({ loadSpotId, onSubmit }) {
     const dispatch = useDispatch();
     const [review, setReview] = useState('');
     const [stars, setStars] = useState('');
@@ -24,6 +24,7 @@ function AddReviewForm({ loadSpotId }) {
             dispatch(singleSpotActions?.loadSpotById(loadSpotId));
             setReview('');
             setStars('');
+            onSubmit();
         })
     };
 

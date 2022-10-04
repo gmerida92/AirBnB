@@ -1,11 +1,16 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 // import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session'
 
 
 function DemoLogin() {
     const dispatch = useDispatch();
+
+    const sessionUser = useSelector((state) => state.session.user);
+    if (sessionUser) return <Redirect to="/" />;
 
     const user = {
         credential: 'demo@user.io',
@@ -14,7 +19,7 @@ function DemoLogin() {
 
 
     const handleClick = () => {
-        dispatch(sessionActions.login(user));
+        return dispatch(sessionActions.login(user));
     };
 
 

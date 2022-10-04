@@ -10,7 +10,7 @@ function AddReviewFormModal({ loadSpotId }) {
             <button onClick={() => setShowModal(true)}>Add Review</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <AddReviewForm loadSpotId={loadSpotId}/>
+                    <AddReviewForm loadSpotId={loadSpotId} onSubmit={() => setShowModal(false)}/>
                 </Modal>
             )}
         </>

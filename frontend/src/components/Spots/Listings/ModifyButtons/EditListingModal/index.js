@@ -10,7 +10,7 @@ function EditListingFormModal({ userSpotId }) {
       <button onClick={() => setShowModal(true)}>Update</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditListingForm userSpotId={userSpotId} />
+          <EditListingForm userSpotId={userSpotId} onSubmit={() => setShowModal(false)} />
         </Modal>
       )}
     </>

@@ -8,28 +8,33 @@ import DeleteReview from './ModifyingButtons/DeleteReview';
 
 function ReviewsByUser() {
     const dispatch = useDispatch();
+    let userReviews = useSelector((state) => state?.userReviews?.userReview) || ''
 
     useEffect(() => {
         dispatch(userReviewActions?.loadReviewsByUser());
     }, [dispatch]);
 
-    let userReviews = useSelector((state) => state?.userReviews?.userReview) || ''
+
 
     return (
         <div>
             {Object?.keys(userReviews)?.map((reviewId) => {
                 return (
                     <div>
-                        <NavLink key={reviewId} to={`/api/spots/${userReviews[reviewId]?.Spot?.id}`}>
-                            <div>
-                                <img
-                                    className='spot-image'
-                                    src={userReviews[reviewId]?.Images[0]?.url}
-                                    alt={userReviews[reviewId]?.name}
-                                />
-                                {`${userReviews[reviewId]?.Spot?.name}`}
-                            </div>
-                        </NavLink>
+                        {userReviews[reviewId]?.Images?.map((imageDetails) => {
+                            return (
+                                <NavLink key={imageDetails.id} to={`/api/spots/${userReviews[reviewId]?.Spot?.id}`}>
+                                    <div>
+                                        <img
+                                            className='spot-image'
+                                            src={imageDetails?.url}
+                                            alt={userReviews[reviewId]?.Spot?.name}
+                                        />
+                                        {`${userReviews[reviewId]?.Spot?.name}`}
+                                    </div>
+                                </NavLink>
+                            )
+                        })}
                         <div>
                             <p>{`${userReviews[reviewId]?.Spot?.address}`}</p>
                             <p>{`${userReviews[reviewId]?.Spot?.city}, ${userReviews[reviewId]?.Spot?.state}`}</p>
@@ -38,10 +43,8 @@ function ReviewsByUser() {
                             <p>{`${userReviews[reviewId]?.stars}`}</p>
                             <p>{`${userReviews[reviewId]?.review}`}</p>
                         </div>
-                        <EditReviewFormModal key={userReviews[reviewId]?.name} userReviewId={userReviews[reviewId]?.id}/>
-                        <DeleteReview userReviewId={userReviews[reviewId]?.id}/>
-                        {/* <EditReviewFormModal key={userSpots[spotId]?.name} userSpotId={userSpots[spotId]?.id}/>
-                        <DeleteListing userSpotId={userSpots[spotId]?.id}/> */}
+                        <EditReviewFormModal key={userReviews[reviewId]?.name} userReviewId={userReviews[reviewId]?.id} />
+                        <DeleteReview userReviewId={userReviews[reviewId]?.id} />
                     </div>
                 )
             })}

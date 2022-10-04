@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 // import * as sessionActions from '../../../../../store/session';
 import * as spotActions from '../../../../../store/spots';
 import { useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
+// import { Modal } from '../../../../../context/Modal';
 // import { useSelector } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 
 
-function AddListingForm() {
+function AddListingForm({ onSubmit }) {
     const dispatch = useDispatch();
-    // const sessionUser = useSelector(state => state?.session?.user)
+    // const sessionUser = useSelector(state => state?.session?.user);
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -22,10 +23,10 @@ function AddListingForm() {
     const [previewImage, setPreviewImage] = useState('');
     // const [errors, setErrors] = useState([]);
 
-    // if (sessionUser) return <Redirect to='/' />;
+    // if (sessionUser) return <Redirect to='/api/users/myaccount/spots' />;
 
-    
-    
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let newSpot = {
@@ -53,11 +54,13 @@ function AddListingForm() {
                 setDescription('');
                 setPrice('');
                 setPreviewImage('');
+                onSubmit();
+                // return <Redirect to='/api/users/myaccount/spots' />
             })
-            // .catch(async (res) => {
-            //     const data = await res.json();
-            //     if (data && data.errors) setErrors(data.errors);
-            // });
+        // .catch(async (res) => {
+        //     const data = await res.json();
+        //     if (data && data.errors) setErrors(data.errors);
+        // });
     };
 
     return (

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 
 
-function EditListingForm({ userSpotId }) {
+function EditListingForm({ userSpotId, onSubmit }) {
     const dispatch = useDispatch();
     const currentSpot = useSelector((state) => state?.spots?.spot[userSpotId]) || ''
     const [address, setAddress] = useState(currentSpot.address);
@@ -52,6 +52,7 @@ function EditListingForm({ userSpotId }) {
                 setDescription('');
                 setPrice('');
                 setPreviewImage('');
+                onSubmit();
             })
         // .catch(async (res) => {
         //     const data = await res.json();
