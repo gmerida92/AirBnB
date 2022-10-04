@@ -35,6 +35,7 @@ function SignupForm() {
                 setUsername('');
                 setPassword('');
                 setConfirmPassword('');
+                dispatch(sessionActions?.restoreUser())
             })
             .catch(async (res) => {
                 const data = await res.json();

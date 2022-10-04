@@ -3,15 +3,18 @@ import { NavLink } from 'react-router-dom';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import * as userReviewActions from '../../../store/userReviews'
+import * as spotActions from '../../../store/spots'
 import EditReviewFormModal from "./ModifyingButtons/EditReviewModal";
 import DeleteReview from './ModifyingButtons/DeleteReview';
 
 function ReviewsByUser() {
     const dispatch = useDispatch();
     let userReviews = useSelector((state) => state?.userReviews?.userReview) || ''
+    let allSpots = useSelector((state) => state?.spots?.spot) || ''
 
     useEffect(() => {
         dispatch(userReviewActions?.loadReviewsByUser());
+        dispatch(spotActions?.loadAllSpots())
     }, [dispatch]);
 
 
@@ -21,26 +24,35 @@ function ReviewsByUser() {
             {Object?.keys(userReviews)?.map((reviewId) => {
                 return (
                     <div>
-                        {userReviews[reviewId]?.Images?.map((imageDetails) => {
-                            return (
-                                <NavLink key={imageDetails.id} to={`/api/spots/${userReviews[reviewId]?.Spot?.id}`}>
+                        <div>
+                            <NavLink to={`/api/spots/${userReviews[reviewId]?.Spot?.id}`}>
+                                <img
+                                    className='spot-image'
+                                    src={allSpots[userReviews[reviewId]?.Spot?.id]?.previewImage}
+                                    alt={allSpots[userReviews[reviewId]?.Spot?.id]?.name}
+                                />
+                                {`${userReviews[reviewId]?.Spot?.name}`}
+                            </NavLink>
+                        </div>
+                        <div>
+                            <p>{`${userReviews[reviewId]?.Spot?.address}`}</p>
+                            <p>{`${userReviews[reviewId]?.Spot?.city}, ${userReviews[reviewId]?.Spot?.state}`}</p>
+                        </div>
+                        <div>
+                            <p>
+                                <i className="fa-sharp fa-solid fa-star"></i>
+                                {`${userReviews[reviewId]?.stars}`}</p>
+                            {userReviews[reviewId]?.Images?.map((imageDetails) => {
+                                return (
                                     <div>
                                         <img
                                             className='spot-image'
                                             src={imageDetails?.url}
                                             alt={userReviews[reviewId]?.Spot?.name}
                                         />
-                                        {`${userReviews[reviewId]?.Spot?.name}`}
                                     </div>
-                                </NavLink>
-                            )
-                        })}
-                        <div>
-                            <p>{`${userReviews[reviewId]?.Spot?.address}`}</p>
-                            <p>{`${userReviews[reviewId]?.Spot?.city}, ${userReviews[reviewId]?.Spot?.state}`}</p>
-                        </div>
-                        <div>
-                            <p>{`${userReviews[reviewId]?.stars}`}</p>
+                                )
+                            })}
                             <p>{`${userReviews[reviewId]?.review}`}</p>
                         </div>
                         <EditReviewFormModal key={userReviews[reviewId]?.name} userReviewId={userReviews[reviewId]?.id} />
@@ -48,7 +60,8 @@ function ReviewsByUser() {
                     </div>
                 )
             })}
-        </div >)
+        </div>
+    )
 }
 
 export default ReviewsByUser;

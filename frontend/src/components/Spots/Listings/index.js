@@ -34,7 +34,9 @@ function Listings({ sessionUser }) {
                                 </div>
                                 <div>
                                     <p>{`${userSpots[spotId]?.city}, ${userSpots[spotId]?.state}`}</p>
-                                    <p>{`${userSpots[spotId]?.avgRating}`}</p>
+                                    {userSpots[spotId]?.avgRating ? <p><i className="fa-sharp fa-solid fa-star"></i>{`${userSpots[spotId]?.avgRating}`}</p> : <p>
+                                        <i className="fa-sharp fa-solid fa-star"></i>
+                                        New</p>}
                                 </div>
                                 <div>
                                     {`${userSpots[spotId]?.price} night`}

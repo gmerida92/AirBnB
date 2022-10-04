@@ -17,7 +17,7 @@ function Profile({ sessionUser }) {
                 <h4>{`${sessionUser?.username}`}</h4>
                 <h4>{`${sessionUser?.email}`}</h4>
             </div>
-            <div>Review</div>
+            <div>Your Reviews</div>
             <ReviewsByUser />
         </div>
     )

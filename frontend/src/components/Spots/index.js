@@ -18,32 +18,39 @@ function Spots() {
 
     // if (loadSpots) {
     // }
-        return (
-            <div className='spot-container'>
-                {Object?.keys(loadSpots)?.map((spotId) => {
-                    return (
-                        <NavLink key={spotId} to={`/api/spots/${loadSpots[spotId]?.id}`}>
+    return (
+        <div className='spot-container'>
+            {Object?.keys(loadSpots)?.map((spotId) => {
+                return (
+                    <NavLink key={spotId} to={`/api/spots/${loadSpots[spotId]?.id}`}>
+                        <div>
                             <div>
-                                <div>
-                                    <img
-                                        className='spot-image'
-                                        src={loadSpots[spotId]?.previewImage}
-                                        alt={loadSpots[spotId]?.name}
-                                    />
-                                </div>
-                                <div>
-                                    <p>{`${loadSpots[spotId]?.city}, ${loadSpots[spotId]?.state}`}</p>
-                                    <p>{`${loadSpots[spotId]?.avgRating}`}</p>
-                                </div>
-                                <div>
-                                    {`$${loadSpots[spotId]?.price} night`}
-                                </div>
+                                <img
+                                    className='spot-image'
+                                    src={loadSpots[spotId]?.previewImage}
+                                    alt={loadSpots[spotId]?.name}
+                                />
                             </div>
-                        </NavLink>
-                    )
-                })}
-            </div>
-        )
+                            <div>
+                                <p>{`${loadSpots[spotId]?.city}, ${loadSpots[spotId]?.state}`}</p>
+                                {loadSpots[spotId]?.avgRating &&
+                                    <p>
+                                        <i className="fa-sharp fa-solid fa-star"></i>
+                                        {`${loadSpots[spotId]?.avgRating}`}</p>}
+                                {!loadSpots[spotId]?.avgRating &&
+                                    <p>
+                                        <i className="fa-sharp fa-solid fa-star"></i>
+                                        New</p>}
+                            </div>
+                            <div>
+                                {`$${loadSpots[spotId]?.price} night`}
+                            </div>
+                        </div>
+                    </NavLink>
+                )
+            })}
+        </div>
+    )
 };
 
 export default Spots;
