@@ -23,12 +23,10 @@ function Navigation() {
 
             <div className='header_user_button'>
                 {sessionUser &&
-                <span className='host_button'>
-                    <AddListingFormModal />
-                </span>}
-                <div>
-                    <ProfileButton sessionUser={sessionUser} />
-                </div>
+                    <span className='host_button'>
+                        <AddListingFormModal />
+                    </span>}
+                <ProfileButton sessionUser={sessionUser} />
             </div>
 
         </div>
