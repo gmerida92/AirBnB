@@ -78,7 +78,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    // required
+                // required
                 />
             </label>
             <label>
@@ -87,7 +87,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    // required
+                // required
                 />
             </label>
             <label>
@@ -96,7 +96,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
-                    // required
+                // required
                 />
             </label>
             <label>
@@ -105,25 +105,27 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
-                    // required
+                // required
                 />
             </label>
             <label>
                 Latitude
                 <input
-                    type="text"
+                    type="number"
+                    step=".000001"
                     value={lat}
                     onChange={(e) => setLatitude(e.target.value)}
-                    // required
+                // required
                 />
             </label>
             <label>
                 Longitude
                 <input
-                    type="text"
+                    type="number"
+                    step=".000001"
                     value={lng}
                     onChange={(e) => setLongitude(e.target.value)}
-                    // required
+                // required
                 />
             </label>
             <label>
@@ -132,7 +134,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    // required
+                // required
                 />
             </label>
             <label>
@@ -141,7 +143,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    // required
+                // required
                 />
             </label>
             <label>
@@ -150,7 +152,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
-                    // required
+                // required
                 />
             </label>
             <label>
@@ -159,7 +161,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={previewImage}
                     onChange={(e) => setPreviewImage(e.target.value)}
-                    // required
+                // required
                 />
             </label>
             <button type="submit">Create Listing</button>
