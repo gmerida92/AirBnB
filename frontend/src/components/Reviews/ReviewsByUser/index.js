@@ -22,11 +22,7 @@ function ReviewsByUser() {
     return (
         <div>
             <h3>Your Reviews:</h3>
-<<<<<<< HEAD
-            {/* {!Object?.keys(userReviews)?.length && <div>No Reviews At This Moment</div>} */}
-=======
-            {Object?.keys(userReviews)?.length === 0 && <div>No Reviews At This Moment</div>}
->>>>>>> 13_Error_Validating_Login
+            {!Object?.keys(userReviews)?.length && <div>No Reviews At This Moment</div>}
             {Object?.keys(userReviews)?.map((reviewId) => {
                 return (
                     <div>
