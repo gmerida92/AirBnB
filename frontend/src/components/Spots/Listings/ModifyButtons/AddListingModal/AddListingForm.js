@@ -21,7 +21,7 @@ function AddListingForm({ onSubmit }) {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [previewImage, setPreviewImage] = useState('');
-    // const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
 
     // if (sessionUser) return <Redirect to='/api/users/myaccount/spots' />;
 
@@ -41,7 +41,7 @@ function AddListingForm({ onSubmit }) {
             price,
             previewImage
         }
-        // setErrors([]);
+        setErrors([]);
         return dispatch(spotActions.createSpot(newSpot))
             .then(() => {
                 setAddress('');
@@ -57,26 +57,28 @@ function AddListingForm({ onSubmit }) {
                 onSubmit();
                 // return <Redirect to='/api/users/myaccount/spots' />
             })
-        // .catch(async (res) => {
-        //     const data = await res.json();
-        //     if (data && data.errors) setErrors(data.errors);
-        // });
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) {
+                    setErrors(data.errors)
+                } else { setErrors([data.message]) };
+            });
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            {/* <ul>
-                {errors.map((error, idx) =>
-                    <li key={idx}>{error}</li>
+            <ul>
+                {Object.keys(errors).length > 0 && Object.keys(errors).map((errorKey, idx) =>
+                    <li key={idx}>{errors[errorKey]}</li>
                 )}
-            </ul> */}
+            </ul>
             <label>
                 Address
                 <input
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -85,7 +87,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -94,7 +96,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -103,7 +105,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -112,7 +114,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={lat}
                     onChange={(e) => setLatitude(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -121,7 +123,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={lng}
                     onChange={(e) => setLongitude(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -130,7 +132,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -139,7 +141,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -148,7 +150,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -157,7 +159,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={previewImage}
                     onChange={(e) => setPreviewImage(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <button type="submit">Create Listing</button>

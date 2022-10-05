@@ -28,19 +28,21 @@ function SignupForm() {
                 username,
                 password
             }))
-            .then(() => {
-                setFirstName('');
-                setLastName('');
-                setEmail('');
-                setUsername('');
-                setPassword('');
-                setConfirmPassword('');
-                dispatch(sessionActions?.restoreUser())
-            })
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors)
-            });
+                .then(() => {
+                    setFirstName('');
+                    setLastName('');
+                    setEmail('');
+                    setUsername('');
+                    setPassword('');
+                    setConfirmPassword('');
+                    dispatch(sessionActions?.restoreUser())
+                })
+                .catch(async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) {
+                        setErrors(data.errors)
+                    } else { setErrors([data.message]) };
+                });
         }
         return setErrors(['Confirm Password field must be the same as the Password field'])
     };
@@ -48,7 +50,9 @@ function SignupForm() {
     return (
         <form onSubmit={handleSubmit}>
             <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                {Object.keys(errors).length > 0 && Object.keys(errors).map((errorKey, idx) =>
+                    <li key={idx}>{errors[errorKey]}</li>
+                )}
             </ul>
             <label>
                 First Name
@@ -56,7 +60,7 @@ function SignupForm() {
                     type='text'
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -65,7 +69,7 @@ function SignupForm() {
                     type='text'
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -74,7 +78,7 @@ function SignupForm() {
                     type='text'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -83,7 +87,7 @@ function SignupForm() {
                     type='text'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -92,16 +96,16 @@ function SignupForm() {
                     type='password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
-                Confimrm Password
+                Confirm Password
                 <input
                     type='password'
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <button type='submit'>Sign up</button>
