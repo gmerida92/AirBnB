@@ -23,15 +23,17 @@ function LoginForm() {
             })
             .catch(async (res) => {
                 const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+                if (data && data.errors) {
+                    setErrors(data.errors)
+                } else { setErrors([data.message]) };
             });
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <ul>
-                {errors.map((error, idx) =>
-                    <li key={idx}>{error}</li>
+                {Object.keys(errors).length > 0 && Object.keys(errors).map((errorKey, idx) =>
+                    <li key={idx}>{errors[errorKey]}</li>
                 )}
             </ul>
             <label>
@@ -40,7 +42,7 @@ function LoginForm() {
                     type="text"
                     value={credential}
                     onChange={(e) => setCredential(e.target.value)}
-                    required
+                // required
                 />
             </label>
             <label>
@@ -49,7 +51,7 @@ function LoginForm() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
+                // required
                 />
             </label>
             <button type="submit">Log In</button>
