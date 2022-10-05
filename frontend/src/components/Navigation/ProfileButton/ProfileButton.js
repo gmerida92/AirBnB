@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../../store/session';
 import LoginFormModal from '../../LoginFormModal';
 import SignupFormModal from '../../SignupFormModal';
 import DemoLogin from '../../DemoLogin/DemoLogin';
+import './ProfileButton.css'
 
 function ProfileButton({ sessionUser }) {
     const dispatch = useDispatch();
@@ -31,24 +32,37 @@ function ProfileButton({ sessionUser }) {
 
     const logout = (e) => {
         dispatch(sessionActions.logout());
+        setShowMenu(false);
         return <Redirect to="/" />
     };
 
 
     if (sessionUser) {
         sessionLinks = (
-            <div onClick={(e) => e.stopPropagation()}>
-                <Link to="/api/users/myaccount">Profile</Link>
-                <Link to="/api/users/myaccount/spots">Listings</Link>
-                <Link to="/" onClick={logout}>Log Out</Link>
+            <div className='user_only_links' onClick={(e) => e.stopPropagation()}>
+                <div className='user_link_container'>
+                    <NavLink id='user_links' to="/api/users/myaccount">Profile</NavLink>
+                </div>
+                <div className='user_link_container'>
+                    <NavLink id='user_links' to="/api/users/myaccount/spots">Listings</NavLink>
+                </div>
+                <div className='user_link_container'>
+                    <NavLink id='user_links' to="/" onClick={logout}>Log Out</NavLink>
+                </div>
             </div>
         );
     } else {
         sessionLinks = (
             <div onClick={(e) => e.stopPropagation()}>
-                <DemoLogin />
-                <LoginFormModal />
-                <SignupFormModal />
+                <div>
+                    <DemoLogin />
+                </div>
+                <div>
+                    <LoginFormModal />
+                </div>
+                <div>
+                    <SignupFormModal />
+                </div>
             </div>
         );
     }
@@ -57,8 +71,12 @@ function ProfileButton({ sessionUser }) {
     return (
         <>
             <button onClick={openMenu}>
-                <i className="fa-solid fa-bars"></i>
-                <i className="fa-solid fa-circle-user"></i>
+                <span id='list_bars'>
+                    <i className="fa-solid fa-bars fa-2x"></i>
+                </span>
+                <span>
+                    <i className="fa-solid fa-circle-user fa-2x"></i>
+                </span>
             </button>
             {showMenu && sessionLinks}
         </>

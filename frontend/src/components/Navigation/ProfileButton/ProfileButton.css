@@ -1,0 +1,18 @@
+.user_only_links {
+    display: flex;
+    flex-direction: column;
+}
+
+.user_link_container {
+    padding-top: 5px;
+}
+
+#user_links{
+    color:#484848;
+    font-weight:600;
+    text-decoration: none;
+}
+
+#list_bars {
+margin-right: 10px;
+}
