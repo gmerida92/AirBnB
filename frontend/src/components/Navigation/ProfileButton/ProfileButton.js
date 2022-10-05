@@ -37,7 +37,7 @@ function ProfileButton({ sessionUser }) {
 
     if (sessionUser) {
         sessionLinks = (
-            <div>
+            <div onClick={(e) => e.stopPropagation()}>
                 <Link to="/api/users/myaccount">Profile</Link>
                 <Link to="/api/users/myaccount/spots">Listings</Link>
                 <Link to="/" onClick={logout}>Log Out</Link>

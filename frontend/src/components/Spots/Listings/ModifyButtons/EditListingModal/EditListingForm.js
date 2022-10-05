@@ -18,7 +18,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
     const [description, setDescription] = useState(currentSpot.description);
     const [price, setPrice] = useState(currentSpot.price);
     const [previewImage, setPreviewImage] = useState(currentSpot.previewImage);
-    // const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
 
     // if (sessionUser) return <Redirect to='/' />;
 
@@ -39,7 +39,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
             previewImage
         }
 
-        // setErrors([]);
+        setErrors([]);
         return dispatch(spotActions.editASpot(spotEdit, userSpotId))
             .then(() => {
                 setAddress('');
@@ -54,19 +54,21 @@ function EditListingForm({ userSpotId, onSubmit }) {
                 setPreviewImage('');
                 onSubmit();
             })
-        // .catch(async (res) => {
-        //     const data = await res.json();
-        //     if (data && data.errors) setErrors(data.errors);
-        // });
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) {
+                    setErrors(data.errors)
+                } else { setErrors([data.message]) };
+            });
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            {/* <ul>
-                {errors.map((error, idx) =>
-                    <li key={idx}>{error}</li>
+            <ul>
+                {Object.keys(errors).length > 0 && Object.keys(errors).map((errorKey, idx) =>
+                    <li key={idx}>{errors[errorKey]}</li>
                 )}
-            </ul> */}
+            </ul>
             <label>
                 Address
                 <input
@@ -74,7 +76,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     placeholder={currentSpot.address}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -84,7 +86,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     placeholder={currentSpot.city}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -94,7 +96,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={state}
                     onChange={(e) => setState(e.target.value)}
                     placeholder={currentSpot.state}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -104,7 +106,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
                     placeholder={currentSpot.country}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -114,7 +116,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={lat}
                     onChange={(e) => setLatitude(e.target.value)}
                     placeholder={currentSpot.lat}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -124,7 +126,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={lng}
                     onChange={(e) => setLongitude(e.target.value)}
                     placeholder={currentSpot.lng}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -134,7 +136,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder={currentSpot.name}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -144,7 +146,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder={currentSpot.description}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -154,7 +156,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     placeholder={currentSpot.price}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -164,7 +166,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={previewImage}
                     onChange={(e) => setPreviewImage(e.target.value)}
                     placeholder={currentSpot.previewImage}
-                    required
+                    // required
                 />
             </label>
             <button type="submit">Update Listing</button>
