@@ -39,7 +39,7 @@ function ProfileButton({ sessionUser }) {
 
     if (sessionUser) {
         sessionLinks = (
-            <div className='user_only_links' onClick={(e) => e.stopPropagation()}>
+            <div className='user_only_links_container' onClick={(e) => e.stopPropagation()}>
                 <div className='user_link_container'>
                     <NavLink id='user_links' to="/api/users/myaccount">Profile</NavLink>
                 </div>
@@ -53,7 +53,7 @@ function ProfileButton({ sessionUser }) {
         );
     } else {
         sessionLinks = (
-            <div onClick={(e) => e.stopPropagation()}>
+            <div className='nonuser_links_container' onClick={(e) => e.stopPropagation()}>
                 <div>
                     <DemoLogin />
                 </div>
@@ -69,8 +69,8 @@ function ProfileButton({ sessionUser }) {
 
 
     return (
-        <>
-            <button onClick={openMenu}>
+        <div className='profile_button_container'>
+            <button className='user_button' onClick={openMenu}>
                 <span id='list_bars'>
                     <i className="fa-solid fa-bars fa-2x"></i>
                 </span>
@@ -79,7 +79,7 @@ function ProfileButton({ sessionUser }) {
                 </span>
             </button>
             {showMenu && sessionLinks}
-        </>
+        </div>
     );
 }
 

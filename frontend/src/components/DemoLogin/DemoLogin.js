@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session'
+import './DemoLogin.css';
 
 
 function DemoLogin() {
@@ -24,7 +25,7 @@ function DemoLogin() {
 
 
     return (
-        <button onClick={handleClick}>Demo User</button>
+        <button className="demo_user_button" onClick={handleClick}>Demo User</button>
     )
 };
 
