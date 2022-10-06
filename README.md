@@ -16,15 +16,7 @@
     2. In the frontend run `npm start`
 
 ### Technologies Implemented
-<img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" alt="javaScript" width="50" height="50">
-<img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" alt="html" width="50" height="50">
-<img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original.svg" alt="css" width="50" height="50">
-<img src="https://github.com/devicons/devicon/blob/master/icons/express/express-original.svg" alt="express" width="50" height="50">
-<img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg" alt="git" width="50" height="50">
-<img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" alt="react" width="50" height="50">
-<img src="https://github.com/devicons/devicon/blob/master/icons/redux/redux-original.svg" alt="redux" width="50" height="50">
-<img src="https://github.com/devicons/devicon/blob/master/icons/npm/npm-original-wordmark.svg" alt="redux" width="50" height="50">
-<img src="https://github.com/devicons/devicon/blob/master/icons/sequelize/sequelize-original-wordmark.svg" alt="sequelize" width="50" height="50">
+<img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" alt="javaScript" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" alt="html" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original.svg" alt="css" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/express/express-original.svg" alt="express" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg" alt="git" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" alt="react" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/redux/redux-original.svg" alt="redux" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/npm/npm-original-wordmark.svg" alt="redux" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/sequelize/sequelize-original-wordmark.svg" alt="sequelize" width="50" height="50">
 
 ### Frontend Features
 * Demo User
