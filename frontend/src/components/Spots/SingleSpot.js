@@ -7,7 +7,7 @@ import * as singleSpotActions from '../../store/singlespot';
 import ReviewsForSpot from '../Reviews/ReviewsForSpot';
 import AddReviewFormModal from '../Reviews/ReviewsByUser/ModifyingButtons/AddReviewModal';
 
-import "./spots.css"
+import "./SingleSpot.css"
 
 function SingleSpot({ sessionUser }) {
     const { id } = useParams();
@@ -21,39 +21,51 @@ function SingleSpot({ sessionUser }) {
     let imageArr = loadSpot?.Images;
 
     return (
-        <div>
-            <div>
-                {`${loadSpot?.name}`}
-                {`$${loadSpot?.price} night`}
+        <div className='single_listing_container'>
+
+            <div className='single_listing_header_container'>
+                <span id='single_listing_name'><h1>{`${loadSpot?.name}`}</h1></span>
+                <span id='single_listing_price'><h3>{`$${loadSpot?.price} night`}</h3></span>
             </div>
-            <div>
-                {loadSpot?.avgStarRating && <p><i className="fa-sharp fa-solid fa-star"></i>
-                    {`${loadSpot?.avgStarRating}`}</p>}
-                <p>
+
+            <div className='single_listing_subheader_container'>
+                {loadSpot?.avgStarRating && <div><i className="fa-sharp fa-solid fa-star"></i>
+                    <span>{`${loadSpot?.avgStarRating}`}</span></div>}
+
+                <div>
                     <i className="fa-sharp fa-solid fa-circle"></i>
-                    {`${loadSpot?.numReviews} reviews`}</p>
-                <p>{`${loadSpot?.city}, ${loadSpot?.state}, ${loadSpot?.country}`}</p>
+                    <span>{`${loadSpot?.numReviews} reviews`}</span>
+                </div>
+
+                <div><span>{`${loadSpot?.city}, ${loadSpot?.state}, ${loadSpot?.country}`}</span></div>
             </div>
-            {imageArr?.length ? <div>
-                {imageArr?.map((imageDetails) => {
-                    return (
-                        <img
-                            className='spot-image'
-                            src={imageDetails?.url}
-                            alt={imageDetails?.id}
-                        />
-                    )
-                })}
-            </div> : <div><i class="fa-solid fa-camera"></i></div>}
+
+            {imageArr?.length ?
+                <div>
+                    {imageArr?.map((imageDetails) => {
+                        return (
+                            <img
+                                className='spot-image'
+                                src={imageDetails?.url}
+                                alt={imageDetails?.id}
+                            />
+                        )
+                    })}
+                </div> :
+                <div>
+                    <i class="fa-solid fa-camera"></i>
+                </div>
+            }
+
             <div>
-                <p>{`Hosted by ${loadSpot?.Owner?.firstName} ${loadSpot?.Owner?.lastName}`}</p>
+                <h2>{`Hosted by ${loadSpot?.Owner?.firstName} ${loadSpot?.Owner?.lastName}`}</h2>
             </div>
             <div>
                 <p>{`${loadSpot?.description}`}</p>
             </div>
             <div>
                 <p>
-                    Reviews
+                    <h2>Reviews</h2>
                     {sessionUser && <div> <AddReviewFormModal loadSpotId={id} /> </div>}
                 </p>
                 <div>
@@ -65,6 +77,7 @@ function SingleSpot({ sessionUser }) {
                 </div>
                 <ReviewsForSpot loadSpotId={id} />
             </div>
+
         </div >
     )
 
