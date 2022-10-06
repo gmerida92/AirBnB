@@ -6,11 +6,11 @@
     margin-right: 20px;
 }
 
-.spot-container:after {
-    /* content: ''; */
-    /* width: 804px; */
-    /* flex: auto; */
-}
+/* .spot-container:after {
+    content: '';
+    width: 804px;
+    flex: auto;
+} */
 
 .single_listing_container {
     box-sizing: border-box;
@@ -35,7 +35,7 @@
     justify-content: space-between;
     margin-top: 10px;
     margin-bottom: 5px;
-    font-size:large;
+    font-size: large;
     color: black;
 }
 
@@ -43,6 +43,6 @@
     margin-left: 5px;
 }
 
-.single_listing_price_detail_container{
+.single_listing_price_detail_container {
     color: black;
 }

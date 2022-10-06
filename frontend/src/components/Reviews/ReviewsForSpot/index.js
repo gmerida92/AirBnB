@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import * as reviewActions from '../../../store/reviews';
 import * as singleSpotActions from '../../../store/singlespot';
+import './ReviewsForSpot.css'
 
 function ReviewsForSpot({ loadSpotId }) {
     const dispatch = useDispatch();
@@ -16,13 +17,13 @@ function ReviewsForSpot({ loadSpotId }) {
     let loadReviews = useSelector((state) => state?.reviews?.review) || ''
 
     return (
-        <div>
+        <div className='listing_all_user_reviews_container'>
             {Object?.keys(loadReviews)?.map((reviewId) => {
                 return (
-                    <div>
-                        <p>{`${loadReviews[reviewId]?.User?.firstName}`}</p>
-                        <p>{`${loadReviews[reviewId]?.createdAt.slice(0,10)}`}</p>
-                        <p>{`${loadReviews[reviewId]?.review}`}</p>
+                    <div className='listing_single_user_review_container'>
+                        <div id="listing_user_review_name">{`${loadReviews[reviewId]?.User?.firstName}`}</div>
+                        <div id="listing_user_review_createdAt">{`${loadReviews[reviewId]?.createdAt.slice(0,10)}`}</div>
+                        <div id="listing_user_review_review">{`${loadReviews[reviewId]?.review}`}</div>
                     </div>
                 )
             })}
