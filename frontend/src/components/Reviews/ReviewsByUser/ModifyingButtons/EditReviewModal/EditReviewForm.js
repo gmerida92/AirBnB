@@ -22,6 +22,7 @@ function EditReviewForm({ userReviewId, onSubmit }) {
 
         return dispatch(userReviewActions.editReview(userReviewId, reviewEdits))
             .then(() => {
+                dispatch(userReviewActions?.loadReviewsByUser())
                 setReview('');
                 setStars('');
                 onSubmit();
