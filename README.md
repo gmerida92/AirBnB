@@ -1,6 +1,7 @@
 # Welcome to AirBnB Clone Project
 # Live link: [AirbnbClone](https://airbnb-backendapi-aa-proj.herokuapp.com/)
 
+I am currently learning the skills and tools needed to be a software engineer. This is the very first project I have ever completed, with many more to come. At this point in time, it is the best that I can do with my knowledge and experience at hand. This is my attempt at creating an airbnb clone. It is capable of displaying, creating, editing, and deleting locations, as well as reviews for those locations. It is a PERN Full Stack application utilizing PostgresSQL/Express for the backend and React/Redux for the frontend.
 
 
 ### Table of Contents
@@ -15,7 +16,6 @@
 <a name="getting_started"/>
 
 ### Getting Started
-
 1. [Clone Repository](https://github.com/gmerida92/AirBnB)
 2. Install Dependences `npm install`
 3. In the backend folder create a `.env` file based on the `env.example`
@@ -30,14 +30,12 @@
 <a name="technologies"/>
 
 ### Technologies Implemented
-
 <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" alt="javaScript" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" alt="html" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original.svg" alt="css" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/express/express-original.svg" alt="express" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg" alt="git" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" alt="react" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/redux/redux-original.svg" alt="redux" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/npm/npm-original-wordmark.svg" alt="redux" width="50" height="50"><img src="https://github.com/devicons/devicon/blob/master/icons/sequelize/sequelize-original-wordmark.svg" alt="sequelize" width="50" height="50">
 
 
 <a name="features"/>
 
 ### Frontend Features
-
 * Demo User
 * User
     * Sign Up New User
