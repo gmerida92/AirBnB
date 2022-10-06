@@ -59,11 +59,14 @@ I am currently learning the skills and tools needed to be a software engineer. T
 ### Frontend Overview
 
 
+
+
 <a name="challenges"/>
 
 ### Challenges and Hurdles
-
+Completing both a backend and frontend project had its ups and downs. I found the frontend project more user friendly, compared to the backend project. The frontend provided error management that would allow the SWE to find error points and debug easily, while the backend did not. Managing data in redux is very powerful and simplifys the backend data, but it does require the SWE to understand and follow foundational standards to properly create the state. Specifically, reducers needed to make deep enough copies of the backend data in order to properly render and update data in the frontend. I had to re-configure my reducers in order to fix my rendering issues. The use of modals added a new challenge, especially when it came to closing modal windows when data is submitted. Overall it was a great learning experience.
 
 <a name="future"/>
 
 ### Future Features
+In addition, restructuring my component directory to be more intuitive and efficient, there are 2 features I am interested in applying. I would like to have dynamic maps that show locations as well as clicking the locations on the map and open the listings individual page. 
