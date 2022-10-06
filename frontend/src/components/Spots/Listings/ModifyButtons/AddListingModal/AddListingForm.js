@@ -77,7 +77,7 @@ function AddListingForm({ onSubmit }) {
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                placeholder='Address'
+                    placeholder='Address'
                 />
             </label>
             <label className='form_labels'>
@@ -119,7 +119,7 @@ function AddListingForm({ onSubmit }) {
                     step=".000001"
                     value={lng}
                     onChange={(e) => setLongitude(e.target.value)}
-                    placeholder= 'Longitude'
+                    placeholder='Longitude'
                 />
             </label>
             <label className='form_labels'>

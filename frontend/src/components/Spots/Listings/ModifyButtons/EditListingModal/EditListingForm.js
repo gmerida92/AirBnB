@@ -63,13 +63,13 @@ function EditListingForm({ userSpotId, onSubmit }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='edit_lising_form_modal_input_container' onSubmit={handleSubmit}>
             <ul>
                 {Object.keys(errors).length > 0 && Object.keys(errors).map((errorKey, idx) =>
                     <li key={idx}>{errors[errorKey]}</li>
                 )}
             </ul>
-            <label>
+            <label className='form_labels'>
                 Address
                 <input
                     type="text"
@@ -79,7 +79,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     // required
                 />
             </label>
-            <label>
+            <label className='form_labels'>
                 City
                 <input
                     type="text"
@@ -89,7 +89,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     // required
                 />
             </label>
-            <label>
+            <label className='form_labels'>
                 State
                 <input
                     type="text"
@@ -99,7 +99,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     // required
                 />
             </label>
-            <label>
+            <label className='form_labels'>
                 Country
                 <input
                     type="text"
@@ -109,7 +109,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     // required
                 />
             </label>
-            <label>
+            <label className='form_labels'>
                 Latitude
                 <input
                     type="text"
@@ -119,7 +119,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     // required
                 />
             </label>
-            <label>
+            <label className='form_labels'>
                 Longitude
                 <input
                     type="text"
@@ -129,7 +129,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     // required
                 />
             </label>
-            <label>
+            <label className='form_labels'>
                 Name
                 <input
                     type="text"
@@ -139,7 +139,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     // required
                 />
             </label>
-            <label>
+            <label className='form_labels'>
                 Description
                 <textarea
                     type="text"
@@ -149,7 +149,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     // required
                 />
             </label>
-            <label>
+            <label className='form_labels'>
                 Price
                 <input
                     type="text"
@@ -159,7 +159,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     // required
                 />
             </label>
-            <label>
+            <label className='form_labels'>
                 Preview Image
                 <input
                     type="text"
@@ -169,7 +169,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     // required
                 />
             </label>
-            <button type="submit">Update Listing</button>
+            <button className='form_button' type="submit">Update Listing</button>
         </form>
     );
 }
