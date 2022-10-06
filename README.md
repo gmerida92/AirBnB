@@ -19,12 +19,12 @@
 1. [Clone Repository](https://github.com/gmerida92/AirBnB)
 2. Install Dependences `npm install`
 3. In the backend folder create a `.env` file based on the `env.example`
-4. In the backend folder set up the create the database by:
+4. In the backend folder create the database by:
     1. Running `dotenv npx sequelize db:migrate`
     2. Running `dotenv npx sequelize db:seed:all`
 5. Start the application:
-    1. In the backend run `npm start`
-    2. In the frontend run `npm start`
+    1. In the backend folder run `npm start`
+    2. In the frontend run folder `npm start`
 
 
 <a name="technologies"/>
