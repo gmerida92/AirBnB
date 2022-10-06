@@ -37,33 +37,32 @@ function AddReviewForm({ loadSpotId, onSubmit }) {
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='add_review_form_modal_input_container' onSubmit={handleSubmit}>
             <ul>
                 {Object.keys(errors).length > 0 && Object.keys(errors).map((errorKey, idx) =>
                     <li key={idx}>{errors[errorKey]}</li>
                 )}
             </ul>
-            <label>
-                Rating
+            <label className='form_labels'>
                 <input
+                    id='add_review_input'
                     type="number"
-                    // min="1"
-                    // max="5"
+                    min="1"
+                    max="5"
                     value={stars}
                     onChange={(e) => setStars(e.target.value)}
-                    // required
+                    placeholder='Rating'
                 />
             </label>
-            <label>
-                Review
+            <label className='form_labels'>
                 <textarea
                     type="text"
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
-                    // required
+                    placeholder='Review'
                 />
             </label>
-            <button type="submit">Submit Review</button>
+            <button className='form_button' type="submit">Submit Review</button>
         </form>
     )
 }

@@ -64,8 +64,11 @@ function Listings({ sessionUser }) {
 
                             </NavLink>
 
-                            <EditListingFormModal key={userSpots[spotId]?.name} userSpotId={userSpots[spotId]?.id} />
-                            <DeleteListing userSpotId={userSpots[spotId]?.id} />
+                            <div>
+                                <EditListingFormModal key={userSpots[spotId]?.name} userSpotId={userSpots[spotId]?.id} />
+                                <DeleteListing userSpotId={userSpots[spotId]?.id} />
+                            </div>
+
 
                         </div>
 
