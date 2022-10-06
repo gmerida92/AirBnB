@@ -29,52 +29,60 @@ function SingleSpot({ sessionUser }) {
             </div>
 
             <div className='single_listing_subheader_container'>
-                {loadSpot?.avgStarRating && <div><i className="fa-sharp fa-solid fa-star"></i>
-                    <span>{`${loadSpot?.avgStarRating}`}</span></div>}
+                {loadSpot?.avgStarRating && <div className='single_listing_rating_container'><i className="fa-sharp fa-solid fa-star"></i>
+                    <span id='single_listing_rating'>{`${loadSpot?.avgStarRating}`}</span>
+                    <span id='single_listing_circle'><i className="fa-sharp fa-solid fa-circle"></i></span>
+                </div>}
 
-                <div>
-                    <i className="fa-sharp fa-solid fa-circle"></i>
-                    <span>{`${loadSpot?.numReviews} reviews`}</span>
+                <div className='single_listing_rating_container'>
+                    <span id='single_listing_count'>{`${loadSpot?.numReviews} reviews`}</span>
                 </div>
 
-                <div><span>{`${loadSpot?.city}, ${loadSpot?.state}, ${loadSpot?.country}`}</span></div>
+                <div className='single_listing_location_container'><span>{`${loadSpot?.city}, ${loadSpot?.state}, ${loadSpot?.country}`}</span></div>
             </div>
 
             {imageArr?.length ?
-                <div>
+                <div className='single_listing_image_container'>
                     {imageArr?.map((imageDetails) => {
                         return (
                             <img
-                                className='spot-image'
+                                className='listing_image'
                                 src={imageDetails?.url}
                                 alt={imageDetails?.id}
                             />
                         )
                     })}
                 </div> :
-                <div>
-                    <i class="fa-solid fa-camera"></i>
+                <div className='no_image_container'>
+                    <span id='image_default'><i class="fa-solid fa-camera"></i></span>
                 </div>
             }
 
-            <div>
-                <h2>{`Hosted by ${loadSpot?.Owner?.firstName} ${loadSpot?.Owner?.lastName}`}</h2>
+            <div className='single_listing_host_container'>
+                <span id='single_listing_host'><h2>{`Hosted by ${loadSpot?.Owner?.firstName} ${loadSpot?.Owner?.lastName}`}</h2></span>
             </div>
+
             <div>
                 <p>{`${loadSpot?.description}`}</p>
             </div>
-            <div>
-                <p>
-                    <h2>Reviews</h2>
-                    {sessionUser && <div> <AddReviewFormModal loadSpotId={id} /> </div>}
-                </p>
-                <div>
-                    {loadSpot?.avgStarRating && <p><i className="fa-sharp fa-solid fa-star"></i>
-                        {`${loadSpot?.avgStarRating}`}</p>}
-                    <p>
-                        <i className="fa-sharp fa-solid fa-circle"></i>
-                        {`${loadSpot?.numReviews} reviews`}</p>
+
+            <div className='listing_users_reviews_container'>
+                <div className='listing_users_reviews_header'>
+                    <span><h2>Reviews</h2></span>
+                    {sessionUser && <div id="add_review_button_container"> <AddReviewFormModal loadSpotId={id} /> </div>}
                 </div>
+
+                <div className='single_listing_subheader_container'>
+                    {loadSpot?.avgStarRating && <div className='single_listing_rating_container'><i className="fa-sharp fa-solid fa-star"></i>
+                        <span id='single_listing_rating'>{`${loadSpot?.avgStarRating}`}</span>
+                        <span id='single_listing_circle'><i className="fa-sharp fa-solid fa-circle"></i></span>
+                    </div>}
+
+                    <div className='single_listing_rating_container'>
+                        <span id='single_listing_count'>{`${loadSpot?.numReviews} reviews`}</span>
+                    </div>
+                </div>
+
                 <ReviewsForSpot loadSpotId={id} />
             </div>
 
