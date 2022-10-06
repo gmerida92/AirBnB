@@ -7,9 +7,9 @@
 }
 
 .spot-container:after {
-    content: '';
+    /* content: ''; */
     /* width: 804px; */
-    flex: auto;
+    /* flex: auto; */
 }
 
 .single_listing_container {

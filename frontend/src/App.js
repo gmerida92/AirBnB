@@ -25,7 +25,7 @@ function App() {
 
 
   return (
-    <div>
+    <div className='app_container'>
       <Navigation isLoaded={isLoaded} />
 
       <Switch>
@@ -33,7 +33,7 @@ function App() {
           <Profile sessionUser={sessionUser} />
         </Route>
         <Route exact path={'/api/users/myaccount/spots'}>
-          <Listings sessionUser={sessionUser}/>
+          <Listings sessionUser={sessionUser} />
         </Route>
         <Route exact path='/'>
           <Spots />
