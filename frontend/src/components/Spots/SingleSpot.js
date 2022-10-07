@@ -21,11 +21,11 @@ function SingleSpot({ sessionUser }) {
     let imageArr = loadSpot?.Images;
 
     return (
-        <div className='single_listing_container'>
+        <div className='single_listing_page_container'>
 
             <div className='single_listing_header_container'>
                 <span id='single_listing_name'><h1>{`${loadSpot?.name}`}</h1></span>
-                <span id='single_listing_price'><h3>{`$${loadSpot?.price} night`}</h3></span>
+                <span id='single_listing_price'><h2>{`$${loadSpot?.price} night`}</h2></span>
             </div>
 
             <div className='single_listing_subheader_container'>
@@ -63,7 +63,7 @@ function SingleSpot({ sessionUser }) {
             </div>
 
             <div>
-                <p>{`${loadSpot?.description}`}</p>
+                <p id='single_listing_description'>{`${loadSpot?.description}`}</p>
             </div>
 
             <div className='listing_users_reviews_container'>
