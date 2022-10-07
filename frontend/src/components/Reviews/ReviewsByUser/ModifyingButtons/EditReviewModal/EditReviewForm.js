@@ -14,6 +14,9 @@ function EditReviewForm({ userReviewId, onSubmit }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if(review.indexOf(" ") === 0) return setErrors(['Review Can Not be Empty Space']);
+
         setErrors([]);
         let reviewEdits = {
             review,

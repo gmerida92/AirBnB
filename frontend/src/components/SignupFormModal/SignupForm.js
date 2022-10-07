@@ -19,6 +19,14 @@ function SignupForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if(firstName.indexOf(" ") >= 0) return setErrors(['First Name Can Not be Empty Space']);
+        if(lastName.indexOf(" ") >= 0) return setErrors(['Last Name Can Not be Empty Space']);
+        if(email.indexOf(" ") >= 0) return setErrors(['Email Can Not be Empty Space']);
+        if(username.indexOf(" ") >= 0) return setErrors(['Username Can Not be Empty Space']);
+        if(password.indexOf(" ") >= 0) return setErrors(['Password Can Not be Empty Space']);
+        if(confirmPassword.indexOf(" ") >= 0) return setErrors(['Confirm Password Can Not be Empty Space']);
+
         if (password === confirmPassword) {
             setErrors([]);
             return dispatch(sessionActions.signup({
@@ -44,6 +52,7 @@ function SignupForm() {
                     } else { setErrors([data.message]) };
                 });
         }
+        
         return setErrors(['Confirm Password field must be the same as the Password field'])
     };
 

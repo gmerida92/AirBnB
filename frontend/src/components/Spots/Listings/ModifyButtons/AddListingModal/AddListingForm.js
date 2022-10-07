@@ -29,6 +29,18 @@ function AddListingForm({ onSubmit }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if(address.indexOf(" ") === 0) return setErrors(['Address Can Not be Empty Space']);
+        if(city.indexOf(" ") === 0) return setErrors(['City Can Not be Empty Space']);
+        if(state.indexOf(" ") === 0) return setErrors(['State Can Not be Empty Space']);
+        if(country.indexOf(" ") === 0) return setErrors(['Country Can Not be Empty Space']);
+        if(lat.indexOf(" ") >= 0) return setErrors(['Latitude Can Not be Empty Space']);
+        if(lng.indexOf(" ") >= 0) return setErrors(['Longitude Can Not be Empty Space']);
+        if(name.indexOf(" ") === 0) return setErrors(['Name Can Not be Empty Space']);
+        if(description.indexOf(" ") === 0) return setErrors(['Description Can Not be Empty Space']);
+        if(price.indexOf(" ") >= 0) return setErrors(['Price Can Not be Empty Space']);
+        if(previewImage.indexOf(" ") >= 0) return setErrors(['Preview Image Can Not be Empty Space']);
+
         let newSpot = {
             address,
             city,
