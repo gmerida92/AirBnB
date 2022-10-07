@@ -22,7 +22,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     width: 100vh;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .single_listing_rating_container {
@@ -83,17 +83,21 @@
     width: 800px;
 }
 
-#single_listing_description{
-    font-size: 20px;
-}
-
 .single_listing_host_container {
     width: 100vh;
+}
+
+#single_listing_description{
+    font-size: 20px;
 }
 
 .listing_users_reviews_header{
     display: flex;
     align-items: baseline;
+}
+#listing_users_reviews_header_text{
+    font-size: 28px;
+    font-weight:600;
 }
 #add_review_button_container{
     margin-left: 40px;

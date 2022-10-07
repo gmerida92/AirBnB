@@ -4,6 +4,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin-top: 30px;
 }
 
 .listing_single_user_review_container{
@@ -15,9 +16,14 @@
 }
 
 #listing_user_review_name{
+    font-size: 22px;
     font-weight: 700;
 }
 
 #listing_user_review_createdAt{
     font-size: small;
+}
+
+#listing_user_review_review {
+    font-size: 18px;
 }

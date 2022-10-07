@@ -68,7 +68,7 @@ function SingleSpot({ sessionUser }) {
 
             <div className='listing_users_reviews_container'>
                 <div className='listing_users_reviews_header'>
-                    <span><h2>Reviews</h2></span>
+                    <span id='listing_users_reviews_header_text'>Reviews</span>
                     {sessionUser && <div id="add_review_button_container"> <AddReviewFormModal loadSpotId={id} /> </div>}
                 </div>
 
