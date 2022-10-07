@@ -34,11 +34,11 @@ function AddListingForm({ onSubmit }) {
         if(city.indexOf(" ") === 0) return setErrors(['City Can Not be Empty Space']);
         if(state.indexOf(" ") === 0) return setErrors(['State Can Not be Empty Space']);
         if(country.indexOf(" ") === 0) return setErrors(['Country Can Not be Empty Space']);
-        if(lat.indexOf(" ") >= 0) return setErrors(['Latitude Can Not be Empty Space']);
-        if(lng.indexOf(" ") >= 0) return setErrors(['Longitude Can Not be Empty Space']);
+        // if(lat.indexOf(" ") >= 0) return setErrors(['Latitude Can Not be Empty Space']);
+        // if(lng.indexOf(" ") >= 0) return setErrors(['Longitude Can Not be Empty Space']);
         if(name.indexOf(" ") === 0) return setErrors(['Name Can Not be Empty Space']);
         if(description.indexOf(" ") === 0) return setErrors(['Description Can Not be Empty Space']);
-        if(price.indexOf(" ") >= 0) return setErrors(['Price Can Not be Empty Space']);
+        // if(price.indexOf(" ") >= 0) return setErrors(['Price Can Not be Empty Space']);
         if(previewImage.indexOf(" ") >= 0) return setErrors(['Preview Image Can Not be Empty Space']);
 
         let newSpot = {
@@ -81,7 +81,7 @@ function AddListingForm({ onSubmit }) {
         <form className='add_lising_form_modal_input_container' onSubmit={handleSubmit}>
             <ul>
                 {Object.keys(errors).length > 0 && Object.keys(errors).map((errorKey, idx) =>
-                    <li key={idx}>{errors[errorKey]}</li>
+                    <li className='all_errors_text' key={idx}>{errors[errorKey]}</li>
                 )}
             </ul>
             <label className='form_labels'>
@@ -152,7 +152,9 @@ function AddListingForm({ onSubmit }) {
             </label>
             <label className='form_labels'>
                 <input
-                    type="text"
+                    type="number"
+                    min="0"
+                    step=".01"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     placeholder='Price'

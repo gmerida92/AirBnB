@@ -31,11 +31,11 @@ function EditListingForm({ userSpotId, onSubmit }) {
         if(city.indexOf(" ") === 0) return setErrors(['City Can Not be Empty Space']);
         if(state.indexOf(" ") === 0) return setErrors(['State Can Not be Empty Space']);
         if(country.indexOf(" ") === 0) return setErrors(['Country Can Not be Empty Space']);
-        if(lat.indexOf(" ") >= 0) return setErrors(['Latitude Can Not be Empty Space']);
-        if(lng.indexOf(" ") >= 0) return setErrors(['Longitude Can Not be Empty Space']);
+        // if(lat.indexOf(" ") >= 0) return setErrors(['Latitude Can Not be Empty Space']);
+        // if(lng.indexOf(" ") >= 0) return setErrors(['Longitude Can Not be Empty Space']);
         if(name.indexOf(" ") === 0) return setErrors(['Name Can Not be Empty Space']);
         if(description.indexOf(" ") === 0) return setErrors(['Description Can Not be Empty Space']);
-        if(price.indexOf(" ") >= 0) return setErrors(['Price Can Not be Empty Space']);
+        // if(price.indexOf(" ") >= 0) return setErrors(['Price Can Not be Empty Space']);
         if(previewImage.indexOf(" ") >= 0) return setErrors(['Preview Image Can Not be Empty Space']);
         
         let spotEdit = {
@@ -78,7 +78,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
         <form className='edit_lising_form_modal_input_container' onSubmit={handleSubmit}>
             <ul>
                 {Object.keys(errors).length > 0 && Object.keys(errors).map((errorKey, idx) =>
-                    <li key={idx}>{errors[errorKey]}</li>
+                    <li className='all_errors_text' key={idx}>{errors[errorKey]}</li>
                 )}
             </ul>
             <label className='form_labels'>
@@ -88,7 +88,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     placeholder={currentSpot.address}
-                    // required
+
                 />
             </label>
             <label className='form_labels'>
@@ -98,7 +98,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     placeholder={currentSpot.city}
-                    // required
+
                 />
             </label>
             <label className='form_labels'>
@@ -108,7 +108,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={state}
                     onChange={(e) => setState(e.target.value)}
                     placeholder={currentSpot.state}
-                    // required
+
                 />
             </label>
             <label className='form_labels'>
@@ -118,27 +118,29 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
                     placeholder={currentSpot.country}
-                    // required
+
                 />
             </label>
             <label className='form_labels'>
                 Latitude
                 <input
-                    type="text"
+                    type="number"
+                    step=".000001"
                     value={lat}
                     onChange={(e) => setLatitude(e.target.value)}
                     placeholder={currentSpot.lat}
-                    // required
+
                 />
             </label>
             <label className='form_labels'>
                 Longitude
                 <input
-                    type="text"
+                    type="number"
+                    step=".000001"
                     value={lng}
                     onChange={(e) => setLongitude(e.target.value)}
                     placeholder={currentSpot.lng}
-                    // required
+
                 />
             </label>
             <label className='form_labels'>
@@ -148,7 +150,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder={currentSpot.name}
-                    // required
+
                 />
             </label>
             <label className='form_labels'>
@@ -158,17 +160,18 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder={currentSpot.description}
-                    // required
+
                 />
             </label>
             <label className='form_labels'>
                 Price
                 <input
-                    type="text"
+                    type="number"
+                    step=".01"
+                    min='0'
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     placeholder={currentSpot.price}
-                    // required
                 />
             </label>
             <label className='form_labels'>
@@ -178,7 +181,7 @@ function EditListingForm({ userSpotId, onSubmit }) {
                     value={previewImage}
                     onChange={(e) => setPreviewImage(e.target.value)}
                     placeholder={currentSpot.previewImage}
-                    // required
+
                 />
             </label>
             <button className='form_button' type="submit">Update Listing</button>
