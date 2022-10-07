@@ -48,67 +48,61 @@ function SignupForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='signup_form_modal_input_container' onSubmit={handleSubmit}>
             <ul>
                 {Object.keys(errors).length > 0 && Object.keys(errors).map((errorKey, idx) =>
                     <li key={idx}>{errors[errorKey]}</li>
                 )}
             </ul>
-            <label>
-                First Name
+            <label className='form_labels'>
                 <input
                     type='text'
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    // required
+                    placeholder='First Name'
                 />
             </label>
-            <label>
-                Last Name
+            <label className='form_labels'>
                 <input
                     type='text'
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    // required
+                    placeholder='Last Name'
                 />
             </label>
-            <label>
-                Email
+            <label className='form_labels'>
                 <input
                     type='text'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    // required
+                    placeholder='Email'
                 />
             </label>
-            <label>
-                Username
+            <label className='form_labels'>
                 <input
                     type='text'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    // required
+                    placeholder='Username'
                 />
             </label>
-            <label>
-                Password
+            <label className='form_labels'>
                 <input
                     type='password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    // required
+                    placeholder='Password'
                 />
             </label>
-            <label>
-                Confirm Password
+            <label className='form_labels'>
                 <input
                     type='password'
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    // required
+                    placeholder='Confrim Password'
                 />
             </label>
-            <button type='submit'>Sign up</button>
+            <button className='form_button' type='submit'>Sign up</button>
         </form>
     )
 }

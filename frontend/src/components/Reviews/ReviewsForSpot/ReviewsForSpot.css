@@ -1,0 +1,23 @@
+.listing_all_user_reviews_container{
+    display: flex;
+    width: 100vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.listing_single_user_review_container{
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    margin-bottom: 50px;
+    margin-right: 40px;
+}
+
+#listing_user_review_name{
+    font-weight: 700;
+}
+
+#listing_user_review_createdAt{
+    font-size: small;
+}

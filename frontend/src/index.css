@@ -1,1 +1,8 @@
-/* TODO Add site wide styles */
+html, body {
+    height: 100vh;
+    margin: 0%;
+}
+
+.app_container{
+    height: 100vh;
+}

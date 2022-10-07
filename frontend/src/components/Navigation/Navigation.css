@@ -6,11 +6,45 @@
     background-color: white;
     z-index: 100;
     width: 100%;
-    top: 0;
+    top: 0px;
+
+    margin-top: 0px;
+    margin-bottom: 20px;
+
+    height: 120px;
+
+    border-bottom-left-radius: 30px 20px;
+    border-bottom-right-radius: 30px 20px;
 }
+
 
 .header_home {
     object-fit: contain;
     height: 100%;
     margin-left: 20px;
+}
+
+
+.header_home_link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #FF5A5F;
+    text-decoration: none;
+    
+}
+
+.header-logo {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.header_user_button {
+    display: flex;
+    align-items: center;
+    margin-right: 35px;
+}
+
+.host_button {
+    margin-right: 75px;
 }

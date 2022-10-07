@@ -1,0 +1,16 @@
+.signup_user_button {
+    background: none;
+    border: none;
+    padding-top: 5px;
+    font-family: arial, sans-serif;
+    color: #484848;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 25px;
+    width: 90px;
+}
+
+.signup_user_button:hover {
+    background-color: #c2bfbf;
+}

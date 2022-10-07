@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as spotActions from '../../store/spots';
-
 import "./spots.css"
 
 function Spots() {
@@ -11,42 +10,50 @@ function Spots() {
 
     useEffect(() => {
         dispatch(spotActions?.loadAllSpots());
-        // dispatch(spotActions?.loadAllUserSpots());
     }, [dispatch]);
 
     let loadSpots = useSelector((state) => state?.spots?.spot) || ''
 
-    // if (loadSpots) {
-    // }
+
     return (
         <div className='spot-container'>
             {Object?.keys(loadSpots)?.map((spotId) => {
                 return (
-                    <NavLink key={spotId} to={`/api/spots/${loadSpots[spotId]?.id}`}>
-                        <div>
-                            <div>
+                    <div className='single_listing_container'>
+                        <NavLink className='single_listing_link' key={spotId} to={`/api/spots/${loadSpots[spotId]?.id}`}>
+
+                            <div className='single_listing_image_container'>
                                 <img
-                                    className='spot-image'
+                                    className='single_listing_image'
                                     src={loadSpots[spotId]?.previewImage}
                                     alt={loadSpots[spotId]?.name}
                                 />
                             </div>
-                            <div>
-                                <p>{`${loadSpots[spotId]?.city}, ${loadSpots[spotId]?.state}`}</p>
+
+                            <div className='single_listing_detail_container'>
+                                <span id='single_listing_detail_location'>{`${loadSpots[spotId]?.city}, ${loadSpots[spotId]?.state}`}</span>
+
                                 {loadSpots[spotId]?.avgRating &&
-                                    <p>
+                                    <span>
                                         <i className="fa-sharp fa-solid fa-star"></i>
-                                        {`${loadSpots[spotId]?.avgRating}`}</p>}
+                                        <span id='rating_default'>{`${loadSpots[spotId]?.avgRating}`}</span>
+                                    </span>
+                                }
                                 {!loadSpots[spotId]?.avgRating &&
-                                    <p>
+                                    <span>
                                         <i className="fa-sharp fa-solid fa-star"></i>
-                                        New</p>}
+                                        <span id='rating_default'>New</span>
+                                    </span>
+                                }
+
                             </div>
-                            <div>
+
+                            <div className='single_listing_price_detail_container'>
                                 {`$${loadSpots[spotId]?.price} night`}
                             </div>
-                        </div>
-                    </NavLink>
+
+                        </NavLink>
+                    </div>
                 )
             })}
         </div>

@@ -30,31 +30,29 @@ function LoginForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='form_modal_input_container' onSubmit={handleSubmit}>
             <ul>
                 {Object.keys(errors).length > 0 && Object.keys(errors).map((errorKey, idx) =>
                     <li key={idx}>{errors[errorKey]}</li>
                 )}
             </ul>
-            <label>
-                Email
+            <label className='form_labels'>
                 <input
                     type="text"
                     value={credential}
                     onChange={(e) => setCredential(e.target.value)}
-                // required
+                    placeholder='Email'
                 />
             </label>
-            <label>
-                Password
+            <label className='form_labels'>
                 <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                // required
+                    placeholder='Password'
                 />
             </label>
-            <button type="submit">Log In</button>
+            <button className='form_button' type="submit">Log In</button>
         </form>
     );
 }

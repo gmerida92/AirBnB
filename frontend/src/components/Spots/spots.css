@@ -1,8 +1,48 @@
 .spot-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-.spot-image {
-    height: 50px;
-    width: 50px;
+/* .spot-container:after {
+    content: '';
+    width: 804px;
+    flex: auto;
+} */
+
+.single_listing_container {
+    box-sizing: border-box;
+    height: 300px;
+    width: 250px;
+    margin-bottom: 40px;
+    margin-right: 15px;
+}
+
+.single_listing_link {
+    text-decoration: none;
+}
+
+.single_listing_image {
+    height: 200px;
+    width: 250px;
+    border-radius: 20px 20px;
+}
+
+.single_listing_detail_container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: large;
+    color: black;
+}
+
+#rating_default {
+    margin-left: 5px;
+}
+
+.single_listing_price_detail_container {
+    color: black;
 }

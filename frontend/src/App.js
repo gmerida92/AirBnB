@@ -10,6 +10,7 @@ import Spots from './components/Spots'
 import SingleSpot from './components/Spots/SingleSpot'
 import Listings from './components/Spots/Listings';
 import Profile from './components/Profile';
+import Footer from './components/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,24 +26,28 @@ function App() {
 
 
   return (
-    <div>
-      <Navigation isLoaded={isLoaded} />
+    <>
+      <div className='app_container'>
+        <Navigation isLoaded={isLoaded} />
 
-      <Switch>
-        <Route exact path={'/api/users/myaccount'}>
-          <Profile sessionUser={sessionUser} />
-        </Route>
-        <Route exact path={'/api/users/myaccount/spots'}>
-          <Listings sessionUser={sessionUser}/>
-        </Route>
-        <Route exact path='/'>
-          <Spots />
-        </Route>
-        <Route exact path={'/api/spots/:id'}>
-          <SingleSpot sessionUser={sessionUser} />
-        </Route>
-      </Switch>
-    </div>
+        <Switch>
+          <Route exact path={'/api/users/myaccount'}>
+            <Profile sessionUser={sessionUser} />
+          </Route>
+          <Route exact path={'/api/users/myaccount/spots'}>
+            <Listings sessionUser={sessionUser} />
+          </Route>
+          <Route exact path='/'>
+            <Spots />
+          </Route>
+          <Route exact path={'/api/spots/:id'}>
+            <SingleSpot sessionUser={sessionUser} />
+          </Route>
+        </Switch>
+      </div>
+
+      <Footer />
+    </>
 
   );
 }

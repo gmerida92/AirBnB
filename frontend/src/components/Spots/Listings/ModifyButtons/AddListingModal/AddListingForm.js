@@ -66,103 +66,95 @@ function AddListingForm({ onSubmit }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='add_lising_form_modal_input_container' onSubmit={handleSubmit}>
             <ul>
                 {Object.keys(errors).length > 0 && Object.keys(errors).map((errorKey, idx) =>
                     <li key={idx}>{errors[errorKey]}</li>
                 )}
             </ul>
-            <label>
-                Address
+            <label className='form_labels'>
                 <input
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    // required
+                    placeholder='Address'
                 />
             </label>
-            <label>
-                City
+            <label className='form_labels'>
                 <input
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    // required
+                    placeholder='City'
                 />
             </label>
-            <label>
-                State
+            <label className='form_labels'>
                 <input
                     type="text"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
-                    // required
+                    placeholder='State'
                 />
             </label>
-            <label>
-                Country
+            <label className='form_labels'>
                 <input
                     type="text"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
-                    // required
+                    placeholder='Country'
                 />
             </label>
-            <label>
-                Latitude
+            <label className='form_labels'>
                 <input
-                    type="text"
+                    type="number"
+                    step=".000001"
                     value={lat}
                     onChange={(e) => setLatitude(e.target.value)}
-                    // required
+                    placeholder='Latitude'
                 />
             </label>
-            <label>
-                Longitude
+            <label className='form_labels'>
                 <input
-                    type="text"
+                    type="number"
+                    step=".000001"
                     value={lng}
                     onChange={(e) => setLongitude(e.target.value)}
-                    // required
+                    placeholder='Longitude'
                 />
             </label>
-            <label>
-                Name
+            <label className='form_labels'>
                 <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    // required
+                    placeholder='Name'
                 />
             </label>
-            <label>
-                Description
+            <label className='form_labels'>
                 <textarea
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    // required
+                    placeholder='Description'
                 />
             </label>
-            <label>
-                Price
+            <label className='form_labels'>
                 <input
                     type="text"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
-                    // required
+                    placeholder='Price'
                 />
             </label>
-            <label>
-                Preview Image
+            <label className='form_labels'>
                 <input
                     type="text"
                     value={previewImage}
                     onChange={(e) => setPreviewImage(e.target.value)}
-                    // required
+                    placeholder='Preview Image'
                 />
             </label>
-            <button type="submit">Create Listing</button>
+            <button className='form_button' type="submit">Create Listing</button>
         </form>
     );
 }

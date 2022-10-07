@@ -6,6 +6,7 @@ import * as userReviewActions from '../../../store/userReviews'
 import * as spotActions from '../../../store/spots'
 import EditReviewFormModal from "./ModifyingButtons/EditReviewModal";
 import DeleteReview from './ModifyingButtons/DeleteReview';
+import './ReviewsByUser.css'
 
 function ReviewsByUser() {
     const dispatch = useDispatch();
@@ -20,53 +21,60 @@ function ReviewsByUser() {
 
 
     return (
-        <div>
-            <h3>Your Reviews:</h3>
-<<<<<<< HEAD
-            {/* {!Object?.keys(userReviews)?.length && <div>No Reviews At This Moment</div>} */}
-=======
-            {Object?.keys(userReviews)?.length === 0 && <div>No Reviews At This Moment</div>}
->>>>>>> 13_Error_Validating_Login
+        <div className="user_listings_review_container">
+            {!Object?.keys(userReviews)?.length && <div>No Reviews At This Moment</div>}
             {Object?.keys(userReviews)?.map((reviewId) => {
                 return (
-                    <div>
-                        <div>
+                    <div className="single_listing_user_review_container">
+
+                        <div className="single_listing_location_details_container">
                             <NavLink to={`/api/spots/${userReviews[reviewId]?.Spot?.id}`}>
                                 <img
-                                    className='spot-image'
+                                    className='single_listing_image'
                                     src={allSpots[userReviews[reviewId]?.Spot?.id]?.previewImage}
                                     alt={allSpots[userReviews[reviewId]?.Spot?.id]?.name}
                                 />
-                                {`${userReviews[reviewId]?.Spot?.name}`}
                             </NavLink>
+
+                            <div className="single_listing_details">
+                                <NavLink id='single_listing_name' to={`/api/spots/${userReviews[reviewId]?.Spot?.id}`}>
+                                    {`${userReviews[reviewId]?.Spot?.name}`}
+                                </NavLink>
+                                <span>{`${userReviews[reviewId]?.Spot?.address}`}</span>
+                                <span>{`${userReviews[reviewId]?.Spot?.city}, ${userReviews[reviewId]?.Spot?.state}`}</span>
+                            </div>
                         </div>
-                        <div>
-                            <p>{`${userReviews[reviewId]?.Spot?.address}`}</p>
-                            <p>{`${userReviews[reviewId]?.Spot?.city}, ${userReviews[reviewId]?.Spot?.state}`}</p>
-                        </div>
-                        <div>
-                            <p>
-                                <i className="fa-sharp fa-solid fa-star"></i>
-                                {`${userReviews[reviewId]?.stars}`}</p>
-                            {userReviews[reviewId]?.Images?.map((imageDetails) => {
-                                return (
-                                    <div>
+
+
+                        <div className="user_review_details_container">
+                            <div className="user_review_rating_container">
+                                <span><i className="fa-sharp fa-solid fa-star"></i></span>
+                                <span id="user_review_rating">{`${userReviews[reviewId]?.stars}`}</span>
+                                <span id="user_review_createdAt">{`${userReviews[reviewId]?.createdAt?.slice(0, 10)}`}</span>
+                            </div>
+                            <div className="user_review_images_container">
+                                {userReviews[reviewId]?.Images?.map((imageDetails) => {
+                                    return (
                                         <img
-                                            className='spot-image'
+                                            className='user_review_images'
                                             src={imageDetails?.url}
                                             alt={userReviews[reviewId]?.Spot?.name}
                                         />
-                                    </div>
-                                )
-                            })}
-                            <p>{`${userReviews[reviewId]?.review}`}</p>
+                                    )
+                                })}
+                            </div>
+                            <div className="user_review_container">
+                                <p>{`${userReviews[reviewId]?.review}`}</p>
+                            </div>
                         </div>
+
                         <EditReviewFormModal key={userReviews[reviewId]?.name} userReviewId={userReviews[reviewId]?.id} />
                         <DeleteReview userReviewId={userReviews[reviewId]?.id} />
+
                     </div>
                 )
             })}
-        </div>
+        </div >
     )
 }
 

@@ -13,16 +13,22 @@ function Navigation() {
 
     return (
         <div className='header'>
+
             <div className='header_home'>
-                <NavLink exact to="/">
-                    <i className="fa-brands fa-airbnb"></i>
-                    airbnb
+                <NavLink className="header_home_link" exact to="/">
+                    <i className="fa-brands fa-airbnb fa-4x"></i>
+                    <p className='header-logo'>airbnb</p>
                 </NavLink>
             </div>
-            {sessionUser && <div> <AddListingFormModal /> </div>}
-            <div className='header_user'>
+
+            <div className='header_user_button'>
+                {sessionUser &&
+                    <span className='host_button'>
+                        <AddListingFormModal />
+                    </span>}
                 <ProfileButton sessionUser={sessionUser} />
             </div>
+
         </div>
     );
 };
