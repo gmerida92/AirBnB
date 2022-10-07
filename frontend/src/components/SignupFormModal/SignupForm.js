@@ -60,7 +60,7 @@ function SignupForm() {
         <form className='signup_form_modal_input_container' onSubmit={handleSubmit}>
             <ul>
                 {Object.keys(errors).length > 0 && Object.keys(errors).map((errorKey, idx) =>
-                    <li key={idx}>{errors[errorKey]}</li>
+                    <li className='all_errors_text' key={idx}>{errors[errorKey]}</li>
                 )}
             </ul>
             <label className='form_labels'>

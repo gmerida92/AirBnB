@@ -9,5 +9,6 @@ html, body {
 }
 
 .all_errors_text{
-    color: red ;
+    color: red;
+    font-weight: bold;
 }
