@@ -15,7 +15,7 @@ function DeleteReview({ userReviewId }) {
     };
 
     return (
-        <button onClick={removeReview}><i className="fa-solid fa-trash"></i></button>
+        <button className='remove_button' onClick={removeReview}><i className="fa-solid fa-trash"></i></button>
     )
 }
 

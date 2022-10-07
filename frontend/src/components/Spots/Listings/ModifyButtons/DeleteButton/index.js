@@ -15,7 +15,7 @@ function DeleteListing({ userSpotId }) {
     };
 
     return (
-        <button onClick={deleteSpot}><i className="fa-solid fa-trash"></i></button>
+        <button className='remove_button' onClick={deleteSpot}><i className="fa-solid fa-trash"></i></button>
     )
 }
 
