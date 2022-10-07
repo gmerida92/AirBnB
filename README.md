@@ -52,6 +52,8 @@ I am currently learning the skills and tools needed to be a software engineer. T
     * Get all Reviews of the Current User
     * Get all Reviews by a Spot's id
     * Create a Review for a Spot based on the Spot's id
+    * Edit a Review
+    * Delete a Review
 
 
 <a name="overview"/>
