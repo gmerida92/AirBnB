@@ -57,6 +57,14 @@ I am currently learning the skills and tools needed to be a software engineer. T
 <a name="overview"/>
 
 ### Frontend Overview
+The landing page allows you to login and sign up to the website. The navigation is dynamic and changes options on whether you are logged in. When logged in, you have the option create a new spot by becoming a host.
+![landingpage](./admin/Frontend/landingpage.png)
+If you click on a listing on the landing page, you are taken to the listings detail page. Depending on whether you are logged in, a user may visit a listings detail page to submit a new review. When submitted it will display on the listings detail page.
+![spotdetails](./admin/Frontend/spotdetails.png)
+When logged in, the user can visit user only pages, the profile and listings page. In the profile page, user details is displayed, as well as reviews posted by the user. Here they can update or remove a review.
+![profile](./admin/Frontend/profilepage.png)
+In the listings page, the user can view all listings owned by the user. Here they can update or remove a listing.
+![listings](./admin/Frontend/listingspage.png)
 
 
 
