@@ -1,7 +1,7 @@
 // backend/routes/api/users.js
 const express = require('express');
 const { setTokenCookie, restoreUser, requireAuthentication } = require('../../utils/auth.js');
-const { User, Spot, Review, Booking, Image, sequelize, } = require('../../db/models');
+const { User, Spot, Review, Booking, Image, sequelize } = require('../../db/models');
 const { validateLogin, validateSignup } = require('../../utils/validation_req_body.js');
 const router = express.Router();
 
