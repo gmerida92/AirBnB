@@ -17,7 +17,7 @@ function Navigation() {
             <div className='header_home'>
                 <NavLink className="header_home_link" exact to="/">
                     <i className="fa-brands fa-airbnb fa-4x"></i>
-                    <p className='header-logo'>staybnb</p>
+                    <p className='header-logo'>StayCation</p>
                 </NavLink>
             </div>
 
